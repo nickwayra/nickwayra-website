@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nick Wayra — Conversations, English &amp; Tech</title>
+  <title>Nick Wayra — Conversations, English &amp; Perspective</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <script>
     tailwind.config = {
       theme: {
@@ -34,28 +34,34 @@
     /* Subtle warm & mint ambient spotlight */
     .ambient-glow {
       background: 
-        radial-gradient(800px circle at 50% -10%, rgba(0, 229, 153, 0.08), transparent 60%),
-        radial-gradient(600px circle at 85% 40%, rgba(56, 189, 248, 0.05), transparent 55%);
+        radial-gradient(900px circle at 50% -10%, rgba(0, 229, 153, 0.08), transparent 60%),
+        radial-gradient(700px circle at 85% 40%, rgba(56, 189, 248, 0.05), transparent 55%);
     }
     .glass-card {
       background: #FFFFFF;
       border: 1px solid #E4E4E7;
-      box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.04);
-      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.04);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
+    /* Rich floating elevation shadow matching the user reference */
     .glass-card:hover {
-      border-color: #A1A1AA;
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px -8px rgba(0, 0, 0, 0.08);
+      border-color: #D4D4D8;
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.16), 0 10px 24px -6px rgba(0, 0, 0, 0.06);
     }
     .featured-card {
       background: #FFFFFF;
       border: 1.5px solid #18181B;
-      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 4px 18px -2px rgba(0, 0, 0, 0.06);
+    }
+    .featured-card:hover {
+      border-color: #000000;
+      transform: translateY(-6px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.18), 0 10px 24px -6px rgba(0, 0, 0, 0.08);
     }
   </style>
 </head>
-<body class="ambient-glow antialiased selection:bg-[#00E599] selection:text-black">
+<body class="ambient-glow antialiased selection:bg-[#00E599] selection:text-black min-h-screen">
 
   <!-- Sticky Minimalist Glass Navbar -->
   <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-xl">
@@ -69,8 +75,8 @@
 
       <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-zinc-600">
         <a href="#sessions" class="hover:text-zinc-950 transition">1-on-1 Sessions</a>
-        <a href="#ecosystem" class="hover:text-zinc-950 transition">Ecosystem</a>
         <a href="#how" class="hover:text-zinc-950 transition">How It Works</a>
+        <a href="#socials" class="hover:text-zinc-950 transition">Follow The Journey</a>
       </nav>
 
       <a href="https://calendly.com/nickwayra/conversation" target="_blank"
@@ -102,8 +108,9 @@
         <span class="font-serif italic font-normal text-zinc-700">New ideas &amp; fresh perspectives.</span>
       </h1>
 
+      <!-- Updated Hero Copy -->
       <p class="text-lg sm:text-xl text-zinc-700 font-normal leading-relaxed max-w-2xl mb-10">
-        I spend my time exploring the world, building digital experiments, and talking with curious people. Whether you want to <span class="text-zinc-950 font-medium">soundboard a life decision</span>, practice <span class="text-zinc-950 font-medium">natural spoken English</span>, or jam on <span class="text-zinc-950 font-medium">AI and product ideas</span>—pull up a chair.
+        I spend my time exploring the world, questioning everything, and talking with curious people. Whether you want to <span class="text-zinc-950 font-medium">soundboard a life decision</span>, explore a <span class="text-zinc-950 font-medium">new perspective</span>, or practice <span class="text-zinc-950 font-medium">natural spoken English</span>—pull up a chair.
       </p>
 
       <div class="flex flex-wrap items-center gap-4">
@@ -112,15 +119,15 @@
           Pick Your Session
           <span>&darr;</span>
         </a>
-        <a href="https://www.tiktok.com/@wayranick" target="_blank"
-           class="px-6 py-3.5 rounded-full text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-900 hover:text-zinc-950 transition shadow-sm">
-          Watch the 30-Day Yapper Series &nearr;
+        <a href="https://www.tiktok.com/@nickwayra.x" target="_blank"
+           class="px-6 py-3.5 rounded-full text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-900 hover:text-zinc-950 transition shadow-sm inline-flex items-center gap-1.5">
+          Watch on TikTok &nearr;
         </a>
       </div>
     </section>
 
-    <!-- 01 / THE 3 BOOKING DOORS -->
-    <section id="sessions" class="mb-28 scroll-mt-24">
+    <!-- 01 / THE 2 BOOKING DOORS (BALANCED 2-CARD GRID) -->
+    <section id="sessions" class="mb-24 scroll-mt-24">
       <div class="flex items-end justify-between mb-8 border-b border-zinc-200 pb-4">
         <div>
           <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">01 / Booking Menu</span>
@@ -131,176 +138,190 @@
         </span>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
-        <!-- Card 1: The Yapper Session -->
+        <!-- Card 1: The Yapper Session (Featured) -->
         <a href="https://calendly.com/nickwayra/conversation" target="_blank"
-           class="glass-card featured-card rounded-3xl p-7 flex flex-col justify-between group">
+           class="glass-card featured-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between group cursor-pointer">
           <div>
             <div class="flex items-center justify-between gap-2 mb-6">
-              <span class="font-mono text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full bg-[#00E599] text-zinc-950 border border-zinc-900/80">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-[#00E599] text-zinc-950 border border-zinc-900/80">
                 Most Popular
               </span>
               <span class="font-mono text-xs font-semibold text-zinc-500">30 mins</span>
             </div>
 
-            <h3 class="text-xl font-bold text-zinc-950 mb-2">1-on-1 Yapper Session</h3>
+            <h3 class="text-2xl font-bold text-zinc-950 mb-2 group-hover:text-emerald-700 transition">1-on-1 Yapper Session</h3>
             <div class="flex items-baseline gap-2 mb-5">
               <span class="text-3xl font-bold text-zinc-950">$10</span>
               <span class="text-xs text-zinc-400 line-through font-semibold">$25</span>
-              <span class="text-xs text-emerald-800 font-mono font-semibold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">First 10 callers rate</span>
+              <span class="text-xs text-emerald-800 font-mono font-semibold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">First 10 callers rate</span>
             </div>
 
-            <p class="text-sm text-zinc-700 leading-relaxed mb-6">
+            <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
               Bring a life dilemma, a relationship question, a philosophical rabbit hole, or an idea you’re sitting on. Zero small talk—just an honest, thoughtful sounding board.
             </p>
           </div>
 
-          <div class="pt-4 border-t border-zinc-100 flex items-center justify-between text-sm font-bold text-zinc-950 group-hover:text-emerald-700 transition">
+          <div class="pt-5 border-t border-zinc-100 flex items-center justify-between text-sm sm:text-base font-bold text-zinc-950 group-hover:text-emerald-700 transition">
             <span>Book a 1-on-1 Call</span>
-            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+            <span class="group-hover:translate-x-1.5 transition">&rarr;</span>
           </div>
         </a>
 
         <!-- Card 2: Conversational English -->
-        <a href="https://calendly.com/nickwayra/conversation" target="_blank"
-           class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+        <a href="https://calendly.com/nickwayra/english" target="_blank"
+           class="glass-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between group cursor-pointer">
           <div>
             <div class="flex items-center justify-between gap-2 mb-6">
-              <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-zinc-100 text-zinc-800 border border-zinc-200">
-                Fluency &amp; Confidence
+              <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 border border-zinc-200">
+                Fluency &amp; Confidence &middot; 1:1 Coaching
               </span>
-              <span class="font-mono text-xs font-semibold text-zinc-500">1:1 Coaching</span>
+              <span class="font-mono text-xs font-semibold text-zinc-500">30 mins</span>
             </div>
 
-            <h3 class="text-xl font-bold text-zinc-950 mb-2">Real-World English</h3>
+            <h3 class="text-2xl font-bold text-zinc-950 mb-2 group-hover:text-emerald-700 transition">Real-World English</h3>
             <div class="flex items-baseline gap-2 mb-5">
               <span class="text-3xl font-bold text-zinc-950">$15</span>
               <span class="text-xs font-medium text-zinc-500">/ intro &middot; or $50 (4-pack)</span>
             </div>
 
-            <p class="text-sm text-zinc-700 leading-relaxed mb-6">
+            <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
               Ditch stiff textbook drills. Stop translating in your head and start speaking naturally through real topics—culture, travel, career, and everyday slang.
             </p>
           </div>
 
-          <div class="pt-4 border-t border-zinc-100 flex items-center justify-between text-sm font-bold text-zinc-950 group-hover:text-emerald-700 transition">
-            <span>Start Practicing</span>
-            <span class="group-hover:translate-x-1 transition">&rarr;</span>
-          </div>
-        </a>
-
-        <!-- Card 3: Tech & Builder Jam -->
-        <a href="https://calendly.com/nickwayra/conversation" target="_blank"
-           class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-6">
-              <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-2.5 py-1 rounded-full bg-sky-50 text-sky-800 border border-sky-200">
-                Via @nickwayra.x
-              </span>
-              <span class="font-mono text-xs font-semibold text-zinc-500">30 mins</span>
-            </div>
-
-            <h3 class="text-xl font-bold text-zinc-950 mb-2">Tech &amp; Builder Jam</h3>
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl font-bold text-zinc-950">$10</span>
-              <span class="text-xs font-medium text-zinc-500">Experiment Rate</span>
-            </div>
-
-            <p class="text-sm text-zinc-700 leading-relaxed mb-6">
-              Want to bounce around an app concept, talk AI workflows, debate the future of tech, or figure out what to build next? Let’s jam on your project live.
-            </p>
-          </div>
-
-          <div class="pt-4 border-t border-zinc-100 flex items-center justify-between text-sm font-bold text-zinc-950 group-hover:text-emerald-700 transition">
-            <span>Book a Tech Jam</span>
-            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+          <div class="pt-5 border-t border-zinc-100 flex items-center justify-between text-sm sm:text-base font-bold text-zinc-950 group-hover:text-emerald-700 transition">
+            <span>Start Practicing English</span>
+            <span class="group-hover:translate-x-1.5 transition">&rarr;</span>
           </div>
         </a>
 
       </div>
     </section>
 
-    <!-- 02 / THE 3-ACCOUNT ECOSYSTEM (BENTO GRID) -->
-    <section id="ecosystem" class="mb-28 scroll-mt-24">
+    <!-- 02 / HOW IT WORKS (FULL-WIDTH FEATURE SECTION) -->
+    <section id="how" class="mb-24 scroll-mt-24">
       <div class="mb-8 border-b border-zinc-200 pb-4">
-        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">02 / One Identity, Three Channels</span>
-        <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Follow the journey across TikTok &amp; Instagram</h2>
+        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">02 / Zero Friction</span>
+        <h2 class="text-3xl font-bold tracking-tight text-zinc-950">How it works</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
-        
-        <!-- Bento 1: @wayranick -->
-        <a href="https://www.tiktok.com/@wayranick" target="_blank"
-           class="glass-card rounded-3xl p-7 md:col-span-7 flex flex-col justify-between group">
+      <div class="glass-card rounded-3xl p-8 sm:p-10">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">@wayranick</span>
-              <span class="text-xs font-medium text-zinc-500 group-hover:text-zinc-950 transition">TikTok &amp; IG &nearr;</span>
+            <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
+              01
             </div>
-            <h3 class="text-2xl font-bold text-zinc-950 mb-2">The Professional Yapper</h3>
-            <p class="text-sm text-zinc-700 leading-relaxed max-w-lg">
-              Documenting the 30-day experiment of turning genuine human conversations into a business. Daily questions, relationship dilemmas, philosophy, and perspective.
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">1. Pick a slot</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Select any time on my Calendly that works in your timezone. Instant Google Meet or Zoom link is sent right to your inbox.
             </p>
           </div>
-          <div class="mt-8 flex flex-wrap gap-2">
-            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200">30-Day Yapper Series</span>
-            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200">Let's Talk About It</span>
-          </div>
-        </a>
 
-        <!-- Bento 2: @nickwayra.x -->
-        <a href="https://www.tiktok.com/@nickwayra.x" target="_blank"
-           class="glass-card rounded-3xl p-7 md:col-span-5 flex flex-col justify-between group">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-sky-800 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-200">@nickwayra.x</span>
-              <span class="text-xs font-medium text-zinc-500 group-hover:text-zinc-950 transition">TikTok &nearr;</span>
+            <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
+              02
             </div>
-            <h3 class="text-2xl font-bold text-zinc-950 mb-2">Tech, AI &amp; Experiments</h3>
-            <p class="text-sm text-zinc-700 leading-relaxed">
-              Building digital products in public, testing AI workflows, gaming heritage, and questioning where technology is taking us next.
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">2. Set the vibe</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Drop a 1-sentence note on what you want to talk about, practice, or explore (or feel free to completely wing it).
             </p>
           </div>
-          <div class="mt-8 flex flex-wrap gap-2">
-            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200">Building Things</span>
-            <span class="text-[11px] font-mono font-medium px-2.5 py-1 rounded-md bg-zinc-100 text-zinc-700 border border-zinc-200">AI Experiments</span>
-          </div>
-        </a>
 
-        <!-- Bento 3: @nickwayra -->
-        <a href="https://www.tiktok.com/@nickwayra" target="_blank"
-           class="glass-card rounded-3xl p-7 md:col-span-5 flex flex-col justify-between group">
           <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-bold text-zinc-700 bg-zinc-100 px-2.5 py-1 rounded-full border border-zinc-200">@nickwayra</span>
-              <span class="text-xs font-medium text-zinc-500 group-hover:text-zinc-950 transition">TikTok &amp; IG &nearr;</span>
+            <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
+              03
             </div>
-            <h3 class="text-xl font-bold text-zinc-950 mb-2">Personal Archive</h3>
-            <p class="text-sm text-zinc-700 leading-relaxed">
-              The person behind the projects. Travel across Europe, Latin America, and Asia, culture, friendships, and life lately.
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">3. Show up</h3>
+            <p class="text-sm text-zinc-600 leading-relaxed">
+              Hop on the link. Camera on or audio-only—totally up to you. An easy, pressure-free space to connect.
             </p>
-          </div>
-        </a>
-
-        <!-- Bento 4: How It Works Strip -->
-        <div id="how" class="glass-card rounded-3xl p-7 md:col-span-7 flex flex-col justify-between">
-          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-3">03 / Zero Friction</span>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div>
-              <span class="font-mono text-xs font-bold text-zinc-950 block mb-1">1. Pick a slot</span>
-              <p class="text-xs text-zinc-600 leading-relaxed">Select any time on my Calendly that works in your timezone.</p>
-            </div>
-            <div>
-              <span class="font-mono text-xs font-bold text-zinc-950 block mb-1">2. Set the vibe</span>
-              <p class="text-xs text-zinc-600 leading-relaxed">Drop a 1-sentence note on what you want to talk about (or wing it).</p>
-            </div>
-            <div>
-              <span class="font-mono text-xs font-bold text-zinc-950 block mb-1">3. Show up</span>
-              <p class="text-xs text-zinc-600 leading-relaxed">Hop on the link. Camera on or audio-only—totally up to you.</p>
-            </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- 03 / FOLLOW THE JOURNEY (4-COLUMN SOCIAL PLATFORM BAR) -->
+    <section id="socials" class="mb-24 scroll-mt-24">
+      <div class="mb-8 border-b border-zinc-200 pb-4">
+        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">03 / Follow The Journey</span>
+        <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Where to watch &amp; connect</h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
+        
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@nickwayra.x" target="_blank"
+           class="glass-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.32a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 1 0 6.34 6.34V9.05a8.16 8.16 0 0 0 4.77 1.52V7.12a4.85 4.85 0 0 1-1-.43z"/>
+                </svg>
+              </div>
+              <span class="text-xs text-zinc-400 group-hover:text-zinc-950 transition">&nearr;</span>
+            </div>
+            <h4 class="font-bold text-zinc-950 text-base mb-1">TikTok</h4>
+            <p class="font-mono text-xs text-emerald-800 font-semibold bg-emerald-50 px-2 py-0.5 rounded w-fit mb-2">@nickwayra.x</p>
+          </div>
+          <span class="text-xs text-zinc-500 font-medium">Daily Yaps &amp; Series</span>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/wayranick" target="_blank"
+           class="glass-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </div>
+              <span class="text-xs text-zinc-400 group-hover:text-zinc-950 transition">&nearr;</span>
+            </div>
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Instagram</h4>
+            <p class="font-mono text-xs text-zinc-600 font-semibold bg-zinc-100 px-2 py-0.5 rounded w-fit mb-2">@wayranick</p>
+          </div>
+          <span class="text-xs text-zinc-500 font-medium">Life &amp; Reels</span>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@nickwayra" target="_blank"
+           class="glass-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+              </div>
+              <span class="text-xs text-zinc-400 group-hover:text-zinc-950 transition">&nearr;</span>
+            </div>
+            <h4 class="font-bold text-zinc-950 text-base mb-1">YouTube</h4>
+            <p class="font-mono text-xs text-zinc-600 font-semibold bg-zinc-100 px-2 py-0.5 rounded w-fit mb-2">@nickwayra</p>
+          </div>
+          <span class="text-xs text-zinc-500 font-medium">Long-form Talks</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com" target="_blank"
+           class="glass-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+              </div>
+              <span class="text-xs text-zinc-400 group-hover:text-zinc-950 transition">&nearr;</span>
+            </div>
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Facebook</h4>
+            <p class="font-mono text-xs text-zinc-600 font-semibold bg-zinc-100 px-2 py-0.5 rounded w-fit mb-2">Nick Wayra</p>
+          </div>
+          <span class="text-xs text-zinc-500 font-medium">English &amp; Community</span>
+        </a>
 
       </div>
     </section>
@@ -311,8 +332,9 @@
         <span class="text-zinc-950 font-bold">Nick Wayra</span> &mdash; Built for real human connection.
       </div>
       <div class="flex items-center gap-6">
+        <a href="https://www.tiktok.com/@nickwayra.x" target="_blank" class="hover:text-zinc-950 transition">TikTok</a>
         <a href="https://www.instagram.com/wayranick" target="_blank" class="hover:text-zinc-950 transition">Instagram</a>
-        <a href="https://www.tiktok.com/@wayranick" target="_blank" class="hover:text-zinc-950 transition">TikTok</a>
+        <a href="https://www.youtube.com/@nickwayra" target="_blank" class="hover:text-zinc-950 transition">YouTube</a>
         <a href="mailto:nickwayra@gmail.com" class="hover:text-zinc-950 transition">nickwayra@gmail.com</a>
       </div>
     </footer>

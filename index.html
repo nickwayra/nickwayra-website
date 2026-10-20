@@ -67,8 +67,11 @@
   <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-xl">
     <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
       <a href="#" class="flex items-center gap-2.5 group">
-        <div class="w-7 h-7 rounded-full bg-zinc-950 text-white font-semibold text-xs flex items-center justify-center tracking-tighter group-hover:scale-105 transition">
-          NW
+        <div class="relative w-8 h-8 rounded-full overflow-hidden border border-zinc-200/90 shadow-sm group-hover:scale-105 transition bg-zinc-100 flex items-center justify-center">
+          <img src="./avatar.png" alt="Nick Wayra" class="w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
+          <div class="hidden w-full h-full bg-zinc-950 text-white font-semibold text-xs flex items-center justify-center tracking-tighter">
+            NW
+          </div>
         </div>
         <span class="font-semibold tracking-tight text-sm text-zinc-900">Nick Wayra</span>
       </a>
@@ -92,7 +95,8 @@
     <!-- HERO SECTION -->
     <section class="max-w-3xl mb-24">
       <!-- Live Status Badge -->
-      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-8">
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 mb-8 shadow-xs">
+        <img src="./avatar.png" alt="Nick" class="w-5 h-5 rounded-full object-cover object-top border border-emerald-300" onerror="this.style.display='none';" />
         <span class="relative flex h-2 w-2">
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
@@ -213,7 +217,7 @@
             <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
               01
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">1. Pick a slot</h3>
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">Pick a slot</h3>
             <p class="text-sm text-zinc-600 leading-relaxed">
               Select any time on my Calendly that works in your timezone. Instant Google Meet or Zoom link is sent right to your inbox.
             </p>
@@ -223,7 +227,7 @@
             <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
               02
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">2. Set the vibe</h3>
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">Set the vibe</h3>
             <p class="text-sm text-zinc-600 leading-relaxed">
               Drop a 1-sentence note on what you want to talk about, practice, or explore (or feel free to completely wing it).
             </p>
@@ -233,7 +237,7 @@
             <div class="w-9 h-9 rounded-full bg-zinc-950 text-white font-mono text-xs font-bold flex items-center justify-center mb-4">
               03
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">3. Show up</h3>
+            <h3 class="text-lg font-bold text-zinc-950 mb-2">Show up</h3>
             <p class="text-sm text-zinc-600 leading-relaxed">
               Hop on the link. Camera on or audio-only—totally up to you. An easy, pressure-free space to connect.
             </p>

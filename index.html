@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nick Wayra — Conversations, English & Tech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Instrument Serif', 'serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: '#070709',
+            surface: '#0F0F13',
+            border: 'rgba(255, 255, 255, 0.08)',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #070709;
+      color: #F4F4F6;
+      overflow-x: hidden;
+    }
+    /* Subtle noise & ambient spotlight */
+    .ambient-glow {
+      background: 
+        radial-gradient(800px circle at 50% -10%, rgba(56, 189, 248, 0.09), transparent 60%),
+        radial-gradient(600px circle at 85% 40%, rgba(16, 185, 129, 0.05), transparent 55%);
+    }
+    .glass-card {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(16px);
+      transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .glass-card:hover {
+      border-color: rgba(255, 255, 255, 0.22);
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+    }
+    .featured-card {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.015) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+  </style>
+</head>
+<body class="ambient-glow antialiased selection:bg-white selection:text-black">
+
+  <!-- Sticky Minimalist Glass Navbar -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-white/[0.06] bg-[#070709]/75 backdrop-blur-xl">
+    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-7 h-7 rounded-full bg-white text-black font-semibold text-xs flex items-center justify-center tracking-tighter group-hover:scale-105 transition">
+          NW
+        </div>
+        <span class="font-medium tracking-tight text-sm text-zinc-200">Nick Wayra</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-xs font-medium text-zinc-400">
+        <a href="#sessions" class="hover:text-white transition">1-on-1 Sessions</a>
+        <a href="#ecosystem" class="hover:text-white transition">Ecosystem</a>
+        <a href="#how" class="hover:text-white transition">How It Works</a>
+      </nav>
+
+      <a href="https://calendly.com/nickwayra/conversation" target="_blank"
+         class="text-xs font-medium bg-white text-black px-4 py-2 rounded-full hover:bg-zinc-200 transition">
+        Book a Call &rarr;
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-5xl mx-auto px-6 pt-36 pb-24">
+
+    <!-- HERO SECTION -->
+    <section class="max-w-3xl mb-24">
+      <!-- Live Status Badge -->
+      <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        </span>
+        <span class="font-mono text-[11px] uppercase tracking-widest text-zinc-300">
+          Taking 1:1 Sessions This Week &middot; Beta Open
+        </span>
+      </div>
+
+      <!-- Editorial Headline -->
+      <h1 class="text-5xl sm:text-7xl font-semibold tracking-tight leading-[1.04] text-white mb-6">
+        Real conversations.<br />
+        <span class="font-serif italic font-normal text-zinc-300">New ideas &amp; fresh perspectives.</span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-zinc-400 font-normal leading-relaxed max-w-2xl mb-10">
+        I spend my time exploring the world, building digital experiments, and talking with curious people. Whether you want to <span class="text-zinc-200">soundboard a life decision</span>, practice <span class="text-zinc-200">natural spoken English</span>, or jam on <span class="text-zinc-200">AI and product ideas</span>—pull up a chair.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#sessions"
+           class="bg-white text-black font-medium text-sm px-6 py-3.5 rounded-full hover:bg-zinc-200 transition inline-flex items-center gap-2">
+          Pick Your Session
+          <span>&darr;</span>
+        </a>
+        <a href="https://www.tiktok.com/@wayranick" target="_blank"
+           class="px-6 py-3.5 rounded-full text-sm font-medium text-zinc-300 border border-white/10 hover:border-white/25 hover:text-white transition">
+          Watch the 30-Day Yapper Series &nearr;
+        </a>
+      </div>
+    </section>
+
+    <!-- 01 / THE 3 BOOKING DOORS -->
+    <section id="sessions" class="mb-28 scroll-mt-24">
+      <div class="flex items-end justify-between mb-8 border-b border-white/[0.07] pb-4">
+        <div>
+          <span class="font-mono text-xs uppercase tracking-widest text-zinc-500 block mb-1">01 / Booking Menu</span>
+          <h2 class="text-2xl font-medium tracking-tight text-white">Choose how we connect</h2>
+        </div>
+        <span class="font-mono text-xs text-emerald-400 hidden sm:inline-block">
+          ● Instant Google Meet / Zoom link upon booking
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Card 1: The Yapper Session -->
+        <a href="https://calendly.com/nickwayra/conversation" target="_blank"
+           class="glass-card featured-card rounded-3xl p-7 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-6">
+              <span class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/10 text-white">
+                Most Popular
+              </span>
+              <span class="font-mono text-xs text-zinc-400">30 mins</span>
+            </div>
+
+            <h3 class="text-xl font-semibold text-white mb-2">1-on-1 Yapper Session</h3>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl font-semibold text-white">$10</span>
+              <span class="text-xs text-zinc-500 line-through">$25</span>
+              <span class="text-xs text-emerald-400 font-mono">First 10 callers rate</span>
+            </div>
+
+            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+              Bring a life dilemma, a relationship question, a philosophical rabbit hole, or an idea you’re sitting on. Zero small talk—just an honest, thoughtful sounding board.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.08] flex items-center justify-between text-sm font-medium text-white">
+            <span>Book a 1-on-1 Call</span>
+            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Conversational English -->
+        <a href="https://calendly.com/nickwayra/conversation" target="_blank"
+           class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-6">
+              <span class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-white/[0.05] text-zinc-300">
+                Fluency &amp; Confidence
+              </span>
+              <span class="font-mono text-xs text-zinc-400">1:1 Coaching</span>
+            </div>
+
+            <h3 class="text-xl font-semibold text-white mb-2">Real-World English</h3>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl font-semibold text-white">$15</span>
+              <span class="text-xs text-zinc-400">/ intro &middot; or $50 (4-pack)</span>
+            </div>
+
+            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+              Ditch stiff textbook drills. Stop translating in your head and start speaking naturally through real topics—culture, travel, career, and everyday slang.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-medium text-zinc-200 group-hover:text-white">
+            <span>Start Practicing</span>
+            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Tech & Builder Jam -->
+        <a href="https://calendly.com/nickwayra/conversation" target="_blank"
+           class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-6">
+              <span class="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full bg-sky-500/10 text-sky-300 border border-sky-500/20">
+                Via @nickwayra.x
+              </span>
+              <span class="font-mono text-xs text-zinc-400">30 mins</span>
+            </div>
+
+            <h3 class="text-xl font-semibold text-white mb-2">Tech &amp; Builder Jam</h3>
+            <div class="flex items-baseline gap-2 mb-5">
+              <span class="text-3xl font-semibold text-white">$10</span>
+              <span class="text-xs text-zinc-400">Experiment Rate</span>
+            </div>
+
+            <p class="text-sm text-zinc-400 leading-relaxed mb-6">
+              Want to bounce around an app concept, talk AI workflows, debate the future of tech, or figure out what to build next? Let’s jam on your project live.
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/[0.06] flex items-center justify-between text-sm font-medium text-zinc-200 group-hover:text-white">
+            <span>Book a Tech Jam</span>
+            <span class="group-hover:translate-x-1 transition">&rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- 02 / THE 3-ACCOUNT ECOSYSTEM (BENTO GRID) -->
+    <section id="ecosystem" class="mb-28 scroll-mt-24">
+      <div class="mb-8 border-b border-white/[0.07] pb-4">
+        <span class="font-mono text-xs uppercase tracking-widest text-zinc-500 block mb-1">02 / One Identity, Three Channels</span>
+        <h2 class="text-2xl font-medium tracking-tight text-white">Follow the journey across TikTok &amp; Instagram</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+        
+        <!-- Bento 1: @wayranick -->
+        <a href="https://www.tiktok.com/@wayranick" target="_blank"
+           class="glass-card rounded-3xl p-7 md:col-span-7 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-emerald-400">@wayranick</span>
+              <span class="text-xs text-zinc-500 group-hover:text-white transition">TikTok &amp; IG &nearr;</span>
+            </div>
+            <h3 class="text-2xl font-medium text-white mb-2">The Professional Yapper</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed max-w-lg">
+              Documenting the 30-day experiment of turning genuine human conversations into a business. Daily questions, relationship dilemmas, philosophy, and perspective.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-zinc-400">30-Day Yapper Series</span>
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-zinc-400">Let's Talk About It</span>
+          </div>
+        </a>
+
+        <!-- Bento 2: @nickwayra.x -->
+        <a href="https://www.tiktok.com/@nickwayra.x" target="_blank"
+           class="glass-card rounded-3xl p-7 md:col-span-5 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-sky-400">@nickwayra.x</span>
+              <span class="text-xs text-zinc-500 group-hover:text-white transition">TikTok &nearr;</span>
+            </div>
+            <h3 class="text-2xl font-medium text-white mb-2">Tech, AI &amp; Experiments</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Building digital products in public, testing AI workflows, gaming heritage, and questioning where technology is taking us next.
+            </p>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-2">
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-zinc-400">Building Things</span>
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded-md bg-white/[0.04] text-zinc-400">AI Experiments</span>
+          </div>
+        </a>
+
+        <!-- Bento 3: @nickwayra -->
+        <a href="https://www.tiktok.com/@nickwayra" target="_blank"
+           class="glass-card rounded-3xl p-7 md:col-span-5 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="font-mono text-xs text-zinc-300">@nickwayra</span>
+              <span class="text-xs text-zinc-500 group-hover:text-white transition">TikTok &amp; IG &nearr;</span>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-2">Personal Archive</h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              The person behind the projects. Travel across Europe, Latin America, and Asia, culture, friendships, and life lately.
+            </p>
+          </div>
+        </a>
+
+        <!-- Bento 4: How It Works Strip -->
+        <div id="how" class="glass-card rounded-3xl p-7 md:col-span-7 flex flex-col justify-between">
+          <span class="font-mono text-xs uppercase tracking-widest text-zinc-500 mb-3">03 / Zero Friction</span>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <span class="font-mono text-xs text-white block mb-1">1. Pick a slot</span>
+              <p class="text-xs text-zinc-400 leading-relaxed">Select any time on my Calendly that works in your timezone.</p>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-white block mb-1">2. Set the vibe</span>
+              <p class="text-xs text-zinc-400 leading-relaxed">Drop a 1-sentence note on what you want to talk about (or wing it).</p>
+            </div>
+            <div>
+              <span class="font-mono text-xs text-white block mb-1">3. Show up</span>
+              <p class="text-xs text-zinc-400 leading-relaxed">Hop on the link. Camera on or audio-only—totally up to you.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MINIMALIST FOOTER -->
+    <footer class="pt-10 border-t border-white/[0.07] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-zinc-500">
+      <div>
+        <span class="text-zinc-300 font-medium">Nick Wayra</span> &mdash; Built for real human connection.
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://www.instagram.com/wayranick" target="_blank" class="hover:text-white transition">Instagram</a>
+        <a href="https://www.tiktok.com/@wayranick" target="_blank" class="hover:text-white transition">TikTok</a>
+        <a href="mailto:nickwayra@gmail.com" class="hover:text-white transition">nickwayra@gmail.com</a>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #FAFAFA;
+  color: #111214;
+  overflow-x: hidden;
+}
+
+/* Subtle warm & mint ambient spotlight */
+.ambient-glow {
+  background: 
+    radial-gradient(900px circle at 50% -10%, rgba(0, 217, 154, 0.07), transparent 60%),
+    radial-gradient(700px circle at 85% 40%, rgba(0, 122, 89, 0.04), transparent 55%);
+}
+
+/* Standard Card: 4px lift, strengthened shadow & smooth emerald border transition */
+.glass-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.22s ease-out;
+}
+.glass-card:hover {
+  border-color: #007A59;
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.12), 0 6px 14px -4px rgba(0, 0, 0, 0.04);
+}
+
+/* Flagship Card: Retains authoritative black border on hover */
+.featured-card {
+  background: #FFFFFF;
+  border: 1.5px solid #111214;
+  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+}
+.featured-card:hover {
+  border-color: #000000;
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.14), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
+}
+
+/* Social Platform Cards: 3-4px lift, soft pale mint background & deep emerald border on hover */
+.social-card {
+  background: #FFFFFF;
+  border: 1px solid #E4E4E7;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.22s ease-out,
+              background-color 0.22s ease-out;
+}
+.social-card:hover {
+  background-color: #F0FDF7;
+  border-color: #007A59;
+  transform: translateY(-3.5px);
+  box-shadow: 0 12px 28px -6px rgba(0, 122, 89, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* Subtle one-time sequential fade-up entrance + continuous left-to-right green wave */
+@keyframes heroFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes greenWaveFlow {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: 0% center;
+  }
+}
+.hero-fade-1 {
+  animation: heroFadeUp 0.48s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-fade-2 {
+  opacity: 0;
+  animation: heroFadeUp 0.48s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+.headline-wave {
+  display: inline-block;
+  padding-right: 0.08em;
+  padding-bottom: 0.05em;
+  background-image: linear-gradient(
+    90deg,
+    #007A59 0%,
+    #009F9A 25%,
+    #00D99A 50%,
+    #79AA27 75%,
+    #007A59 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: greenWaveFlow 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fade-1, .hero-fade-2 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .headline-wave {
+    animation: none !important;
+    background-image: none !important;
+    -webkit-text-fill-color: #007A59 !important;
+    color: #007A59 !important;
+  }
+  .glass-card, .featured-card, .social-card, .step-item {
+    transition: none !important;
+    transform: none !important;
+  }
+}

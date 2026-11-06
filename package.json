@@ -1,0 +1,18 @@
+{
+  "name": "nickwayra-website",
+  "version": "1.0.0",
+  "description": "Nick Wayra personal website",
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./style.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./style.css --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickwayra/nickwayra-website.git"
+  },
+  "author": "Nick Wayra",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

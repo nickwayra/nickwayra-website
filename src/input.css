@@ -327,15 +327,16 @@ html[data-mode="lab"] body:before {
 }
 
 .x-wordmark-suffix {
-  font-family: 'Instrument Serif', Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: clamp(32px, 4.8vw, 54px);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: clamp(30px, 4.5vw, 52px);
   line-height: 1;
-  margin-left: 0.05em; /* optical kiss right beside the X */
+  letter-spacing: -0.025em;
+  margin-left: 0.04em; /* optical kiss right beside the X */
   display: inline-flex;
   align-items: baseline;
-  min-width: 13.5ch; /* reserves stable footprint for 'perimentation' to prevent hero jumping */
+  min-width: 14ch; /* reserves stable footprint for 'perimentation' to prevent hero jumping */
   vertical-align: baseline;
 }
 

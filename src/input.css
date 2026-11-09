@@ -327,16 +327,16 @@ html[data-mode="lab"] body:before {
 }
 
 .x-wordmark-suffix {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-style: normal;
   font-weight: 500;
-  font-size: clamp(30px, 4.5vw, 52px);
+  font-size: clamp(28px, 4.2vw, 48px);
   line-height: 1;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.03em;
   margin-left: 0.04em; /* optical kiss right beside the X */
   display: inline-flex;
   align-items: baseline;
-  min-width: 14ch; /* reserves stable footprint for 'perimentation' to prevent hero jumping */
+  min-width: 14ch; /* monospace glyphs: exactly 13 characters + cursor */
   vertical-align: baseline;
 }
 
@@ -345,9 +345,9 @@ html[data-mode="lab"] body:before {
   display: inline-block;
   color: #66E3AE;
   font-weight: 300;
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: 'JetBrains Mono', monospace;
   font-style: normal;
-  margin-left: 3px;
+  margin-left: 2px;
   animation: cursorBlink 0.85s infinite;
   text-shadow: 0 0 12px rgba(102, 227, 174, 0.6);
   user-select: none;

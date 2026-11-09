@@ -1,375 +1,1021 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<!doctype html>
+<html lang="en" data-mode="human">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nick Wayra — Conversations, English &amp; Perspective</title>
-  <meta name="description" content="Nick Wayra — 1-on-1 casual conversations, English coaching, and fresh perspective. Book a session or connect online." />
-  <link rel="icon" type="image/png" href="./favicon.png" />
-  <link rel="apple-touch-icon" href="./avatar.png" />
-  <meta property="og:title" content="Nick Wayra — Conversations, English &amp; Perspective" />
-  <meta property="og:description" content="1-on-1 casual conversations, English coaching, and fresh perspective." />
-  <meta property="og:image" content="./avatar.png" />
-  <meta property="og:type" content="website" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Nick Wayra explores ideas worth thinking about and experiments with what software can become.">
+  <meta name="theme-color" content="#fafafa">
+  <title>Nick Wayra — Ideas, conversations &amp; perspectives</title>
+  
+  <link rel="icon" type="image/png" href="./favicon.png">
+  <link rel="apple-touch-icon" href="./avatar.png">
+  <meta property="og:title" content="Nick Wayra — Conversations, English &amp; Perspective">
+  <meta property="og:description" content="1-on-1 casual conversations, English coaching, and fresh perspective.">
+  <meta property="og:image" content="./avatar.png">
+  <meta property="og:type" content="website">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body class="ambient-glow antialiased selection:bg-[#00E599] selection:text-black min-h-screen">
 
-  <!-- Sticky Minimalist Glass Navbar -->
-  <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-200/80 bg-white/80 backdrop-blur-xl">
-    <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-2.5 group">
-        <div class="relative w-8 h-8 rounded-full overflow-hidden border border-zinc-200/90 shadow-sm group-hover:scale-105 transition bg-zinc-100 flex items-center justify-center">
-          <img src="./avatar.png" alt="Nick Wayra" class="w-full h-full object-cover object-top" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden');" />
-          <div class="hidden w-full h-full bg-zinc-950 text-white font-semibold text-xs flex items-center justify-center tracking-tighter">
-            NW
-          </div>
+  <!-- Sticky Minimalist Glass Navbar with Dual-Mode Switcher -->
+  <header class="fixed top-0 inset-x-0 z-50 border-b border-zinc-200/80 bg-white/85 dark:bg-[#080E0D]/85 backdrop-blur-xl transition-colors duration-300">
+    <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between gap-4">
+      
+      <!-- Brand Identity -->
+      <a href="#top" class="flex items-center gap-2.5 group shrink-0" aria-label="Nick Wayra Home">
+        <span class="w-8 h-8 rounded-full bg-[#007A59] text-white flex items-center justify-center font-bold text-xs font-mono transition-transform duration-200 group-hover:scale-105 shadow-xs" id="brandMark">
+          N
+        </span>
+        <span class="font-bold tracking-tight text-base sm:text-lg text-zinc-950 dark:text-[#E5FFF1]">
+          NICK WAYRA
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Links (Populated dynamically per mode) -->
+      <nav class="hidden lg:flex items-center gap-7 text-xs font-medium text-zinc-600 dark:text-[#8BA99A]" id="desktopLinks" aria-label="Main navigation"></nav>
+
+      <!-- Right controls: Mode Switcher & Mobile Menu Button -->
+      <div class="flex items-center gap-3">
+        <div class="mode-switch" role="group" aria-label="Choose identity mode">
+          <button type="button" data-set-mode="human" aria-pressed="true" title="Switch to Nick Wayra human mode">
+            ◉ &nbsp;NICK WAYRA
+          </button>
+          <button type="button" data-set-mode="lab" aria-pressed="false" title="Switch to Nick Wayra X lab mode">
+            ⌘ &nbsp;X / LAB
+          </button>
         </div>
-        <span class="font-semibold tracking-tight text-sm text-zinc-900">Nick Wayra</span>
-      </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-wider text-zinc-600">
-        <a href="#sessions" class="hover:text-zinc-950 transition">1-on-1 Sessions</a>
-        <a href="#how" class="hover:text-zinc-950 transition">How It Works</a>
-        <a href="#socials" class="hover:text-zinc-950 transition">Follow The Journey</a>
-      </nav>
+        <button class="lg:hidden p-2 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-200 bg-white/80 dark:bg-zinc-900" id="menuBtn" aria-expanded="false" aria-controls="mobileLinks" aria-label="Toggle navigation">
+          <svg class="w-5 h-5 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round">
+            <line x1="4" y1="6" x2="20" y2="6"></line>
+            <line x1="4" y1="12" x2="20" y2="12"></line>
+            <line x1="4" y1="18" x2="20" y2="18"></line>
+          </svg>
+        </button>
+      </div>
 
-      <a href="https://calendly.com/nickwayra/conversation" target="_blank"
-         class="text-xs font-bold bg-[#00E599] text-zinc-950 border border-zinc-900/80 px-4 py-2 rounded-full hover:bg-[#00d08a] transition shadow-sm">
-        Book a Call &rarr;
-      </a>
     </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <nav class="hidden lg:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-[#080E0D]/95 px-6 py-4 flex flex-wrap gap-2 text-xs font-medium" id="mobileLinks" aria-label="Mobile navigation"></nav>
   </header>
 
-  <!-- Main Content Container -->
-  <main class="max-w-5xl mx-auto px-6 pt-36 pb-24">
+  <main id="top" class="pt-24 pb-16">
 
-    <!-- HERO SECTION WITH PORTRAIT ON THE LEFT -->
-    <section class="mb-24">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 md:gap-12 items-start">
-        
-        <!-- Left: Photo in Rounded Frame (Top-aligned with intentional offset to match headline) -->
-        <div class="md:col-span-4 flex justify-center md:justify-start md:pt-12">
-          <div class="relative w-48 sm:w-56 md:w-full max-w-[280px] aspect-[4/5] rounded-3xl overflow-hidden shadow-xl border border-zinc-200/90 bg-zinc-100 group">
-            <img src="./avatar.png" 
-                 alt="Nick Wayra" 
-                 class="w-full h-full object-cover object-top group-hover:scale-[1.03] transition duration-500" 
-                 onerror="this.style.display='none'; document.getElementById('hero-fallback').classList.remove('hidden');" />
-            <div id="hero-fallback" class="hidden absolute inset-0 bg-gradient-to-tr from-zinc-900 to-zinc-700 flex flex-col items-center justify-center text-white">
-              <span class="text-5xl font-serif">NW</span>
+    <!-- ======================================================== -->
+    <!-- MODE 1: NICK WAYRA (HUMAN EDITORIAL EXPERIENCE)          -->
+    <!-- ======================================================== -->
+    <div class="mode-panel active" id="humanPanel">
+      
+      <!-- HERO SECTION -->
+      <section class="max-w-6xl mx-auto px-6 py-12 sm:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
+          
+          <!-- Left: Asymmetric Portrait (from starter specification) -->
+          <div class="md:col-span-5 order-2 md:order-1 flex justify-center">
+            <div class="portrait-frame">
+              <img src="./avatar.png" alt="Nick Wayra" class="portrait-img">
+              <div class="portrait-note">
+                CURIOUS BY DEFAULT &middot; HUMAN FIRST
+              </div>
             </div>
           </div>
-        </div>
 
-        <!-- Right: Content Column -->
-        <div class="md:col-span-8">
-          <!-- Availability Pill -->
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 mb-6 shadow-xs">
-            <span class="w-2 h-2 rounded-full bg-[#007A59]"></span>
-            <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-emerald-800">
-              Open for 1:1 Conversations
-            </span>
-          </div>
-
-          <!-- Editorial Headline (Subtle one-time entrance animation + continuous left-to-right green wave) -->
-          <h1 class="text-3xl sm:text-5xl lg:text-[62px] font-semibold tracking-tight leading-[1.06] text-zinc-950 mb-5">
-            <span class="block hero-fade-1">Real conversations.</span>
-            <span class="block hero-fade-2">
-              <span class="font-serif italic font-normal headline-wave">New ideas &amp; fresh perspectives.</span>
-            </span>
-          </h1>
-
-          <!-- Hero Copy -->
-          <div class="space-y-4 text-base sm:text-lg text-zinc-700 font-normal leading-relaxed max-w-xl mb-8">
-            <p>
-              I spend my time exploring the world, questioning everything, and connecting with curious people along the way.
-            </p>
-            <p>
-              Whether you want to soundboard a life decision, explore a new perspective, talk relationships, share what's on your mind, or practice your spoken English, there's always room for a good conversation.
-            </p>
-            <p class="font-medium text-zinc-950">
-              So let's chat!
-            </p>
-          </div>
-
-          <div class="flex flex-wrap items-center gap-4">
-            <a href="#sessions"
-               class="bg-[#00E599] text-zinc-950 border border-zinc-900/80 font-bold text-sm px-6 py-3.5 rounded-full hover:bg-[#00d08a] transition inline-flex items-center gap-2 shadow-sm">
-              Pick Your Session
-              <span>&darr;</span>
-            </a>
-            <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer"
-               class="px-6 py-3.5 rounded-full text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-900 hover:text-zinc-950 transition shadow-sm inline-flex items-center gap-1.5">
-              Watch on TikTok &nearr;
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 01 / THE 2 BOOKING DOORS (BALANCED 2-CARD GRID) -->
-    <section id="sessions" class="mb-24 scroll-mt-24">
-      <div class="flex items-end justify-between mb-8 border-b border-zinc-200 pb-4">
-        <div>
-          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">01 / Booking Menu</span>
-          <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Choose how we connect</h2>
-        </div>
-        <span class="font-mono text-xs font-medium text-zinc-500 hidden sm:inline-block">
-          Online via Google Meet &middot; Link sent after booking
-        </span>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        <!-- Card 1: The Yap Session (Featured) -->
-        <div class="glass-card featured-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between h-full group">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-6">
-              <span class="font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs">
-                Open Conversation
+          <!-- Right: Hero Copy & Actions -->
+          <div class="md:col-span-7 order-1 md:order-2">
+            <!-- Availability Pill -->
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/80 mb-6 shadow-xs">
+              <span class="w-2 h-2 rounded-full bg-[#007A59]"></span>
+              <span class="font-mono text-[11px] font-semibold uppercase tracking-widest text-emerald-800">
+                Open for 1:1 Conversations
               </span>
-              <span class="font-mono text-xs font-semibold text-zinc-500">30 mins</span>
             </div>
 
-            <h3 class="text-2xl font-bold text-zinc-950 mb-2 group-hover:text-[#007A59] transition-colors duration-200">1-on-1 Yap Session</h3>
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl font-bold text-zinc-950">$10</span>
-              <span class="text-xs text-emerald-800 font-mono font-semibold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">Introductory offer</span>
+            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-[#007A59] mb-3">
+              The human side &middot; ideas, conversations, perspectives
             </div>
 
-            <div class="space-y-3 text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
-              <p>
-                Bring a life dilemma, a relationship question, a philosophical rabbit hole, or an idea you've been sitting on.
-              </p>
-              <p>
-                Whether you're looking for a fresh perspective, someone to bounce ideas off, or simply a good conversation, this is your space to talk freely.
-              </p>
-              <p class="font-medium text-zinc-950">
-                No pressure, no judgment. Just a genuine conversation, wherever it takes us.
-              </p>
+            <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-bold tracking-tight text-zinc-950 leading-[1.08] mb-6">
+              Ideas worth<br>
+              <span class="font-serif italic font-normal text-[1.12em]"><span class="headline-wave">thinking about.</span></span>
+            </h1>
+
+            <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-xl mb-8">
+              I'm Nick Wayra. I explore human behavior, philosophy, technology, culture, and the ideas that shape how we understand ourselves and the world.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3 mb-8">
+              <a href="#conversations"
+                 class="bg-[#00D99A] text-zinc-950 border border-zinc-900/80 font-bold text-sm px-6 py-3.5 rounded-full hover:bg-[#00c58b] hover:scale-[1.02] active:scale-[0.99] transition-all inline-flex items-center gap-2 shadow-xs">
+                Pick Your Session
+                <span>&darr;</span>
+              </a>
+              <a href="#ideas"
+                 class="px-6 py-3.5 rounded-full text-sm font-semibold text-zinc-800 bg-white border border-zinc-300 hover:border-zinc-900 hover:text-zinc-950 transition shadow-xs inline-flex items-center gap-1.5">
+                Explore ideas &darr;
+              </a>
+              <a href="mailto:nickwayra@gmail.com?subject=Let%E2%80%99s%20talk"
+                 class="px-5 py-3.5 rounded-full text-sm font-semibold text-[#007A59] hover:text-[#009F9A] transition inline-flex items-center gap-1">
+                Let's talk &nearr;
+              </a>
+            </div>
+
+            <div class="flex items-center gap-3 text-xs font-mono text-zinc-500 uppercase tracking-wider">
+              <span class="w-8 h-px bg-[#007A59]"></span>
+              <span>A place for good questions and open conversation</span>
             </div>
           </div>
 
-          <!-- Primary Flagship Booking Button -->
-          <div class="pt-5 border-t border-zinc-100">
-            <a href="https://calendly.com/nickwayra/conversation" target="_blank" rel="noopener noreferrer"
-               class="flex items-center justify-between p-4 rounded-2xl bg-[#00D99A] border border-zinc-900/80 text-zinc-950 hover:bg-[#00c58b] hover:scale-[1.01] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-sm group/btn">
-              <div>
-                <div class="font-bold text-base text-zinc-950">Book a Yap Session</div>
-                <div class="font-mono text-xs font-bold text-emerald-950 mt-0.5">
+        </div>
+      </section>
+
+      <!-- 01 / IDEAS & PERSPECTIVES -->
+      <section id="ideas" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-zinc-200">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#007A59] block mb-1">01 / Ideas &amp; Perspectives</span>
+            <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Three lenses on a wide world</h2>
+          </div>
+          <p class="text-sm text-zinc-600 max-w-md">
+            Questions and themes I keep returning to. The work takes shape here as essays, videos, conversations, and research notes.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+            <div>
+              <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#007A59]">Mind / 01</span>
+              <h3 class="text-2xl font-bold text-zinc-950 mt-3 mb-2 group-hover:text-[#007A59] transition-colors">How we become sure</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed mb-6">
+                Belief, attention, consciousness, and the stories the mind uses to make sense of lived experience.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-zinc-100 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+              Psychology &middot; Philosophy &middot; Cognition
+            </div>
+          </article>
+
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+            <div>
+              <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#007A59]">World / 02</span>
+              <h3 class="text-2xl font-bold text-zinc-950 mt-3 mb-2 group-hover:text-[#007A59] transition-colors">People in context</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed mb-6">
+                Culture, travel, relationships, identity, and what everyday life reveals about being human together.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-zinc-100 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+              Culture &middot; Society &middot; Experience
+            </div>
+          </article>
+
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+            <div>
+              <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#007A59]">Future / 03</span>
+              <h3 class="text-2xl font-bold text-zinc-950 mt-3 mb-2 group-hover:text-[#007A59] transition-colors">What we make next</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed mb-6">
+                Artificial intelligence, emerging technology, entrepreneurship, and their real effects on human life.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-zinc-100 font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-400">
+              AI &middot; Technology &middot; Innovation
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 02 / MEDIA & RESEARCH -->
+      <section id="media" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-zinc-200">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#007A59] block mb-1">02 / Media &amp; Research</span>
+            <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Ideas in different forms</h2>
+          </div>
+          <a href="/research/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-emerald-300 bg-emerald-50 text-emerald-900 font-semibold text-xs font-mono hover:bg-emerald-100 transition">
+            Open Research Library &nearr;
+          </a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-6 rounded-2xl border-t-2 border-[#007A59] bg-white border border-zinc-200 shadow-xs">
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Video essays</h4>
+            <p class="text-xs text-zinc-500">Long-form ideas &amp; field notes</p>
+          </div>
+          <div class="p-6 rounded-2xl border-t-2 border-[#007A59] bg-white border border-zinc-200 shadow-xs">
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Audio</h4>
+            <p class="text-xs text-zinc-500">Podcasts &amp; spoken reflections</p>
+          </div>
+          <div class="p-6 rounded-2xl border-t-2 border-[#007A59] bg-white border border-zinc-200 shadow-xs">
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Writing</h4>
+            <p class="text-xs text-zinc-500">Research notes &amp; essays</p>
+          </div>
+          <div class="p-6 rounded-2xl border-t-2 border-[#007A59] bg-white border border-zinc-200 shadow-xs">
+            <h4 class="font-bold text-zinc-950 text-base mb-1">Creative work</h4>
+            <p class="text-xs text-zinc-500">Experiments across formats</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 / THE CONVERSATION STUDIO (BALANCED 2-CARD GRID) -->
+      <section id="conversations" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="flex items-end justify-between mb-8 border-b border-zinc-200 pb-4">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">03 / The Conversation Studio</span>
+            <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Choose how we connect</h2>
+          </div>
+          <span class="font-mono text-xs font-medium text-zinc-500 hidden sm:inline-block">
+            Online via Google Meet &middot; Link sent after booking
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Card 1: The Yap Session (Featured) -->
+          <div class="glass-card featured-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between h-full group">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-6">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs">
+                  Open Conversation
+                </span>
+                <span class="font-mono text-xs font-semibold text-zinc-500">30 mins</span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-zinc-950 mb-2 group-hover:text-[#007A59] transition-colors duration-200">1-on-1 Yap Session</h3>
+              <div class="flex items-baseline gap-2 mb-5">
+                <span class="text-3xl font-bold text-zinc-950">$10</span>
+                <span class="text-xs text-emerald-800 font-mono font-semibold bg-emerald-50 px-2.5 py-0.5 rounded border border-emerald-200">Introductory offer</span>
+              </div>
+
+              <div class="space-y-3 text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
+                <p>
+                  Bring a life dilemma, a relationship question, a philosophical rabbit hole, or an idea you've been sitting on.
+                </p>
+                <p>
+                  Whether you're looking for a fresh perspective, someone to bounce ideas off, or simply a good conversation, this is your space to talk freely.
+                </p>
+                <p class="font-medium text-zinc-950">
+                  No pressure, no judgment. Just a genuine conversation, wherever it takes us.
+                </p>
+              </div>
+            </div>
+
+            <!-- Primary Flagship Booking Button -->
+            <div class="pt-5 border-t border-zinc-100">
+              <a href="https://calendly.com/nickwayra/conversation" target="_blank" rel="noopener noreferrer"
+                 class="flex items-center justify-between p-4 rounded-2xl bg-[#00D99A] border border-zinc-900/80 text-zinc-950 hover:bg-[#00c58b] hover:scale-[1.01] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-sm group/btn">
+                <div>
+                  <div class="font-bold text-base text-zinc-950">Book a Yap Session</div>
+                  <div class="font-mono text-xs font-bold text-emerald-950 mt-0.5">
+                    $10 &middot; 30 min
+                  </div>
+                </div>
+                <span class="text-sm font-bold inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-200">&nearr;</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Card 2: Conversational English -->
+          <div class="glass-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between h-full">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-6">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 border border-zinc-200">
+                  Fluency &amp; Confidence
+                </span>
+                <span class="font-mono text-xs font-semibold text-zinc-500">1:1 Coaching</span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-zinc-950 mb-2">Real-World English</h3>
+              <div class="flex items-baseline gap-2 mb-5">
+                <span class="text-3xl font-bold text-zinc-950">$20</span>
+                <span class="text-xs font-medium text-zinc-500">/ 60-minute session</span>
+              </div>
+
+              <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-3">
+                Forget stiff textbook drills. Practice everyday English through natural conversations about life, travel, culture, work, or anything that interests you.
+              </p>
+              <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
+                Build confidence, improve fluency, and learn to express yourself more naturally.
+              </p>
+            </div>
+
+            <!-- Direct Dual Booking Buttons (Balanced hierarchy) -->
+            <div class="pt-5 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <!-- Option 1: Book Intro Session (Pale mint background) -->
+              <a href="https://calendly.com/nickwayra/real-world-english-intro-session" target="_blank" rel="noopener noreferrer"
+                 class="flex flex-col justify-between p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-300/90 text-zinc-950 hover:border-[#007A59] hover:bg-[#B8F5DD]/60 hover:scale-[1.02] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-xs group/btn">
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-emerald-800">New Students</span>
+                    <span class="text-xs font-bold text-emerald-700 group-hover/btn:text-[#007A59] inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-200">&nearr;</span>
+                  </div>
+                  <div class="font-bold text-sm text-zinc-950">Book Intro Session</div>
+                </div>
+                <div class="font-mono text-xs font-semibold text-emerald-950 mt-2">
                   $10 &middot; 30 min
                 </div>
-              </div>
-              <span class="text-sm font-bold inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform duration-200">&nearr;</span>
-            </a>
-          </div>
-        </div>
+              </a>
 
-        <!-- Card 2: Conversational English -->
-        <div class="glass-card rounded-3xl p-8 sm:p-9 flex flex-col justify-between h-full">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-6">
-              <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-zinc-100 text-zinc-800 border border-zinc-200">
-                Fluency &amp; Confidence
-              </span>
-              <span class="font-mono text-xs font-semibold text-zinc-500">1:1 Coaching</span>
-            </div>
-
-            <h3 class="text-2xl font-bold text-zinc-950 mb-2">Real-World English</h3>
-            <div class="flex items-baseline gap-2 mb-5">
-              <span class="text-3xl font-bold text-zinc-950">$20</span>
-              <span class="text-xs font-medium text-zinc-500">/ 60-minute session</span>
-            </div>
-
-            <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-3">
-              Forget stiff textbook drills. Practice everyday English through natural conversations about life, travel, culture, work, or anything that interests you.
-            </p>
-            <p class="text-sm sm:text-base text-zinc-700 leading-relaxed mb-8">
-              Build confidence, improve fluency, and learn to express yourself more naturally.
-            </p>
-          </div>
-
-          <!-- Direct Dual Booking Buttons (Balanced hierarchy) -->
-          <div class="pt-5 border-t border-zinc-100 grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <!-- Option 1: Book Intro Session (Pale mint background) -->
-            <a href="https://calendly.com/nickwayra/real-world-english-intro-session" target="_blank" rel="noopener noreferrer"
-               class="flex flex-col justify-between p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-300/90 text-zinc-950 hover:border-[#007A59] hover:bg-[#B8F5DD]/60 hover:scale-[1.02] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-xs group/btn">
-              <div>
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-emerald-800">New Students</span>
-                  <span class="text-xs font-bold text-emerald-700 group-hover/btn:text-[#007A59] inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-200">&nearr;</span>
+              <!-- Option 2: Book Full Session -->
+              <a href="https://calendly.com/nickwayra/real-world-english-60-minute-session" target="_blank" rel="noopener noreferrer"
+                 class="flex flex-col justify-between p-3.5 rounded-2xl bg-white border border-zinc-300 text-zinc-950 hover:border-[#007A59] hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-xs group/btn">
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Full Session</span>
+                    <span class="text-xs font-bold text-zinc-400 group-hover/btn:text-[#007A59] inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-200">&nearr;</span>
+                  </div>
+                  <div class="font-bold text-sm text-zinc-950">Book Full Session</div>
                 </div>
-                <div class="font-bold text-sm text-zinc-950">Book Intro Session</div>
-              </div>
-              <div class="font-mono text-xs font-semibold text-emerald-950 mt-2">
-                $10 &middot; 30 min
-              </div>
-            </a>
-
-            <!-- Option 2: Book Full Session -->
-            <a href="https://calendly.com/nickwayra/real-world-english-60-minute-session" target="_blank" rel="noopener noreferrer"
-               class="flex flex-col justify-between p-3.5 rounded-2xl bg-white border border-zinc-300 text-zinc-950 hover:border-[#007A59] hover:bg-zinc-50 hover:scale-[1.02] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] transition-all duration-200 shadow-xs group/btn">
-              <div>
-                <div class="flex items-center justify-between mb-1">
-                  <span class="font-mono text-[10px] font-semibold uppercase tracking-wider text-zinc-500">Full Session</span>
-                  <span class="text-xs font-bold text-zinc-400 group-hover/btn:text-[#007A59] inline-block group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-200">&nearr;</span>
+                <div class="font-mono text-xs font-semibold text-zinc-600 mt-2">
+                  $20 &middot; 60 min
                 </div>
-                <div class="font-bold text-sm text-zinc-950">Book Full Session</div>
-              </div>
-              <div class="font-mono text-xs font-semibold text-zinc-600 mt-2">
-                $20 &middot; 60 min
-              </div>
-            </a>
+              </a>
+            </div>
           </div>
+
+        </div>
+      </section>
+
+      <!-- 04 / ZERO FRICTION / HOW IT WORKS -->
+      <section id="how" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="mb-8 border-b border-zinc-200 pb-4">
+          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">04 / Zero Friction</span>
+          <h2 class="text-3xl font-bold tracking-tight text-zinc-950">How it works</h2>
         </div>
 
-      </div>
-    </section>
-
-    <!-- 02 / HOW IT WORKS (FULL-WIDTH FEATURE SECTION) -->
-    <section id="how" class="mb-24 scroll-mt-24">
-      <div class="mb-8 border-b border-zinc-200 pb-4">
-        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">02 / Zero Friction</span>
-        <h2 class="text-3xl font-bold tracking-tight text-zinc-950">How it works</h2>
-      </div>
-
-      <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-xs">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
-          <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
-            <div class="w-9 h-9 rounded-full bg-[#007A59] text-white font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
-              01
+        <div class="bg-white border border-zinc-200 rounded-3xl p-6 sm:p-8 shadow-xs">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
+            <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
+              <div class="w-9 h-9 rounded-full bg-[#007A59] text-white font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
+                01
+              </div>
+              <h3 class="text-lg font-bold text-zinc-950 mb-2">Pick a slot</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Select any time on my Calendly that works in your timezone. Instant Google Meet link is sent right to your inbox.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">Pick a slot</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed">
-              Select any time on my Calendly that works in your timezone. Instant Google Meet link is sent right to your inbox.
-            </p>
-          </div>
 
-          <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
-            <div class="w-9 h-9 rounded-full bg-[#009F9A] text-white font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
-              02
+            <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
+              <div class="w-9 h-9 rounded-full bg-[#009F9A] text-white font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
+                02
+              </div>
+              <h3 class="text-lg font-bold text-zinc-950 mb-2">Set the vibe</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Fill out a short questionnaire on what you want to talk about, practice, or explore (or feel free to completely wing it).
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">Set the vibe</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed">
-              Fill out a short questionnaire on what you want to talk about, practice, or explore (or feel free to completely wing it).
-            </p>
-          </div>
 
-          <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
-            <div class="w-9 h-9 rounded-full bg-[#00D99A] text-zinc-950 font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
-              03
+            <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#F0FDF7] border border-transparent hover:border-emerald-200/60">
+              <div class="w-9 h-9 rounded-full bg-[#00D99A] text-zinc-950 font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
+                03
+              </div>
+              <h3 class="text-lg font-bold text-zinc-950 mb-2">Show up</h3>
+              <p class="text-sm text-zinc-600 leading-relaxed">
+                Hop on the link. Camera on or audio-only—totally up to you. An easy, pressure-free space to connect.
+              </p>
             </div>
-            <h3 class="text-lg font-bold text-zinc-950 mb-2">Show up</h3>
-            <p class="text-sm text-zinc-600 leading-relaxed">
-              Hop on the link. Camera on or audio-only—totally up to you. An easy, pressure-free space to connect.
-            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 03 / FOLLOW THE JOURNEY (4-COLUMN SOCIAL PLATFORM BAR) -->
-    <section id="socials" class="mb-24 scroll-mt-24">
-      <div class="mb-8 border-b border-zinc-200 pb-4">
-        <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">03 / Follow The Journey</span>
-        <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Where to watch &amp; connect</h2>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
-        
-        <!-- TikTok -->
-        <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer"
-           class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.32a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 1 0 6.34 6.34V9.05a8.16 8.16 0 0 0 4.77 1.52V7.12a4.85 4.85 0 0 1-1-.43z"/>
-                </svg>
-              </div>
-              <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
-            </div>
-            <h4 class="font-bold text-zinc-950 text-base mb-1">TikTok</h4>
-            <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@nickwayra</span>
+      <!-- 05 / ABOUT NICK -->
+      <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-5">
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#007A59] block mb-1">05 / About Nick</span>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-zinc-950 leading-tight">Curiosity is a way of paying attention</h2>
           </div>
-          <span class="text-xs text-zinc-500 font-medium">Daily Yaps &amp; Series</span>
-        </a>
-
-        <!-- Instagram -->
-        <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer"
-           class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </div>
-              <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
+          <div class="md:col-span-7 space-y-4 text-zinc-600 leading-relaxed text-base">
+            <p>
+              I’m a communicator, curious traveler, and lifelong question-asker. I like exploring ideas out loud: following a thought, testing an assumption, and listening for the part I hadn’t considered yet.
+            </p>
+            <p>
+              This is the human side of that practice: a place to investigate what matters, share what I’m learning, and connect with people who enjoy a genuine, thoughtful conversation.
+            </p>
+            <div class="pt-2">
+              <a href="#connect" class="inline-flex items-center gap-1.5 font-semibold text-sm text-[#007A59] hover:text-[#009F9A] transition">
+                Find me around the web <span>&darr;</span>
+              </a>
             </div>
-            <h4 class="font-bold text-zinc-950 text-base mb-1">Instagram</h4>
-            <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@wayranick</span>
           </div>
-          <span class="text-xs text-zinc-500 font-medium">Life &amp; Reels</span>
-        </a>
+        </div>
+      </section>
 
-        <!-- YouTube -->
-        <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer"
-           class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                </svg>
+      <!-- 06 / CONNECT ("FOLLOW A THREAD" WITH LIVE BLOCKS) -->
+      <section id="connect" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200/80 scroll-mt-24">
+        <div class="mb-8 border-b border-zinc-200 pb-4">
+          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-zinc-500 block mb-1">06 / Connect</span>
+          <h2 class="text-3xl font-bold tracking-tight text-zinc-950">Follow a thread</h2>
+          <p class="text-sm text-zinc-600 mt-1">Videos, everyday moments, and longer conversations.</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-5">
+          
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer"
+             class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.32a6.34 6.34 0 0 0-.86-.06 6.34 6.34 0 1 0 6.34 6.34V9.05a8.16 8.16 0 0 0 4.77 1.52V7.12a4.85 4.85 0 0 1-1-.43z"/>
+                  </svg>
+                </div>
+                <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
               </div>
-              <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
+              <h4 class="font-bold text-zinc-950 text-base mb-1">TikTok</h4>
+              <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@nickwayra</span>
             </div>
-            <h4 class="font-bold text-zinc-950 text-base mb-1">YouTube</h4>
-            <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@nickwayra</span>
-          </div>
-          <span class="text-xs text-zinc-500 font-medium">Long-form Talks</span>
-        </a>
+            <span class="text-xs text-zinc-500 font-medium">Daily Yaps &amp; Series</span>
+          </a>
 
-        <!-- Facebook -->
-        <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
-           class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer"
+             class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+                <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
               </div>
-              <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
+              <h4 class="font-bold text-zinc-950 text-base mb-1">Instagram</h4>
+              <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@wayranick</span>
             </div>
-            <h4 class="font-bold text-zinc-950 text-base mb-1">Facebook</h4>
-            <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">Nick Wayra</span>
+            <span class="text-xs text-zinc-500 font-medium">Life &amp; Reels</span>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer"
+             class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                </div>
+                <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
+              </div>
+              <h4 class="font-bold text-zinc-950 text-base mb-1">YouTube</h4>
+              <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">@nickwayra</span>
+            </div>
+            <span class="text-xs text-zinc-500 font-medium">Long-form Talks</span>
+          </a>
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer"
+             class="social-card rounded-2xl p-5 flex flex-col justify-between group cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#007A59] focus-visible:ring-offset-2">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-8 h-8 rounded-full bg-zinc-950 text-white flex items-center justify-center group-hover:scale-105 transition">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+                <span class="text-xs text-zinc-400 group-hover:text-[#007A59] inline-block transition-all duration-200 group-hover:translate-x-[3px] group-hover:-translate-y-[3px]">&nearr;</span>
+              </div>
+              <h4 class="font-bold text-zinc-950 text-base mb-1">Facebook</h4>
+              <span class="font-mono text-xs font-medium text-zinc-500 group-hover:text-[#007A59] transition-colors duration-200 block mb-2">Nick Wayra</span>
+            </div>
+            <span class="text-xs text-zinc-500 font-medium">English &amp; Community</span>
+          </a>
+
+        </div>
+      </section>
+
+      <!-- HUMAN FOOTER -->
+      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-zinc-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-zinc-600 font-medium">
+        <div>
+          <span class="text-zinc-950 font-bold">Nick Wayra</span> &mdash; Built for real human connection.
+        </div>
+        <div class="flex items-center gap-6 flex-wrap">
+          <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">TikTok</a>
+          <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">Instagram</a>
+          <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">YouTube</a>
+          <a href="/research/" class="hover:text-zinc-950 transition">Research Library</a>
+          <a href="mailto:nickwayra@gmail.com" class="hover:text-zinc-950 transition">nickwayra@gmail.com</a>
+          <a href="#top" class="text-zinc-400 hover:text-zinc-950 transition">Back to top &uarr;</a>
+        </div>
+      </footer>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- MODE 2: NICK WAYRA X (EXPERIMENTAL LAB EXPERIENCE)       -->
+    <!-- ======================================================== -->
+    <div class="mode-panel" id="labPanel">
+      
+      <!-- LAB HERO -->
+      <section class="max-w-6xl mx-auto px-6 py-14 sm:py-20 relative overflow-hidden">
+        <div class="lab-glow"></div>
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+          
+          <div class="md:col-span-7">
+            <div class="font-mono text-xs font-bold uppercase tracking-widest text-[#66E3AE] mb-3">
+              Independent Experimental Division
+            </div>
+            
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-[#E5FFF1] leading-none mb-4">
+              NICK WAYRA<br>
+              <span class="xmark"><span class="headline-wave">X</span></span>
+            </h1>
+
+            <div class="font-mono text-xs uppercase tracking-widest text-[#8BA99A] mb-6">
+              Intelligence / Software / Human Potential
+            </div>
+
+            <p class="text-base sm:text-lg text-[#8BA99A] leading-relaxed max-w-xl mb-8">
+              An independent experimental lab exploring artificial intelligence, human behavior, and the future of software. Building ideas, testing hypotheses, and turning ambitious concepts into real products.
+            </p>
+
+            <div class="flex flex-wrap items-center gap-3">
+              <a href="#projects" class="bg-[#66E3AE] text-[#080E0D] font-bold text-sm px-6 py-3.5 rounded-full hover:bg-[#52d49e] hover:scale-[1.02] active:scale-[0.99] transition-all inline-flex items-center gap-2 shadow-xs">
+                Explore experiments &darr;
+              </a>
+              <a href="#build-log" class="px-6 py-3.5 rounded-full text-sm font-semibold text-[#E5FFF1] bg-[#14231E] border border-[#23362E] hover:border-[#66E3AE] transition inline-flex items-center gap-2">
+                View build log &searr;
+              </a>
+              <a href="#work-together" class="px-5 py-3.5 rounded-full text-sm font-semibold text-[#66E3AE] hover:underline transition inline-flex items-center gap-1">
+                Work together &nearr;
+              </a>
+            </div>
           </div>
-          <span class="text-xs text-zinc-500 font-medium">English &amp; Community</span>
-        </a>
 
-      </div>
-    </section>
+          <!-- Terminal Card Graphic -->
+          <div class="md:col-span-5">
+            <div class="terminal-card" aria-label="Lab Terminal Graphic">
+              <div class="terminal-head">
+                <span class="dot dot-red"></span>
+                <span class="dot dot-yellow"></span>
+                <span class="dot dot-green"></span>
+              </div>
+              <div class="text-[#8BA99A]">// independent lab / 001</div>
+              <div class="terminal-big">
+                Think beyond.<br>
+                Build what's next.
+              </div>
+              <div class="space-y-1 mt-2 text-xs">
+                <div><span class="terminal-green">&bull;</span> systems curious</div>
+                <div><span class="terminal-green">&bull;</span> ideas in motion</div>
+                <div><span class="terminal-green">&bull;</span> outcomes to be earned</div>
+              </div>
+              <div class="mt-4 pt-3 border-t border-[#23362E] text-[11px] text-[#8BA99A]">
+                [ observe &rarr; prototype &rarr; learn ]
+              </div>
+            </div>
+          </div>
 
-    <!-- MINIMALIST FOOTER -->
-    <footer class="pt-10 border-t border-zinc-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-zinc-600 font-medium">
-      <div>
-        <span class="text-zinc-950 font-bold">Nick Wayra</span> &mdash; Built for real human connection.
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">TikTok</a>
-        <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">Instagram</a>
-        <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-zinc-950 transition">YouTube</a>
-        <a href="mailto:nickwayra@gmail.com" class="hover:text-zinc-950 transition">nickwayra@gmail.com</a>
-      </div>
-    </footer>
+        </div>
+      </section>
+
+      <!-- 01 / THE LAB (PROJECTS) -->
+      <section id="projects" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#23362E]">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">01 / The Lab</span>
+            <h2 class="text-3xl font-bold tracking-tight text-[#E5FFF1]">Ideas move through stages</h2>
+          </div>
+          <p class="text-sm text-[#8BA99A] max-w-md">
+            A portfolio of experiments, with each status shown plainly. Click any card to read its current brief.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- AERIAD -->
+          <article class="project group cursor-pointer" data-mark="A" data-project="aeriad">
+            <div>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Productivity / Human Performance</span>
+              <div class="project-icon">A/</div>
+              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">AERIAD</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                Energy management and productivity software shaped around how human energy naturally changes through the day.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
+              <span class="project-status">In Development</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">01 / 04 &middot; Brief &nearr;</span>
+            </div>
+          </article>
+
+          <!-- IRIS -->
+          <article class="project group cursor-pointer" data-mark="I" data-project="iris">
+            <div>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Intelligence / Enterprise SaaS</span>
+              <div class="project-icon">I/</div>
+              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">IRIS</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                An exploration of AI-powered competitive intelligence and continuous strategic market monitoring.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
+              <span class="project-status">Concept</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">02 / 04 &middot; Brief &nearr;</span>
+            </div>
+          </article>
+
+          <!-- VOX -->
+          <article class="project group cursor-pointer" data-mark="V" data-project="vox">
+            <div>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Voice AI / Learning</span>
+              <div class="project-icon">V/</div>
+              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">VOX</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                An exploration of real-time conversational practice and communication skill development with voice AI models.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
+              <span class="project-status">Concept</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">03 / 04 &middot; Brief &nearr;</span>
+            </div>
+          </article>
+
+          <!-- Experiments -->
+          <article class="project group cursor-pointer" data-mark="*" data-project="experiments">
+            <div>
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Experimental Software</span>
+              <div class="project-icon">X/</div>
+              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">Experiments</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                A home for small prototypes, micro-SaaS tests, and emerging product questions worth investigating.
+              </p>
+            </div>
+            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
+              <span class="project-status">Ongoing Exploration</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">04 / 04 &middot; Brief &nearr;</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 02 / BUILD LOG -->
+      <section id="build-log" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#23362E]">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">02 / Build Log</span>
+            <h2 class="text-3xl font-bold tracking-tight text-[#E5FFF1]">Work in the open</h2>
+          </div>
+          <p class="text-sm text-[#8BA99A] max-w-md">
+            A public journal for hypotheses, prototypes, launches, and what the evidence teaches.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="p-6 rounded-2xl bg-[#101A17] border border-[#23362E] flex flex-col sm:flex-row gap-6 items-start">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#66E3AE] shrink-0 sm:w-36">Now / Direction</span>
+            <div>
+              <h3 class="text-lg font-bold text-[#E5FFF1] mb-1 font-mono">Building a home for experiments</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed">
+                This space is being shaped around original software products and the evidence behind them. Specific build notes and prototypes will be released as they reach milestone readiness.
+              </p>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#101A17] border border-[#23362E] flex flex-col sm:flex-row gap-6 items-start">
+            <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#66E3AE] shrink-0 sm:w-36">Next / Public Notes</span>
+            <div>
+              <h3 class="text-lg font-bold text-[#E5FFF1] mb-1 font-mono">Ideas, tests, and lessons</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed">
+                Future entries document specific questions, small architectural experiments, user observations, and what changed because of the findings.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 / RESEARCH & DEVELOPMENT -->
+      <section id="research-dev" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#23362E]">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">03 / Research &amp; Development</span>
+            <h2 class="text-3xl font-bold tracking-tight text-[#E5FFF1]">Questions at the edge of people and systems</h2>
+          </div>
+          <a href="/research/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#23362E] bg-[#14231E] text-[#66E3AE] font-mono text-xs font-semibold hover:border-[#66E3AE] transition">
+            Open Research Library &nearr;
+          </a>
+        </div>
+
+        <div class="flex flex-wrap gap-2.5">
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">AI agents &amp; automation</span>
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">Human-computer interaction</span>
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">Narrative intelligence</span>
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">Cognitive science</span>
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">Product experimentation</span>
+          <span class="px-4 py-2 rounded-full border border-[#23362E] bg-[#101A17] text-xs font-mono text-[#8BA99A]">Emerging interfaces</span>
+        </div>
+      </section>
+
+      <!-- 04 / THE EXPERIMENT PROCESS -->
+      <section id="process" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="mb-8 border-b border-[#23362E] pb-4">
+          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">04 / The Experiment Process</span>
+          <h2 class="text-3xl font-bold tracking-tight text-[#E5FFF1]">Ambition, meet evidence</h2>
+          <p class="text-sm text-[#8BA99A] mt-1">A repeatable loop for turning interesting questions into useful products.</p>
+        </div>
+
+        <div class="process text-xs">
+          <div>IDEATE <b>&nearr;</b></div>
+          <div>BUILD <b>&nearr;</b></div>
+          <div>VALIDATE <b>&nearr;</b></div>
+          <div>LAUNCH <b>&nearr;</b></div>
+          <div>ITERATE <b>&#8635;</b></div>
+        </div>
+      </section>
+
+      <!-- 05 / WORK TOGETHER (IDEA PRESSURE TEST) -->
+      <section id="work-together" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#23362E]">
+          <div>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">05 / Work Together</span>
+            <h2 class="text-3xl font-bold tracking-tight text-[#E5FFF1]">Good experiments get better with people</h2>
+          </div>
+          <p class="text-sm text-[#8BA99A] max-w-md">
+            Bring an early idea, a product question, or a creative direction you want to think through together.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Card 1: Idea Pressure Test (Required) -->
+          <article class="p-8 sm:p-9 rounded-3xl bg-[#101A17] border border-[#23362E] flex flex-col justify-between h-full group hover:border-[#66E3AE] transition-all">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-6">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-[#163D30] text-[#66E3AE] border border-[#66E3AE]/40">
+                  Founding rate &middot; first 5 sessions
+                </span>
+                <span class="font-mono text-xs font-semibold text-[#8BA99A]">60 mins</span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-[#E5FFF1] mb-2 font-mono">Idea Pressure Test</h3>
+              <div class="flex items-baseline gap-2 mb-4">
+                <span class="text-3xl font-bold text-[#E5FFF1]">$49</span>
+                <span class="text-xs text-[#8BA99A] font-mono">/ founding rate</span>
+              </div>
+
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                Bring the rough version. We'll clarify who it's for, pressure-test the problem and direction, and shape a useful next experiment.
+              </p>
+
+              <!-- Session Includes -->
+              <div class="space-y-3 pt-5 border-t border-[#23362E] text-xs text-[#8BA99A] mb-6">
+                <div class="flex items-start gap-2.5">
+                  <span class="text-[#66E3AE] font-bold">&nearr;</span>
+                  <span>Short intake and one-page idea brief before we meet</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="text-[#66E3AE] font-bold">&nearr;</span>
+                  <span>Focused collaborative review, brainstorm &amp; audience breakdown</span>
+                </div>
+                <div class="flex items-start gap-2.5">
+                  <span class="text-[#66E3AE] font-bold">&nearr;</span>
+                  <span>Concise follow-up summary with three practical next steps</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#23362E]">
+              <a href="mailto:nickwayra@gmail.com?subject=Idea%20Pressure%20Test%20session&body=Hi%20Nick,%0A%0AI'd%20like%20to%20request%20an%20Idea%20Pressure%20Test%20session.%0A%0AMy%20idea%20in%20one%20sentence:%20%0AWhat%20I'm%20trying%20to%20solve:%20%0APreferred%20days%20or%20times:%20"
+                 class="w-full p-4 rounded-2xl bg-[#66E3AE] text-[#080E0D] font-bold text-sm flex items-center justify-between hover:bg-[#52d49e] active:scale-[0.99] transition-all">
+                <span>Request a session &middot; $49</span>
+                <span>&nearr;</span>
+              </a>
+              <p class="font-mono text-[11px] text-[#8BA99A] mt-3">
+                After the first five sessions, the planned rate is $69. I'll reply with available times and payment details.
+              </p>
+            </div>
+          </article>
+
+          <!-- Card 2: Lab Collaboration -->
+          <article class="p-8 sm:p-9 rounded-3xl bg-[#101A17] border border-[#23362E] flex flex-col justify-between h-full group hover:border-[#66E3AE] transition-all">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-6">
+                <span class="font-mono text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full bg-[#14231E] text-[#8BA99A] border border-[#23362E]">
+                  Lab Collaboration
+                </span>
+                <span class="font-mono text-xs font-semibold text-[#8BA99A]">Let's connect</span>
+              </div>
+
+              <h3 class="text-2xl font-bold text-[#E5FFF1] mb-2 font-mono">Build something thoughtful</h3>
+              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
+                For early product access, feedback exchanges, research conversations, or an exploratory collaboration, send a note and tell me what you're exploring.
+              </p>
+            </div>
+
+            <div class="pt-5 border-t border-[#23362E]">
+              <a href="mailto:nickwayra@gmail.com?subject=Nick%20Wayra%20X%20collaboration"
+                 class="w-full p-4 rounded-2xl bg-[#14231E] border border-[#23362E] text-[#E5FFF1] font-bold text-sm flex items-center justify-between hover:border-[#66E3AE] hover:bg-[#163D30] transition-all">
+                <span>Start a conversation</span>
+                <span>&nearr;</span>
+              </a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- 06 / THE OTHER SIDE -->
+      <section id="lab-about" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#23362E] scroll-mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div class="md:col-span-5">
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#66E3AE] block mb-1">06 / The Other Side</span>
+            <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#E5FFF1] leading-tight">One mind. A different medium</h2>
+          </div>
+          <div class="md:col-span-7 space-y-4 text-[#8BA99A] leading-relaxed text-base">
+            <p>
+              Nick Wayra X is the building side of a larger curiosity: exploring a question, shaping a tool, and seeing whether it can make something meaningfully better for people.
+            </p>
+            <p>
+              These projects are at different stages. The goal is to make the work visible as it becomes concrete—and let the evidence earn the ambition.
+            </p>
+            <div class="pt-2">
+              <button type="button" data-switch-human class="inline-flex items-center gap-1.5 font-semibold text-sm text-[#66E3AE] hover:underline cursor-pointer">
+                Return to the human side <span>&nearr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LAB FOOTER -->
+      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-[#23362E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-[#8BA99A]">
+        <div>
+          &copy; Nick Wayra X &middot; Independent experiments.
+        </div>
+        <div class="flex items-center gap-6">
+          <a href="/research/" class="hover:text-[#E5FFF1] transition">Research Library</a>
+          <a href="mailto:nickwayra@gmail.com" class="hover:text-[#E5FFF1] transition">nickwayra@gmail.com</a>
+          <a href="#top" class="hover:text-[#E5FFF1] transition">Back to top &uarr;</a>
+        </div>
+      </footer>
+
+    </div>
 
   </main>
 
+  <!-- Interactive Project Brief Dialog (Modal) -->
+  <dialog id="projectDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-inner">
+      <button class="dialog-close" id="dialogClose" aria-label="Close project details">Close &times;</button>
+      <div class="font-mono text-xs font-bold uppercase tracking-wider text-[#007A59] dark:text-[#66E3AE] mb-2" id="dialogCategory"></div>
+      <h2 class="text-2xl font-bold tracking-tight mb-3 text-zinc-950 dark:text-[#E5FFF1]" id="dialogTitle"></h2>
+      <p class="text-sm text-zinc-600 dark:text-[#8BA99A] leading-relaxed mb-6" id="dialogCopy"></p>
+      <div class="pt-4 border-t border-zinc-200 dark:border-[#23362E] flex items-center justify-between">
+        <div class="project-status" id="dialogStatus"></div>
+        <span class="font-mono text-[11px] text-zinc-400 dark:text-zinc-500">Subject to evolution</span>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Mode Toggle & State Persistence Script -->
+  <script>
+    const navItems = {
+      human: [
+        ['Ideas', '#ideas'],
+        ['Media', '#media'],
+        ['Conversations', '#conversations'],
+        ['How It Works', '#how'],
+        ['About', '#about'],
+        ['Connect', '#connect'],
+        ['Research Library', '/research/']
+      ],
+      lab: [
+        ['Lab', '#projects'],
+        ['Build Log', '#build-log'],
+        ['R&D', '#research-dev'],
+        ['Process', '#process'],
+        ['Work Together', '#work-together'],
+        ['About X', '#lab-about'],
+        ['Research Library', '/research/']
+      ]
+    };
+
+    const projectInfo = {
+      aeriad: {
+        name: 'AERIAD',
+        category: 'Productivity / Human Performance',
+        status: 'In development',
+        copy: 'Energy management and productivity software shaped around how human energy changes through the day. This prototype reflects the current product direction.'
+      },
+      iris: {
+        name: 'IRIS',
+        category: 'Intelligence / Enterprise SaaS',
+        status: 'Concept',
+        copy: 'An exploration of AI-powered competitive intelligence and continuous strategic monitoring. The problem, audience, and product approach are currently being investigated.'
+      },
+      vox: {
+        name: 'VOX',
+        category: 'Voice AI / Learning',
+        status: 'Concept',
+        copy: 'An early concept exploring AI-driven communication practice and conversational skill development with real-time audio interaction.'
+      },
+      experiments: {
+        name: 'Experiments',
+        category: 'Experimental Software',
+        status: 'Ongoing exploration',
+        copy: 'A home for future prototypes, micro-SaaS tests, and small software experiments. Individual ideas will appear here as they take shape.'
+      }
+    };
+
+    const desktop = document.getElementById('desktopLinks');
+    const mobile = document.getElementById('mobileLinks');
+    const menuBtn = document.getElementById('menuBtn');
+
+    function renderNav(mode) {
+      const markup = navItems[mode].map(([label, href]) => {
+        const isExternal = href.startsWith('http') || href.startsWith('/research');
+        return `<a href="${href}" ${isExternal ? 'target="_self"' : ''} class="hover:text-zinc-950 dark:hover:text-[#66E3AE] transition-colors py-1">${label}</a>`;
+      }).join('');
+      desktop.innerHTML = markup;
+      mobile.innerHTML = markup;
+    }
+
+    function setMode(mode, save = true) {
+      const y = window.scrollY;
+      document.documentElement.dataset.mode = mode;
+      
+      document.querySelectorAll('[data-set-mode]').forEach(b => {
+        b.setAttribute('aria-pressed', String(b.dataset.setMode === mode));
+      });
+
+      document.getElementById('humanPanel').classList.toggle('active', mode === 'human');
+      document.getElementById('labPanel').classList.toggle('active', mode === 'lab');
+
+      const brandMark = document.getElementById('brandMark');
+      if (mode === 'human') {
+        brandMark.textContent = 'N';
+        brandMark.className = 'w-8 h-8 rounded-full bg-[#007A59] text-white flex items-center justify-center font-bold text-xs font-mono transition-transform duration-200 group-hover:scale-105 shadow-xs';
+        document.querySelector('meta[name="theme-color"]').content = '#fafafa';
+        document.title = 'Nick Wayra — Ideas, conversations & perspectives';
+      } else {
+        brandMark.textContent = 'X';
+        brandMark.className = 'w-8 h-8 rounded-full bg-[#66E3AE] text-[#080E0D] flex items-center justify-center font-bold text-xs font-mono transition-transform duration-200 group-hover:scale-105 shadow-xs';
+        document.querySelector('meta[name="theme-color"]').content = '#080e0d';
+        document.title = 'Nick Wayra X — Independent experiments';
+      }
+
+      renderNav(mode);
+      mobile.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+
+      if (save) {
+        try {
+          localStorage.setItem('nick-wayra-mode', mode);
+        } catch (e) {}
+      }
+
+      requestAnimationFrame(() => {
+        window.scrollTo({ top: y, behavior: 'instant' });
+      });
+    }
+
+    document.querySelectorAll('[data-set-mode]').forEach(b => {
+      b.addEventListener('click', () => setMode(b.dataset.setMode));
+    });
+
+    document.querySelectorAll('[data-switch-human]').forEach(b => {
+      b.addEventListener('click', () => {
+        setMode('human');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+
+    menuBtn.addEventListener('click', () => {
+      const isHidden = mobile.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(!isHidden));
+    });
+
+    // Project Modal Dialog logic
+    const dialog = document.getElementById('projectDialog');
+    document.querySelectorAll('[data-project]').forEach(b => {
+      b.addEventListener('click', () => {
+        const p = projectInfo[b.dataset.project];
+        if (!p) return;
+        document.getElementById('dialogTitle').textContent = p.name;
+        document.getElementById('dialogCategory').textContent = p.category;
+        document.getElementById('dialogStatus').textContent = p.status;
+        document.getElementById('dialogCopy').textContent = p.copy;
+        dialog.showModal();
+      });
+    });
+
+    document.getElementById('dialogClose').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    // Check stored mode preference or default to human
+    let initialMode = 'human';
+    try {
+      const saved = localStorage.getItem('nick-wayra-mode');
+      if (saved === 'lab' || saved === 'human') initialMode = saved;
+    } catch (e) {}
+    setMode(initialMode, false);
+  </script>
 </body>
 </html>

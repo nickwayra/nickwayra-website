@@ -303,24 +303,42 @@ html[data-mode="lab"] body:before {
   padding: 12px 0;
 }
 .terminal-green { color: #66E3AE; }
-.xmark {
-  display: inline-grid;
-  place-items: center;
-  color: var(--green);
-  border: 1.5px solid rgba(102, 227, 174, 0.45);
-  width: clamp(56px, 7.5vw, 84px);
-  height: clamp(56px, 7.5vw, 84px);
-  border-radius: 22px;
-  font: 800 clamp(28px, 4vw, 44px) 'JetBrains Mono', monospace;
-  box-shadow: 0 0 45px rgba(102, 227, 174, 0.22), inset 0 0 16px rgba(102, 227, 174, 0.06);
-  background: rgba(16, 26, 23, 0.7);
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+
+/* Hero X mark with background architectural box */
+.x-hero-brand {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: baseline;
 }
-.xmark:hover {
-  border-color: #66E3AE;
-  box-shadow: 0 0 55px rgba(102, 227, 174, 0.35), inset 0 0 20px rgba(102, 227, 174, 0.12);
-  transform: scale(1.03);
+.x-hero-box {
+  position: absolute;
+  width: 0.82em;
+  height: 0.82em;
+  border: 1px solid rgba(102, 227, 174, 0.35);
+  border-radius: 14px;
+  background: rgba(102, 227, 174, 0.03);
+  box-shadow: 0 0 28px rgba(102, 227, 174, 0.12);
+  pointer-events: none;
+  z-index: 0;
+  transition: all 0.3s ease;
+}
+.x-hero-brand:hover .x-hero-box {
+  border-color: rgba(102, 227, 174, 0.7);
+  box-shadow: 0 0 38px rgba(102, 227, 174, 0.25);
+  transform: scale(1.05);
+}
+.x-hero-letter {
+  position: relative;
+  z-index: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 800;
+  font-size: clamp(56px, 8vw, 88px);
+  line-height: 1;
+  display: inline-block;
+  padding: 0 0.02em;
 }
 
 /* Lab hero typewriter cursor */

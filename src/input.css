@@ -304,41 +304,39 @@ html[data-mode="lab"] body:before {
 }
 .terminal-green { color: #66E3AE; }
 
-/* Hero X mark with background architectural box */
-.x-hero-brand {
-  position: relative;
+/* Free-standing Typographic Wordmark for Nick Wayra X */
+.x-wordmark-row {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  vertical-align: baseline;
+  align-items: baseline;
+  flex-wrap: nowrap;
+  padding-top: 0.12em;
+  min-height: 1.15em;
+  white-space: nowrap;
 }
-.x-hero-box {
-  position: absolute;
-  width: 0.82em;
-  height: 0.82em;
-  border: 1px solid rgba(102, 227, 174, 0.35);
-  border-radius: 14px;
-  background: rgba(102, 227, 174, 0.03);
-  box-shadow: 0 0 28px rgba(102, 227, 174, 0.12);
-  pointer-events: none;
-  z-index: 0;
-  transition: all 0.3s ease;
-}
-.x-hero-brand:hover .x-hero-box {
-  border-color: rgba(102, 227, 174, 0.7);
-  box-shadow: 0 0 38px rgba(102, 227, 174, 0.25);
-  transform: scale(1.05);
-}
-.x-hero-letter {
-  position: relative;
-  z-index: 1;
-  font-family: 'JetBrains Mono', monospace;
+
+.x-wordmark-mark {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-weight: 800;
-  font-size: clamp(56px, 8vw, 88px);
-  line-height: 1;
+  font-size: clamp(52px, 7.5vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
   display: inline-block;
-  padding: 0 0.02em;
+  vertical-align: baseline;
+  transform: translateY(2px); /* optical alignment by eye */
+  user-select: none;
+}
+
+.x-wordmark-suffix {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(26px, 3.8vw, 44px);
+  line-height: 1;
+  margin-left: 0.05em; /* optical kiss right beside the X */
+  display: inline-flex;
+  align-items: baseline;
+  min-width: 13.5ch; /* reserves stable footprint for 'perimentation' to prevent hero jumping */
+  vertical-align: baseline;
 }
 
 /* Lab hero typewriter cursor */

@@ -522,14 +522,8 @@
             
             <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight text-[#E5FFF1] leading-[1.08] mb-4">
               NICK WAYRA<br>
-              <span class="inline-flex items-baseline flex-wrap pt-2">
-                <span class="x-hero-brand shrink-0" aria-label="Nick Wayra X">
-                  <span class="x-hero-box" aria-hidden="true"></span>
-                  <span class="x-hero-letter headline-wave">X</span>
-                </span>
-                <span class="inline-flex items-baseline font-serif italic font-normal text-2xl sm:text-3xl md:text-4xl lg:text-[44px] leading-none tracking-tight ml-1 sm:ml-1.5">
-                  <span class="headline-wave" id="xTypewriterText">perimentation</span><span class="x-cursor" id="xTypewriterCursor" aria-hidden="true">|</span>
-                </span>
+              <span class="x-wordmark-row">
+                <span class="x-wordmark-mark headline-wave" aria-label="X">X</span><span class="x-wordmark-suffix"><span class="headline-wave" id="xTypewriterText">perience</span><span class="x-cursor" id="xTypewriterCursor" aria-hidden="true">|</span></span>
               </span>
             </h1>
 
@@ -1025,8 +1019,8 @@
     } catch (e) {}
     setMode(initialMode, false);
 
-    // Typewriter effect for Nick Wayra X hero
-    const xWords = ['perimentation', 'ploration', 'perience'];
+    // Typewriter effect for Nick Wayra X hero wordmark
+    const xWords = ['perience', 'perimentation', 'ploration'];
     let xWordIdx = 0;
     let xCharIdx = xWords[0].length;
     let xIsDeleting = true;
@@ -1053,25 +1047,25 @@
         xTextEl.textContent = currentWord.substring(0, xCharIdx);
       }
 
-      let nextDelay = xIsDeleting ? 50 : 85;
+      let nextDelay = xIsDeleting ? 45 : 85;
 
       if (!xIsDeleting && xCharIdx === currentWord.length) {
-        // Fully typed word: hold for 2.2 seconds
+        // Fully typed word: hold for 2.5 seconds to comfortably read
         xIsDeleting = true;
-        nextDelay = 2200;
+        nextDelay = 2500;
       } else if (xIsDeleting && xCharIdx === 0) {
-        // Fully deleted back to [X]: hold for 450ms before typing next word
+        // Fully deleted back to standalone X: hold for 400ms before typing next word
         xIsDeleting = false;
         xWordIdx = (xWordIdx + 1) % xWords.length;
-        nextDelay = 450;
+        nextDelay = 400;
       }
 
       xTimer = setTimeout(runXTypewriter, nextDelay);
     }
 
     if (!prefersReducedMotion && xTextEl) {
-      // Hold on the initial pre-rendered word for 2.4s, then begin cycle
-      xTimer = setTimeout(runXTypewriter, 2400);
+      // Hold on initial pre-rendered word for 2.6s, then begin cycle
+      xTimer = setTimeout(runXTypewriter, 2600);
     }
   </script>
 </body>

@@ -587,23 +587,34 @@
           <!-- AERIAD -->
           <article class="project group cursor-pointer" data-mark="A" data-project="aeriad">
             <div>
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Productivity / Human Performance</span>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Productivity / Human Performance</span>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">01 / 02</span>
+              </div>
               <div class="project-icon">A/</div>
-              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">AERIAD</h3>
+              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors flex items-center justify-between flex-wrap gap-2">
+                <span>AERIAD</span>
+                <a href="https://aeriad.com/" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()" class="text-xs font-mono font-semibold px-3 py-1 rounded-full bg-[#14231E] border border-[#23362E] hover:border-[#66E3AE] hover:bg-[#163D30] text-[#66E3AE] transition shadow-xs inline-flex items-center gap-1">
+                  Try Aeriad <span>&nearr;</span>
+                </a>
+              </h3>
               <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
                 Energy management and productivity software shaped around how human energy naturally changes through the day.
               </p>
             </div>
             <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
               <span class="project-status">In Development</span>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">01 / 04 &middot; Brief &nearr;</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A] group-hover:text-[#66E3AE] transition">Brief &nearr;</span>
             </div>
           </article>
 
           <!-- IRIS -->
           <article class="project group cursor-pointer" data-mark="I" data-project="iris">
             <div>
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Intelligence / Enterprise SaaS</span>
+              <div class="flex items-center justify-between gap-2">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Intelligence / Enterprise SaaS</span>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">02 / 02</span>
+              </div>
               <div class="project-icon">I/</div>
               <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">IRIS</h3>
               <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
@@ -612,39 +623,7 @@
             </div>
             <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
               <span class="project-status">Concept</span>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">02 / 04 &middot; Brief &nearr;</span>
-            </div>
-          </article>
-
-          <!-- VOX -->
-          <article class="project group cursor-pointer" data-mark="V" data-project="vox">
-            <div>
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Voice AI / Learning</span>
-              <div class="project-icon">V/</div>
-              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">VOX</h3>
-              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
-                An exploration of real-time conversational practice and communication skill development with voice AI models.
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
-              <span class="project-status">Concept</span>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">03 / 04 &middot; Brief &nearr;</span>
-            </div>
-          </article>
-
-          <!-- Experiments -->
-          <article class="project group cursor-pointer" data-mark="*" data-project="experiments">
-            <div>
-              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#66E3AE]">Experimental Software</span>
-              <div class="project-icon">X/</div>
-              <h3 class="text-2xl font-bold text-[#E5FFF1] font-mono tracking-tight mb-2 group-hover:text-[#66E3AE] transition-colors">Experiments</h3>
-              <p class="text-sm text-[#8BA99A] leading-relaxed mb-6">
-                A home for small prototypes, micro-SaaS tests, and emerging product questions worth investigating.
-              </p>
-            </div>
-            <div class="flex items-center justify-between pt-4 border-t border-[#23362E]">
-              <span class="project-status">Ongoing Exploration</span>
-              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A]">04 / 04 &middot; Brief &nearr;</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-[#8BA99A] group-hover:text-[#66E3AE] transition">Brief &nearr;</span>
             </div>
           </article>
 
@@ -947,9 +926,9 @@
       <div class="font-mono text-xs font-bold uppercase tracking-wider text-[#007A59] dark:text-[#66E3AE] mb-2" id="dialogCategory"></div>
       <h2 class="text-2xl font-bold tracking-tight mb-3 text-zinc-950 dark:text-[#E5FFF1]" id="dialogTitle"></h2>
       <p class="text-sm text-zinc-600 dark:text-[#8BA99A] leading-relaxed mb-6" id="dialogCopy"></p>
-      <div class="pt-4 border-t border-zinc-200 dark:border-[#23362E] flex items-center justify-between">
+      <div class="pt-4 border-t border-zinc-200 dark:border-[#23362E] flex items-center justify-between gap-3">
         <div class="project-status" id="dialogStatus"></div>
-        <span class="font-mono text-[11px] text-zinc-400 dark:text-zinc-500">Subject to evolution</span>
+        <div id="dialogAction"></div>
       </div>
     </div>
   </dialog>
@@ -983,25 +962,14 @@
         name: 'AERIAD',
         category: 'Productivity / Human Performance',
         status: 'In development',
-        copy: 'Energy management and productivity software shaped around how human energy changes through the day. This prototype reflects the current product direction.'
+        copy: 'Energy management and productivity software shaped around how human energy naturally changes through the day.',
+        url: 'https://aeriad.com/'
       },
       iris: {
         name: 'IRIS',
         category: 'Intelligence / Enterprise SaaS',
         status: 'Concept',
-        copy: 'An exploration of AI-powered competitive intelligence and continuous strategic monitoring. The problem, audience, and product approach are currently being investigated.'
-      },
-      vox: {
-        name: 'VOX',
-        category: 'Voice AI / Learning',
-        status: 'Concept',
-        copy: 'An early concept exploring AI-driven communication practice and conversational skill development with real-time audio interaction.'
-      },
-      experiments: {
-        name: 'Experiments',
-        category: 'Experimental Software',
-        status: 'Ongoing exploration',
-        copy: 'A home for future prototypes, micro-SaaS tests, and small software experiments. Individual ideas will appear here as they take shape.'
+        copy: 'An exploration of AI-powered competitive intelligence and continuous strategic market monitoring. The problem, audience, and product approach are currently being investigated.'
       }
     };
 
@@ -1083,6 +1051,14 @@
         document.getElementById('dialogCategory').textContent = p.category;
         document.getElementById('dialogStatus').textContent = p.status;
         document.getElementById('dialogCopy').textContent = p.copy;
+        const actionEl = document.getElementById('dialogAction');
+        if (actionEl) {
+          if (p.url) {
+            actionEl.innerHTML = `<a href="${p.url}" target="_blank" rel="noopener noreferrer" class="font-mono text-xs font-semibold px-3 py-1.5 rounded-full bg-[#66E3AE] text-[#080E0D] hover:bg-[#52d49e] transition shadow-xs inline-flex items-center gap-1">Visit aeriad.com &nearr;</a>`;
+          } else {
+            actionEl.innerHTML = `<span class="font-mono text-[11px] text-zinc-400 dark:text-zinc-500">Subject to evolution</span>`;
+          }
+        }
         dialog.showModal();
       });
     });

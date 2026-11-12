@@ -13,22 +13,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #FAFAFA;
+      --bg: #F4F5EF;
       --surface: #FFFFFF;
-      --surface2: #F4F5EF;
-      --sage: #EBF3EE;
-      --ink: #111214;
-      --body: #3F3F46;
-      --muted: #52525B;
-      --line: #E4E4E7;
-      --green: #007A59;
-      --green-deep: #132A20;
-      --green-mint: #00D99A;
-      --green-pale: #D1FAE5;
+      --surface2: #E5FFF1;
+      --sage: #E6ECE8;
+      --ink: #163D30;
+      --body: #191B1E;
+      --muted: #697B70;
+      --line: #D5DFD9;
+      --green: #167451;
+      --green-deep: #102820;
+      --green-mint: #66E3AE;
+      --green-pale: #E5FFF1;
       --sans: 'Inter', system-ui, -apple-system, sans-serif;
       --serif: 'Instrument Serif', Georgia, serif;
       --mono: 'JetBrains Mono', monospace;
-      --shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08);
+      --shadow: 0 16px 36px -10px rgba(22, 61, 48, 0.08);
     }
 
     * { box-sizing: border-box; }
@@ -74,8 +74,8 @@
       top: 0;
       z-index: 50;
       height: 72px;
-      border-bottom: 1px solid rgba(228, 228, 231, 0.85);
-      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 245, 239, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
@@ -113,14 +113,14 @@
     .brand-name {
       font-weight: 700;
       letter-spacing: -0.025em;
-      font-size: 17px;
+      font-size: 18px;
       color: var(--ink);
     }
 
     .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
       font-size: 12px;
       font-weight: 500;
       color: var(--muted);
@@ -130,7 +130,7 @@
       transition: color 0.2s ease;
     }
     .desktop-nav a:hover {
-      color: var(--ink);
+      color: var(--green);
     }
     .desktop-nav a[aria-current="page"] {
       color: var(--green);
@@ -150,14 +150,14 @@
       align-items: center;
       gap: 4px;
       padding: 4px;
-      background: var(--surface2);
+      background: #E6EAE4;
       border: 1px solid var(--line);
       border-radius: 999px;
-      box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+      box-shadow: inset 0 1px 2px rgba(22, 61, 48, 0.06);
     }
     .mode-switch a {
       border-radius: 999px;
-      padding: 7px 12px;
+      padding: 8px 14px;
       font-size: 11px;
       font-family: var(--mono);
       font-weight: 700;
@@ -167,12 +167,12 @@
       white-space: nowrap;
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
     }
     .mode-switch a[aria-current="true"] {
-      background: var(--surface);
+      background: #FFFFFF;
       color: var(--ink);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.09);
+      box-shadow: 0 2px 10px rgba(22, 61, 48, 0.12);
     }
     .mode-switch a:hover:not([aria-current="true"]) {
       color: var(--ink);
@@ -235,19 +235,22 @@
       display: inline-block;
       padding-right: 0.08em;
       padding-bottom: 0.04em;
+      letter-spacing: -0.01em;
+      -webkit-text-stroke: 0.25px transparent;
       background-image: linear-gradient(
         90deg,
-        #007A59 0%,
-        #009F9A 25%,
-        #00D99A 50%,
-        #79AA27 75%,
-        #007A59 100%
+        #0E8F61 0%,
+        #D98A16 28%,
+        #C83246 52%,
+        #D98A16 74%,
+        #0E8F61 100%
       );
       background-size: 200% auto;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
       color: transparent;
+      filter: drop-shadow(0 2px 10px rgba(200, 50, 70, 0.14)) drop-shadow(0 1px 1px rgba(22, 61, 48, 0.12));
       animation: greenWaveFlow 4s linear infinite;
     }
     @keyframes greenWaveFlow {
@@ -270,15 +273,15 @@
       cursor: pointer;
     }
     .btn-primary {
-      background: var(--green-mint);
-      color: var(--ink);
-      border: 1px solid rgba(17, 18, 20, 0.85);
-      box-shadow: 0 2px 8px rgba(0, 217, 154, 0.2);
+      background: var(--green);
+      color: #F4F5EF;
+      border: 1px solid #163D30;
+      box-shadow: 0 2px 8px rgba(22, 116, 81, 0.18);
     }
     .btn-primary:hover {
-      background: #00c58b;
+      background: #239B72;
       transform: translateY(-2px);
-      box-shadow: 0 10px 24px -6px rgba(0, 122, 89, 0.28);
+      box-shadow: 0 10px 24px -6px rgba(22, 116, 81, 0.28);
     }
     .btn-secondary {
       background: var(--surface);
@@ -318,17 +321,25 @@
     }
     .back-link {
       font-family: var(--mono);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
-      color: var(--muted);
+      letter-spacing: 0.04em;
+      color: var(--ink);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 8px 16px;
+      border-radius: 999px;
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 28px;
-      transition: color 0.2s ease;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(22, 61, 48, 0.05);
+      transition: all 0.2s ease;
     }
     .back-link:hover {
+      border-color: var(--green);
       color: var(--green);
+      transform: translateX(-2px);
     }
 
     .hero-grid {
@@ -1066,16 +1077,14 @@
       <div class="header-controls">
         <div class="mode-switch" role="group" aria-label="Choose identity mode">
           <a href="/?mode=human" aria-current="true" title="Nick Wayra human side">
-            ◉ <span>NICK WAYRA</span>
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path d="M8 0c0 4.4-3.6 8-8 8 4.4 0 8 3.6 8 8 0-4.4 3.6-8 8-8-4.4 0-8-3.6-8-8z"/></svg>
+            <span>NICK WAYRA</span>
           </a>
           <a href="/?mode=lab" id="switchToLab" title="Switch to Nick Wayra X Lab mode">
-            ⌘ <span>X / LAB</span>
+            <svg width="11" height="11" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="flex-shrink:0"><path d="M9.5 1L3 9h4.5l-1 6 6.5-8H8.5l1-6z"/></svg>
+            <span>X / LAB</span>
           </a>
         </div>
-
-        <a href="https://calendly.com/nickwayra/conversation" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm header-book-btn">
-          Book &middot; $10 ↗
-        </a>
 
         <button type="button" class="mobile-menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle navigation">
           <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round">

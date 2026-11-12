@@ -2,31 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ==========================================================================
+   PHOENIX FUSION — COMPLETE 13-COLOR BRAND SYSTEM (v1.0)
+   ========================================================================== */
 :root {
-  --bg: #FAFAFA;
-  --surface: #FFFFFF;
-  --surface2: #F4F5EF;
-  --ink: #111214;
-  --muted: #52525B;
-  --line: #E4E4E7;
-  --green: #007A59;
-  --green-mint: #00D99A;
-  --green-pale: #E3F2E9;
-  --shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.08);
+  /* 01 / Foundation */
+  --pf-ash: #191B1E;
+  --pf-graphite: #252A2E;
+  --pf-ivory: #F4F5EF;
+  --pf-mint-white: #E5FFF1;
+
+  /* 02 / Green Spectrum */
+  --pf-midnight-forest: #102820;
+  --pf-deep-emerald: #163D30;
+  --pf-forest-green: #167451;
+  --pf-jade-emerald: #239B72;
+  --pf-electric-mint: #66E3AE;
+
+  /* 03 / Supporting Accents */
+  --pf-phoenix-gold: #E8B45B;
+  --pf-ember-burgundy: #773B42;
+
+  /* 04 / Supporting Neutrals */
+  --pf-sage-gray: #697B70;
+  --pf-silver-sage: #ABB8B2;
+
+  /* Nick Wayra (Light Mode) Semantic Mapping */
+  --bg: #F4F5EF;            /* Ivory — Light-mode base */
+  --surface: #FFFFFF;       /* Crisp editorial card surface */
+  --surface2: #E5FFF1;      /* Mint White — Soft light surfaces & alternating sections */
+  --surface-warm: #ECEEE6;  /* Subtle warm Ivory recessed surface */
+  --ink: #163D30;           /* Deep Emerald — Main headings */
+  --body: #191B1E;          /* Ash — Readable body copy */
+  --muted: #697B70;         /* Sage Gray — Secondary text & subtle UI */
+  --line: #D5DFD9;          /* Soft Sage-tinted border */
+  --green: #167451;         /* Forest Green — Core cross-brand green & primary actions */
+  --green-hover: #239B72;   /* Jade Emerald — Hover & interactive accent */
+  --green-mint: #66E3AE;    /* Electric Mint — Small highlight accent */
+  --green-pale: #E5FFF1;    /* Mint White */
+  --gold: #E8B45B;          /* Phoenix Gold */
+  --burgundy: #773B42;      /* Ember Burgundy */
+  --shadow: 0 16px 36px -10px rgba(22, 61, 48, 0.08);
   --motion: 0.35s ease;
 }
 
 html[data-mode="lab"] {
-  --bg: #080E0D;
-  --surface: #101A17;
-  --surface2: #14231E;
-  --ink: #E5FFF1;
-  --muted: #8BA99A;
-  --line: #23362E;
-  --green: #66E3AE;
-  --green-mint: #00D99A;
-  --green-pale: #163D30;
-  --shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+  /* Nick Wayra X (Dark Mode) Semantic Mapping */
+  --bg: #191B1E;            /* Ash — Dark-mode base */
+  --surface: #252A2E;       /* Graphite — Standard cards, panels & elevated surfaces */
+  --surface2: #102820;      /* Midnight Forest — Atmospheric feature sections */
+  --surface-emerald: #163D30; /* Deep Emerald — Selected highlighted cards & depth */
+  --ink: #F4F5EF;           /* Ivory — Primary headings */
+  --body: #ABB8B2;          /* Silver Sage — Secondary & body text */
+  --muted: #ABB8B2;         /* Silver Sage — Secondary text */
+  --subtle: #697B70;        /* Sage Gray — Subtle UI, borders & metadata */
+  --line: #343B40;          /* Refined Graphite border */
+  --line-emerald: #244B3C;  /* Deep Emerald border for highlighted surfaces */
+  --green: #66E3AE;         /* Electric Mint — X Labs signature highlight */
+  --green-hover: #239B72;   /* Jade Emerald — Hover states & diagrams */
+  --green-mint: #66E3AE;    /* Electric Mint */
+  --green-pale: #163D30;    /* Deep Emerald */
+  --gold: #E8B45B;          /* Phoenix Gold */
+  --burgundy: #773B42;      /* Ember Burgundy */
+  --shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
   color-scheme: dark;
 }
 
@@ -42,11 +80,15 @@ html {
 
 body {
   background-color: var(--bg);
-  color: var(--ink);
+  color: var(--body);
   transition: background-color var(--motion), color var(--motion);
   overflow-x: hidden;
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4 {
+  color: var(--ink);
 }
 
 a {
@@ -59,14 +101,21 @@ button {
   color: inherit;
 }
 
-/* Subtle warm & mint ambient spotlight */
+/* Subtle warm Ivory & Forest Green ambient spotlight in Light Mode */
 .ambient-glow {
   background: 
-    radial-gradient(900px circle at 50% -10%, rgba(0, 217, 154, 0.07), transparent 60%),
-    radial-gradient(700px circle at 85% 40%, rgba(0, 122, 89, 0.04), transparent 55%);
+    radial-gradient(900px circle at 50% -10%, rgba(229, 255, 241, 0.65), transparent 60%),
+    radial-gradient(700px circle at 85% 40%, rgba(22, 116, 81, 0.05), transparent 55%),
+    radial-gradient(600px circle at 15% 75%, rgba(232, 180, 91, 0.04), transparent 55%);
 }
 
-/* Lab mode dark blueprint grid */
+html[data-mode="lab"] .ambient-glow {
+  background:
+    radial-gradient(900px circle at 50% -10%, rgba(16, 40, 32, 0.55), transparent 62%),
+    radial-gradient(700px circle at 85% 35%, rgba(35, 155, 114, 0.06), transparent 55%);
+}
+
+/* Lab mode subtle technical grid over Ash background */
 html[data-mode="lab"] body:before {
   content: '';
   pointer-events: none;
@@ -74,10 +123,41 @@ html[data-mode="lab"] body:before {
   inset: 0;
   z-index: -1;
   background-image: 
-    linear-gradient(#72e5b00a 1px, transparent 1px),
-    linear-gradient(90deg, #72e5b00a 1px, transparent 1px);
+    linear-gradient(rgba(105, 123, 112, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(105, 123, 112, 0.07) 1px, transparent 1px);
   background-size: 54px 54px;
   mask-image: linear-gradient(to bottom, #000 0%, transparent 80%);
+}
+
+/* Sticky Header — Unified 72px height & styling across Human (Light) and Lab (Dark) modes */
+header > div {
+  height: 72px;
+}
+html[data-mode="human"] header {
+  background-color: rgba(244, 245, 239, 0.88) !important;
+  border-bottom-color: var(--line) !important;
+}
+html[data-mode="human"] header #desktopLinks,
+html[data-mode="human"] header #mobileLinks {
+  color: var(--pf-sage-gray);
+}
+html[data-mode="human"] header a[aria-label="Nick Wayra Home"] span:last-child {
+  color: var(--pf-deep-emerald) !important;
+}
+html[data-mode="lab"] header {
+  background-color: rgba(25, 27, 30, 0.88) !important;
+  border-bottom-color: var(--line) !important;
+}
+html[data-mode="lab"] header #desktopLinks,
+html[data-mode="lab"] header #mobileLinks {
+  color: var(--pf-silver-sage);
+}
+html[data-mode="lab"] header a[aria-label="Nick Wayra Home"] span:last-child {
+  color: var(--pf-ivory) !important;
+}
+html[data-mode="lab"] header #mobileLinks {
+  background-color: rgba(25, 27, 30, 0.96) !important;
+  border-top-color: var(--line) !important;
 }
 
 /* Mode panel switching */
@@ -105,11 +185,16 @@ html[data-mode="lab"] body:before {
   align-items: center;
   gap: 4px;
   padding: 4px;
-  background: var(--surface2);
+  background: #E6EAE4;
   border: 1px solid var(--line);
   border-radius: 999px;
   transition: all var(--motion);
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 2px rgba(22, 61, 48, 0.06);
+}
+html[data-mode="lab"] .mode-switch {
+  background: var(--pf-graphite);
+  border-color: var(--line);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
 }
 .mode-switch button {
   border: 0;
@@ -121,21 +206,32 @@ html[data-mode="lab"] body:before {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--muted);
+  color: var(--pf-sage-gray);
   transition: all 0.25s ease;
   white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+html[data-mode="lab"] .mode-switch button {
+  color: var(--pf-silver-sage);
 }
 .mode-switch button[aria-pressed="true"] {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background: #FFFFFF;
+  color: var(--pf-deep-emerald);
+  box-shadow: 0 2px 10px rgba(22, 61, 48, 0.12);
+}
+html[data-mode="lab"] .mode-switch button[aria-pressed="true"] {
+  background: var(--pf-deep-emerald);
+  color: var(--pf-electric-mint);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 .mode-switch button:focus-visible {
   outline: 2px solid var(--green);
   outline-offset: 2px;
 }
 
-/* Asymmetric Portrait Frame (from starter specification) */
+/* Asymmetric Portrait Frame */
 .portrait-frame {
   position: relative;
   max-width: 340px;
@@ -155,15 +251,15 @@ html[data-mode="lab"] body:before {
   content: '';
   position: absolute;
   inset: 12px -12px -12px 12px;
-  border: 1.5px solid #007A59;
+  border: 1.5px solid var(--pf-forest-green);
   border-radius: 7px 7px 90px 7px;
   z-index: -1;
-  opacity: 0.45;
+  opacity: 0.5;
   transition: opacity 0.3s, border-color 0.3s;
 }
 .portrait-frame:hover:after {
-  opacity: 0.85;
-  border-color: #00D99A;
+  opacity: 0.9;
+  border-color: var(--pf-jade-emerald);
 }
 .portrait-note {
   position: absolute;
@@ -171,79 +267,96 @@ html[data-mode="lab"] body:before {
   bottom: 20px;
   background: var(--surface);
   border: 1px solid var(--line);
+  border-left: 3px solid var(--pf-phoenix-gold);
   padding: 9px 14px;
   border-radius: 8px;
-  box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px -4px rgba(22, 61, 48, 0.1);
   font: 700 10px 'JetBrains Mono', monospace;
   letter-spacing: 0.06em;
-  color: #007A59;
+  color: var(--pf-deep-emerald);
 }
 
-/* Standard Glass Card: 4px lift, strengthened shadow & smooth emerald border transition */
+/* Standard Light Card: 4px lift, strengthened shadow & Jade Emerald border transition */
 .glass-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  box-shadow: 0 2px 10px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 10px -2px rgba(22, 61, 48, 0.04);
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.22s ease-out,
               background-color var(--motion);
 }
 .glass-card:hover {
-  border-color: var(--green);
+  border-color: var(--pf-jade-emerald);
   transform: translateY(-4px);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.12), 0 6px 14px -4px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 16px 36px -10px rgba(22, 61, 48, 0.12), 0 6px 14px -4px rgba(22, 61, 48, 0.04);
 }
 
-/* Flagship Card: Retains authoritative black border on hover */
+/* Flagship Card: Deep Emerald authoritative border */
 .featured-card {
   background: #FFFFFF;
-  border: 1.5px solid #111214;
-  box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.06);
+  border: 1.5px solid var(--pf-deep-emerald);
+  box-shadow: 0 4px 16px -2px rgba(22, 61, 48, 0.07);
 }
 .featured-card:hover {
-  border-color: #000000;
+  border-color: var(--pf-forest-green);
   transform: translateY(-4px);
-  box-shadow: 0 18px 40px -10px rgba(0, 0, 0, 0.14), 0 8px 16px -4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 18px 40px -10px rgba(22, 61, 48, 0.15), 0 8px 16px -4px rgba(22, 61, 48, 0.05);
 }
 
-/* Social Platform Cards: 3-4px lift, soft pale mint background & deep emerald border on hover */
+/* Social Platform Cards: 3-4px lift, Mint White hover surface & Jade Emerald border */
 .social-card {
   background: var(--surface);
   border: 1px solid var(--line);
-  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 8px -2px rgba(22, 61, 48, 0.04);
   transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
               box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
               border-color 0.22s ease-out,
               background-color 0.22s ease-out;
 }
 .social-card:hover {
-  background-color: var(--surface2);
-  border-color: var(--green);
+  background-color: var(--pf-mint-white);
+  border-color: var(--pf-jade-emerald);
   transform: translateY(-3.5px);
-  box-shadow: 0 12px 28px -6px rgba(0, 122, 89, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 12px 28px -6px rgba(22, 116, 81, 0.12), 0 4px 10px -2px rgba(22, 61, 48, 0.04);
 }
 
-/* Continuous left-to-right green wave */
+/* Continuous left-to-right Phoenix Fusion wave */
 .headline-wave {
   display: inline-block;
   padding-right: 0.08em;
   padding-bottom: 0.05em;
+  letter-spacing: -0.01em;
+  -webkit-text-stroke: 0.25px transparent;
   background-image: linear-gradient(
     90deg,
-    #007A59 0%,
-    #009F9A 25%,
-    #00D99A 50%,
-    #79AA27 75%,
-    #007A59 100%
+    #0E8F61 0%,
+    #D98A16 28%,
+    #C83246 52%,
+    #D98A16 74%,
+    #0E8F61 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(200, 50, 70, 0.14)) drop-shadow(0 1px 1px rgba(22, 61, 48, 0.12));
   animation: greenWaveFlow 4s linear infinite;
 }
+
+html[data-mode="lab"] .headline-wave {
+  background-image: linear-gradient(
+    90deg,
+    #66E3AE 0%,
+    #E8B45B 30%,
+    #D94F5C 52%,
+    #E8B45B 75%,
+    #66E3AE 100%
+  );
+  filter: drop-shadow(0 0 18px rgba(102, 227, 174, 0.14));
+}
+
 @keyframes greenWaveFlow {
   0% {
     background-position: 200% center;
@@ -253,32 +366,32 @@ html[data-mode="lab"] body:before {
   }
 }
 
-/* Lab hero, glow, and terminal card */
+/* Lab hero, glow, and terminal card (Graphite + Midnight Forest depth) */
 .lab-glow {
   position: absolute;
-  width: 260px;
-  height: 260px;
+  width: 280px;
+  height: 280px;
   top: 40px;
   left: 45%;
-  background: rgba(102, 227, 174, 0.08);
-  filter: blur(65px);
+  background: rgba(102, 227, 174, 0.07);
+  filter: blur(70px);
   border-radius: 50%;
   pointer-events: none;
 }
 .terminal-card {
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: linear-gradient(140deg, #14231E, #0D1412);
+  background: linear-gradient(145deg, #252A2E 0%, #1F2428 60%, #102820 100%);
   padding: 24px;
   box-shadow: var(--shadow);
   font: 12px/1.85 'JetBrains Mono', monospace;
-  color: #8BA99A;
+  color: var(--pf-silver-sage);
   transform: rotate(0.8deg);
   transition: transform 0.3s ease, border-color 0.3s;
 }
 .terminal-card:hover {
   transform: rotate(0deg) translateY(-2px);
-  border-color: #66E3AE;
+  border-color: var(--pf-jade-emerald);
 }
 .terminal-head {
   display: flex;
@@ -292,17 +405,17 @@ html[data-mode="lab"] body:before {
   height: 8px;
   border-radius: 50%;
 }
-.dot-red { background: #FF5F56; }
-.dot-yellow { background: #FFBD2E; }
-.dot-green { background: #27C93F; }
+.dot-red { background: #773B42; }
+.dot-yellow { background: #E8B45B; }
+.dot-green { background: #66E3AE; }
 .terminal-big {
-  color: #DBFFF0;
+  color: var(--pf-ivory);
   font-size: 20px;
   font-weight: 700;
   line-height: 1.35;
   padding: 12px 0;
 }
-.terminal-green { color: #66E3AE; }
+.terminal-green { color: var(--pf-electric-mint); }
 
 /* Free-standing Typographic Wordmark for Nick Wayra X */
 .x-wordmark-row {
@@ -322,7 +435,7 @@ html[data-mode="lab"] body:before {
   letter-spacing: -0.045em;
   display: inline-block;
   vertical-align: baseline;
-  transform: translateY(2px); /* optical alignment by eye */
+  transform: translateY(2px);
   user-select: none;
 }
 
@@ -333,17 +446,17 @@ html[data-mode="lab"] body:before {
   font-size: clamp(28px, 4.2vw, 48px);
   line-height: 1;
   letter-spacing: -0.03em;
-  margin-left: 0.04em; /* optical kiss right beside the X */
+  margin-left: 0.04em;
   display: inline-flex;
   align-items: baseline;
-  min-width: 14ch; /* monospace glyphs: exactly 13 characters + cursor */
+  min-width: 14ch;
   vertical-align: baseline;
 }
 
 /* Lab hero typewriter cursor */
 .x-cursor {
   display: inline-block;
-  color: #66E3AE;
+  color: var(--pf-electric-mint);
   font-weight: 300;
   font-family: 'JetBrains Mono', monospace;
   font-style: normal;
@@ -359,23 +472,26 @@ html[data-mode="lab"] body:before {
   100% { opacity: 1; }
 }
 
-/* Lab Project Cards */
+/* Lab Project Cards: Graphite base with distinct product accent personalities */
 .project {
   position: relative;
   overflow: hidden;
-  background: var(--surface);
+  background: var(--pf-graphite);
   border: 1px solid var(--line);
   border-radius: 18px;
   padding: 26px;
-  transition: transform 0.25s, border-color 0.3s, box-shadow 0.25s;
+  transition: transform 0.25s, border-color 0.3s, box-shadow 0.25s, background-color 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .project:hover {
   transform: translateY(-4px);
-  border-color: var(--green);
-  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.3);
+  border-color: var(--pf-jade-emerald);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.4);
+}
+.project[data-project="aeriad"]:hover {
+  border-color: var(--pf-phoenix-gold);
 }
 .project:after {
   content: attr(data-mark);
@@ -384,8 +500,14 @@ html[data-mode="lab"] body:before {
   top: 8px;
   font: 700 68px 'JetBrains Mono', monospace;
   letter-spacing: -0.1em;
-  color: rgba(102, 227, 174, 0.08);
+  color: rgba(171, 184, 178, 0.06);
   pointer-events: none;
+}
+.project[data-project="aeriad"]:after {
+  color: rgba(232, 180, 91, 0.07);
+}
+.project[data-project="iris"]:after {
+  color: rgba(102, 227, 174, 0.07);
 }
 .project-icon {
   width: 44px;
@@ -394,19 +516,27 @@ html[data-mode="lab"] body:before {
   place-items: center;
   border: 1px solid var(--line);
   border-radius: 12px;
-  color: var(--green);
+  color: var(--pf-electric-mint);
   font: 700 15px 'JetBrains Mono', monospace;
   margin: 16px 0 12px;
-  background: var(--surface2);
+  background: var(--pf-deep-emerald);
+}
+.project[data-project="aeriad"] .project-icon {
+  color: var(--pf-phoenix-gold);
+  background: rgba(232, 180, 91, 0.12);
+  border-color: rgba(232, 180, 91, 0.32);
 }
 .project-status {
   font: 700 10px 'JetBrains Mono', monospace;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--green);
+  color: var(--pf-electric-mint);
   display: inline-flex;
   align-items: center;
   gap: 7px;
+}
+.project[data-project="aeriad"] .project-status {
+  color: var(--pf-phoenix-gold);
 }
 .project-status:before {
   content: '';
@@ -417,28 +547,154 @@ html[data-mode="lab"] body:before {
   box-shadow: 0 0 10px currentColor;
 }
 
-/* Process Bar */
-.process {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+/* Standardized Lab Status Pills */
+.lab-status-pill {
+  font: 700 10px 'JetBrains Mono', monospace;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px;
+  border-radius: 999px;
   border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
 }
-.process div {
-  padding: 18px 12px;
-  text-align: center;
-  background: var(--surface);
-  font: 700 11px 'JetBrains Mono', monospace;
-  letter-spacing: 0.08em;
-  transition: background-color var(--motion);
+.lab-status-building {
+  background: var(--pf-deep-emerald);
+  color: var(--pf-electric-mint);
+  border-color: rgba(102, 227, 174, 0.35);
 }
-.process div + div {
-  border-left: 1px solid var(--line);
+.lab-status-concept {
+  background: var(--pf-graphite);
+  color: var(--pf-silver-sage);
+  border-color: var(--line);
 }
-.process b {
-  color: var(--green);
-  margin-left: 4px;
+
+/* Section 04: Where Ideas Collide (Venn Intersection Engine) */
+.topic-bubble {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--pf-graphite);
+  border: 1px solid var(--line);
+  color: var(--pf-silver-sage);
+  font: 500 12.5px 'JetBrains Mono', monospace;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.2s ease,
+              border-color 0.2s ease,
+              color 0.2s ease,
+              opacity 0.2s ease,
+              box-shadow 0.2s ease;
+}
+
+.topic-bubble:hover {
+  transform: translateY(-2px);
+  border-color: var(--pf-jade-emerald);
+  color: var(--pf-ivory);
+  background: #2C3338;
+  opacity: 1 !important;
+}
+
+.topic-bubble.is-dimmed {
+  opacity: 0.56;
+}
+
+.topic-bubble[aria-pressed="true"] {
+  background: var(--pf-deep-emerald);
+  border-color: var(--pf-electric-mint);
+  color: var(--pf-ivory);
+  font-weight: 600;
+  box-shadow: 0 4px 18px -4px rgba(102, 227, 174, 0.22);
+}
+
+.topic-bubble-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2C3338;
+  border: 1.5px solid var(--pf-sage-gray);
+  transition: all 0.2s ease;
+}
+
+.topic-bubble:hover .topic-bubble-dot {
+  border-color: var(--pf-jade-emerald);
+}
+
+.topic-bubble[aria-pressed="true"] .topic-bubble-dot {
+  background: var(--pf-electric-mint);
+  border-color: var(--pf-electric-mint);
+  box-shadow: 0 0 8px rgba(102, 227, 174, 0.85);
+}
+
+.intersection-radial-glow {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -52%);
+  background: radial-gradient(circle, rgba(35, 155, 114, 0.24) 0%, rgba(22, 61, 48, 0.1) 55%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.45s ease, opacity 0.45s ease;
+}
+
+#intersectionStage[data-venn-state="0"] .intersection-radial-glow,
+#intersectionStage[data-venn-state="1"] .intersection-radial-glow {
+  opacity: 0.25;
+  transform: translate(-50%, -52%) scale(0.8);
+}
+
+.venn-circle,
+#vennClipCircleA,
+#vennLensCircleB,
+#vennHatchCircleB,
+#vennLensStrokeB {
+  transition: cx 0.48s cubic-bezier(0.16, 1, 0.3, 1),
+              stroke 0.3s ease,
+              stroke-opacity 0.3s ease,
+              fill-opacity 0.3s ease;
+}
+
+#intersectionStage[data-venn-state="0"] #vennCircleA,
+#intersectionStage[data-venn-state="0"] #vennCircleB {
+  stroke-dasharray: 5 5;
+  stroke-opacity: 0.45;
+  fill-opacity: 0.35;
+}
+
+#intersectionStage[data-venn-state="1"] #vennCircleB {
+  stroke-dasharray: 5 5;
+  stroke-opacity: 0.5;
+  fill-opacity: 0.35;
+}
+
+.venn-overlap-group,
+.venn-center-badge {
+  transition: opacity 0.35s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#intersectionStage[data-venn-state="0"] .venn-overlap-group,
+#intersectionStage[data-venn-state="1"] .venn-overlap-group,
+#intersectionStage[data-venn-state="0"] .venn-center-badge,
+#intersectionStage[data-venn-state="1"] .venn-center-badge {
+  opacity: 0;
+  transform: scale(0.75);
+  pointer-events: none;
+}
+
+#intersectionStage.is-colliding .venn-center-badge {
+  transform: scale(1.18);
+  filter: drop-shadow(0 0 12px rgba(102, 227, 174, 0.75));
+}
+
+#intersectionStage.is-colliding .intersection-radial-glow {
+  transform: translate(-50%, -52%) scale(1.18);
 }
 
 /* Project Modal Dialog */
@@ -449,10 +705,10 @@ dialog {
   border-radius: 24px;
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 100px rgba(0, 0, 0, 0.45);
 }
 dialog::backdrop {
-  background: rgba(4, 10, 8, 0.75);
+  background: rgba(25, 27, 30, 0.78);
   backdrop-filter: blur(8px);
 }
 .dialog-inner {
@@ -462,7 +718,7 @@ dialog::backdrop {
   float: right;
   border: 1px solid var(--line);
   border-radius: 99px;
-  background: var(--surface2);
+  background: var(--pf-ash);
   padding: 6px 12px;
   cursor: pointer;
   font: 600 12px 'JetBrains Mono', monospace;

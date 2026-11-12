@@ -838,7 +838,7 @@
               <span class="topic-bubble-dot"></span>
               <span>AI Swarms</span>
             </button>
-            <button type="button" class="topic-bubble" data-topic="Consciousness" aria-pressed="true">
+            <button type="button" class="topic-bubble is-dimmed" data-topic="Consciousness" aria-pressed="false">
               <span class="topic-bubble-dot"></span>
               <span>Consciousness</span>
             </button>
@@ -862,7 +862,7 @@
               <span class="topic-bubble-dot"></span>
               <span>SaaS</span>
             </button>
-            <button type="button" class="topic-bubble is-dimmed" data-topic="Vibe Coding" aria-pressed="false">
+            <button type="button" class="topic-bubble" data-topic="Vibe Coding" aria-pressed="true">
               <span class="topic-bubble-dot"></span>
               <span>Vibe Coding</span>
             </button>
@@ -885,117 +885,126 @@
           </div>
         </div>
 
-        <!-- ZONES 2 & 3: TWIN INTERACTIVE PANELS (VENN COLLISION STAGE + QUESTION CARD) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <!-- ZONES 2 & 3: WIDE VENN STAGE + RESULT PANEL (STACKED FOR MAX VISIBILITY & BALANCE) -->
+        <div class="max-w-4xl mx-auto space-y-6">
           
-          <!-- ZONE 2 (Left on Desktop): Animated Venn Diagram Stage -->
-          <div class="lg:col-span-6 flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#252A2E] border border-[#343B40] relative overflow-hidden" id="intersectionStage" data-venn-state="2">
+          <!-- ZONE 2: Animated Venn Diagram Stage (Spacious, balanced, wide ratio) -->
+          <div class="p-6 sm:p-9 rounded-3xl bg-[#252A2E] border border-[#343B40] relative overflow-hidden" id="intersectionStage" data-venn-state="2">
             <div class="intersection-radial-glow" aria-hidden="true"></div>
 
-            <!-- Top Stage Micro-Header -->
-            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-[#ABB8B2] relative z-10">
+            <!-- Top Stage Micro-Header (Matching Mockup: VENN SYNTHESIS FIELD ... ● OVERLAP ACTIVE) -->
+            <div class="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-[#ABB8B2] relative z-10 mb-2 sm:mb-4">
               <span>VENN SYNTHESIS FIELD</span>
-              <span id="vennStateBadge" class="text-[#66E3AE]">OVERLAP ACTIVE</span>
+              <span id="vennStateBadge" class="inline-flex items-center gap-2 text-[#66E3AE] font-semibold text-[11px] sm:text-xs">
+                <span class="w-2 h-2 rounded-full bg-[#66E3AE] shadow-[0_0_8px_#66E3AE]" id="vennStateDot"></span>
+                <span id="vennStateBadgeText">OVERLAP ACTIVE</span>
+              </span>
             </div>
 
-            <!-- Animated SVG Venn Diagram -->
-            <div class="w-full my-auto py-3 relative z-10">
-              <svg class="w-full h-auto overflow-visible select-none" viewBox="0 0 460 230" fill="none" aria-label="Interactive Venn diagram showing the intersection of two selected topics">
+            <!-- Animated SVG Venn Diagram (Wide 520x250 aspect ratio, big circles, balanced wings) -->
+            <div class="w-full my-auto py-2 relative z-10">
+              <svg class="w-full h-auto overflow-visible select-none" viewBox="0 0 520 250" fill="none" aria-label="Interactive Venn diagram showing the collision of two selected topics">
                 <defs>
-                  <!-- Radial glow for the Venn overlap lens -->
-                  <radialGradient id="vennOverlapGrad" cx="50%" cy="50%" r="60%">
-                    <stop offset="0%" stop-color="#66E3AE" stop-opacity="0.42" />
-                    <stop offset="70%" stop-color="#239B72" stop-opacity="0.24" />
-                    <stop offset="100%" stop-color="#163D30" stop-opacity="0.14" />
+                  <!-- Translucent emerald to mint gradient for overlap lens -->
+                  <radialGradient id="vennOverlapGrad" cx="50%" cy="50%" r="55%">
+                    <stop offset="0%" stop-color="#239B72" stop-opacity="0.55" />
+                    <stop offset="70%" stop-color="#163D30" stop-opacity="0.82" />
+                    <stop offset="100%" stop-color="#102820" stop-opacity="0.95" />
                   </radialGradient>
-                  <!-- Subtle hatch pattern for the Venn intersection lens -->
-                  <pattern id="vennHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
-                    <line x1="0" y1="0" x2="0" y2="8" stroke="#66E3AE" stroke-opacity="0.22" stroke-width="1" />
-                  </pattern>
-                  <!-- Dynamic Clip Path matching Circle A so Circle B's clone only renders inside the Venn overlap! -->
+                  <!-- Dynamic Clip Path matching Circle A -->
                   <clipPath id="vennClipLeft">
-                    <circle id="vennClipCircleA" cx="174" cy="115" r="88" />
+                    <circle id="vennClipCircleA" cx="195" cy="125" r="105" />
                   </clipPath>
                 </defs>
 
-                <!-- Background technical axis & outer orbital ring -->
-                <line x1="20" y1="115" x2="440" y2="115" stroke="#343B40" stroke-opacity="0.8" stroke-dasharray="3 5" stroke-width="1" />
-                <circle cx="230" cy="115" r="104" stroke="#343B40" stroke-opacity="0.9" stroke-dasharray="4 6" stroke-width="1" class="venn-outer-orbit" />
-
                 <!-- LEFT CIRCLE (Topic A) -->
-                <circle id="vennCircleA" cx="174" cy="115" r="88" fill="#102820" fill-opacity="0.82" stroke="#239B72" stroke-width="2" class="venn-circle" />
+                <circle id="vennCircleA" cx="195" cy="125" r="105" fill="#102820" fill-opacity="0.85" stroke="#167451" stroke-width="2.5" class="venn-circle" />
 
                 <!-- RIGHT CIRCLE (Topic B) -->
-                <circle id="vennCircleB" cx="286" cy="115" r="88" fill="#102820" fill-opacity="0.82" stroke="#239B72" stroke-width="2" class="venn-circle" />
+                <circle id="vennCircleB" cx="325" cy="125" r="105" fill="#102820" fill-opacity="0.85" stroke="#167451" stroke-width="2.5" class="venn-circle" />
 
-                <!-- VENN INTERSECTION LENS (Rendered only where Circle A and Circle B overlap) -->
+                <!-- VENN INTERSECTION LENS -->
                 <g clip-path="url(#vennClipLeft)" id="vennOverlapGroup" class="venn-overlap-group">
-                  <circle id="vennLensCircleB" cx="286" cy="115" r="88" fill="url(#vennOverlapGrad)" />
-                  <circle id="vennHatchCircleB" cx="286" cy="115" r="88" fill="url(#vennHatch)" />
-                  <circle id="vennLensStrokeB" cx="286" cy="115" r="88" fill="none" stroke="#66E3AE" stroke-width="2.5" />
+                  <circle id="vennLensCircleB" cx="325" cy="125" r="105" fill="url(#vennOverlapGrad)" />
+                  <circle id="vennLensStrokeB" cx="325" cy="125" r="105" fill="none" stroke="#66E3AE" stroke-width="2.5" />
                 </g>
 
-                <!-- Left Circle Label Group -->
-                <g id="vennTextGroupA" class="venn-text-group">
-                  <text id="vennSlotA" x="122" y="102" text-anchor="middle" fill="#66E3AE" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.1em">THREAD 01</text>
-                  <text id="vennLabelA" x="122" y="122" text-anchor="middle" fill="#F4F5EF" font-family="Inter, sans-serif" font-size="13" font-weight="700">Consciousness</text>
+                <!-- Left Circle Label Group (Centered in non-overlapping wing) -->
+                <g id="vennTextGroupA" class="venn-text-group select-none pointer-events-none">
+                  <text id="vennSlotA" x="155" y="94" text-anchor="middle" fill="#66E3AE" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="0.14em">THREAD 01</text>
+                  <text id="vennLabelA" x="155" y="125" text-anchor="middle" fill="#F4F5EF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">
+                    <tspan x="155" dy="-5">Social</tspan>
+                    <tspan x="155" dy="22">Systems</tspan>
+                  </text>
                 </g>
 
-                <!-- Right Circle Label Group -->
-                <g id="vennTextGroupB" class="venn-text-group">
-                  <text id="vennSlotB" x="338" y="102" text-anchor="middle" fill="#66E3AE" font-family="JetBrains Mono, monospace" font-size="9.5" font-weight="700" letter-spacing="0.1em">THREAD 02</text>
-                  <text id="vennLabelB" x="338" y="122" text-anchor="middle" fill="#F4F5EF" font-family="Inter, sans-serif" font-size="13" font-weight="700">Social Systems</text>
+                <!-- Right Circle Label Group (Centered in non-overlapping wing) -->
+                <g id="vennTextGroupB" class="venn-text-group select-none pointer-events-none">
+                  <text id="vennSlotB" x="365" y="94" text-anchor="middle" fill="#66E3AE" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="0.14em">THREAD 02</text>
+                  <text id="vennLabelB" x="365" y="125" text-anchor="middle" fill="#F4F5EF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">
+                    <tspan x="365" dy="-5">Vibe</tspan>
+                    <tspan x="365" dy="22">Coding</tspan>
+                  </text>
                 </g>
 
-                <!-- Center Intersection Core Badge (Visible when overlapping) -->
-                <g id="vennCenterBadge" class="venn-center-badge">
-                  <circle cx="230" cy="115" r="19" fill="#191B1E" stroke="#66E3AE" stroke-width="2" />
-                  <text x="230" y="120.5" text-anchor="middle" fill="#66E3AE" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">&times;</text>
+                <!-- Center Intersection Interactive Control -->
+                <g id="vennCenterBadge" class="venn-center-badge" role="button" tabindex="0" aria-label="Explore intersection question">
+                  <circle id="vennCenterCircle" cx="260" cy="125" r="22" class="venn-center-btn-bg" />
+                  <text x="260" y="131.5" text-anchor="middle" class="venn-center-btn-text">&times;</text>
                 </g>
               </svg>
             </div>
 
             <!-- Bottom Active Formula Strip -->
-            <div class="flex flex-wrap items-center justify-center gap-2 pt-3 border-t border-[#343B40] relative z-10" aria-live="polite">
-              <span id="intersectionPillA" class="px-3 py-1 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-[11px] font-medium text-[#F4F5EF]">
-                Consciousness
+            <div class="flex flex-wrap items-center justify-center gap-2.5 pt-4 border-t border-[#343B40] relative z-10" aria-live="polite">
+              <span id="intersectionPillA" class="px-3.5 py-1.5 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-xs font-medium text-[#F4F5EF]">
+                Social Systems
               </span>
               <span class="font-mono text-xs font-bold text-[#66E3AE]">&times;</span>
-              <span id="intersectionPillB" class="px-3 py-1 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-[11px] font-medium text-[#F4F5EF]">
-                Social Systems
+              <span id="intersectionPillB" class="px-3.5 py-1.5 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-xs font-medium text-[#F4F5EF]">
+                Vibe Coding
               </span>
             </div>
           </div>
 
-          <!-- ZONE 3 (Right on Desktop): Refined Editorial Question Card -->
-          <div class="lg:col-span-6 flex flex-col justify-between p-7 sm:p-9 rounded-3xl bg-[#252A2E] border border-[#239B72]/45 relative overflow-hidden transition-all duration-300"
-               style="background-image: radial-gradient(420px circle at 100% 0%, rgba(35, 155, 114, 0.12), transparent 70%);"
+          <!-- ZONE 3: Curated Interdisciplinary Question Result Panel BENEATH the diagram -->
+          <div class="p-7 sm:p-10 rounded-3xl bg-[#252A2E] border border-[#239B72]/50 relative overflow-hidden transition-all duration-300"
+               style="background-image: radial-gradient(550px circle at 50% 0%, rgba(35, 155, 114, 0.15), transparent 70%);"
                id="intersectionCard" aria-live="polite">
             <div>
               <!-- Output Top Meta Row -->
-              <div class="flex flex-wrap items-center justify-between gap-2 mb-6 pb-4 border-b border-[#343B40]">
-                <span id="intersectionEyebrow" class="font-mono text-xs font-bold uppercase tracking-widest text-[#66E3AE]">
-                  CONSCIOUSNESS &times; SOCIAL SYSTEMS
-                </span>
-                <span id="intersectionNumberBadge" class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#E8B45B]">
-                  INTERSECTION 046 / 091
+              <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#343B40]">
+                <div class="flex items-center gap-2.5">
+                  <span class="w-2 h-2 rounded-full bg-[#66E3AE] shadow-[0_0_8px_#66E3AE]"></span>
+                  <span id="intersectionNumberBadge" class="font-mono text-xs font-bold uppercase tracking-widest text-[#E8B45B]">
+                    COLLISION / 085
+                  </span>
+                </div>
+                <span id="intersectionEyebrow" class="font-mono text-xs font-semibold uppercase tracking-wider text-[#ABB8B2]">
+                  Social Systems &times; Vibe Coding
                 </span>
               </div>
 
               <!-- Main Generated Question -->
-              <h3 id="intersectionQuestion" class="text-xl sm:text-2xl lg:text-[26px] font-bold text-[#F4F5EF] leading-snug mb-6">
-                How much of our supposedly private sense of self is constructed by the roles other people expect us to play?
+              <h3 id="intersectionQuestion" class="text-2xl sm:text-3xl lg:text-[32px] font-bold text-[#F4F5EF] leading-snug tracking-tight mb-6">
+                If anyone can build apps just by talking to an AI, which communities gain real independence—and which ones just become dependent on the big tech companies running the AI?
               </h3>
 
-              <p id="intersectionSubnote" class="font-mono text-xs font-medium text-[#66E3AE]">
-                A question worth exploring.
-              </p>
+              <div class="flex items-center justify-between flex-wrap gap-3">
+                <p id="intersectionSubnote" class="font-mono text-xs font-medium text-[#66E3AE] flex items-center gap-2">
+                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#66E3AE]"></span>
+                  <span>A question worth exploring.</span>
+                </p>
+                <span class="font-mono text-[11px] text-[#ABB8B2]">
+                  91 curated pairings
+                </span>
+              </div>
             </div>
 
             <!-- Bottom Footnote -->
             <div class="pt-5 mt-8 border-t border-[#343B40]">
               <p class="text-xs text-[#ABB8B2] leading-relaxed">
-                Questions for exploration across 91 unique interdisciplinary pairings—not claims of established fact.
+                Curated questions for exploration across 91 unique interdisciplinary pairings—not claims of established fact.
               </p>
             </div>
           </div>
@@ -1290,121 +1299,121 @@
     // Exact 91 authored collision questions in upper-triangular order (1..91)
     const collisions91 = [
       // 1. AGI (1..13)
-      "If an AGI knows our preferences would change with more information, should it honor what we want now or what we might eventually want?",
-      "Could a society of specialized AI agents become generally intelligent even if no individual agent understands the whole?",
-      "If an AGI could reason brilliantly but had no subjective experience, what\u2014if anything\u2014would be missing from its intelligence?",
-      "Will building AGI require reproducing the mind's cognitive shortcuts, or escaping the limitations that made those shortcuts useful?",
-      "Who shapes the future when AGI can generate not just answers, but the stories societies use to decide which problems matter?",
-      "What should an interface look like when the system is more capable than its user but must not quietly take over their decisions?",
-      "If a product can redesign itself around each person, what remains of the designer's original intent?",
-      "When AGI can create custom software on demand, what enduring value will people still pay a subscription for?",
-      "If anyone can turn an intention into functioning software, who is responsible for the requirements nobody thought to specify?",
-      "Does intelligence change in kind when it must contend with gravity, friction, and the irreversible cost of physical mistakes?",
-      "When analytical intelligence becomes abundant, which distinctly human capabilities grow more valuable rather than less?",
-      "Can an AGI trusted to identify military targets ever be trusted to decide whether a war is worth continuing?",
-      "If superhuman AI advisers disagree about public policy, how should a democracy decide which reasoning deserves authority?",
+      "If a super-smart AI knows we would change our minds once we learn more, should it give us what we want right now, or what we *will* want later?",
+      "Could a large group of simple, specialized AI tools act like a human-level genius when combined, even if none of them understand the big picture?",
+      "If an AI could think and solve problems like a genius, but had zero feelings or awareness, would its intelligence be missing something important?",
+      "To build human-level AI, do we need to copy the brain’s mental shortcuts, or avoid the human flaws that made those shortcuts necessary?",
+      "Who controls the future when AI can write not just the answers, but the stories society uses to decide which problems matter?",
+      "How do we design a screen or app for an AI that is smarter than us, without letting it quietly make all our decisions for us?",
+      "If a product can automatically redesign itself to fit every individual user, what is left of the original designer’s vision?",
+      "When AI can build custom apps for you on the spot, what would make people still pay a monthly software subscription?",
+      "If anyone can build working software just by describing what they want, who is to blame when the app fails because of details nobody thought to ask for?",
+      "Does intelligence fundamentally change when an AI has to deal with gravity, friction, and the real-world cost of breaking physical things?",
+      "When computer brainpower becomes cheap and unlimited, which human skills actually become *more* valuable?",
+      "If we trust a super-smart AI to pick military targets, can we ever trust it to decide if a war is worth fighting?",
+      "If super-intelligent AI advisers disagree on how to run the country, how should a democracy decide which one to listen to?",
 
       // 2. Alignment (14..25)
-      "How can responsibility be assigned when every agent follows its instructions but their interactions produce a harmful outcome?",
-      "If an artificial mind could suffer, would making it perfectly obedient become a form of coercion?",
-      "If humans cannot reliably explain their own motives, what exactly are we trying to align machines with?",
-      "Could an AI be factually accurate yet dangerously misaligned through the stories and omissions it chooses to emphasize?",
-      "Should an aligned assistant sometimes make it harder for users to do what they explicitly ask?",
-      "When a feature increases engagement while weakening autonomy, whose objectives has the product actually been aligned to?",
-      "If customers pay AI agents for results, how do we stop an agent from taking a harmful shortcut that still satisfies the contract?",
-      "Can a system faithfully implement a vague request without also reproducing the requester's unexamined assumptions?",
-      "How should a robot respond when a direct human command conflicts with the immediate safety of someone nearby?",
-      "When AI continually rescues us from difficulty, at what point does assistance erode the competence it was meant to support?",
-      "Can a weapon be meaningfully \"aligned\" when the ethics of using lethal force cannot be reduced to a single optimization target?",
-      "Whose values should an AI respect when a community has legitimate interests that cannot be reconciled into one consensus?",
+      "Who is responsible when a group of AI bots causes harm, even though every single bot followed its exact instructions?",
+      "If an artificial mind could actually feel pain, would forcing it to obey our every command become a form of slavery?",
+      "If humans barely understand why *we* do the things we do, what values are we actually trying to teach AI?",
+      "Could an AI tell only the strict truth, yet still mislead us dangerously just by choosing which facts to highlight and which to leave out?",
+      "Should a helpful AI assistant sometimes push back or make things harder when a user asks for something unwise?",
+      "When an app feature keeps you hooked on your screen while weakening your self-control, who is that product actually serving?",
+      "If we pay AI agents to get a specific result, how do we stop them from taking a harmful shortcut that technically gets the job done?",
+      "Can an AI build software from a vague idea without accidentally baking in the creator's hidden biases and blind spots?",
+      "What should a robot do when a direct order from its owner puts a nearby bystander in immediate physical danger?",
+      "If AI constantly steps in to save us from struggling, at what point does that help actually make us weaker and less capable?",
+      "Can a lethal weapon ever truly be \"aligned\" with human values when the ethics of war can't be boiled down to a simple math formula?",
+      "Whose values should an AI follow when a community has deeply conflicting beliefs that can't be settled?",
 
       // 3. AI Swarms (26..36)
-      "Could a network of individually unconscious agents develop a shared point of view, or only imitate collective selfhood?",
-      "What would a team of AI agents need to reproduce the productive internal disagreement of a human mind?",
-      "How might a coordinated swarm change public belief without producing a single demonstrably false message?",
-      "When dozens of invisible agents act for one person, what must that person be able to inspect, interrupt, or undo?",
-      "Does a product still have a single user journey when AI agents negotiate and act on behalf of its users?",
-      "If companies rent teams of agents instead of software seats, should they pay for work performed, outcomes achieved, or risks assumed?",
-      "Can independently coding agents build a coherent system without anyone protecting its underlying conceptual architecture?",
-      "What emerges when a thousand simple robots coordinate a task that none of them could understand or complete alone?",
-      "Would a swarm of personal assistants free our attention, or consume it through an endless stream of decisions to delegate?",
-      "If a swarm reaches a lethal decision through collective behavior, where does the final decision actually reside?",
-      "How do institutions prevent the apparent consensus of many AI agents from being mistaken for genuinely independent judgment?",
+      "Could a network of mindless AI bots ever develop a shared sense of \"self,\" or would they just be faking it?",
+      "What would a team of AI agents need in order to mimic the healthy internal debate that happens inside a human brain?",
+      "How could a coordinated swarm of AI bots change public opinion without ever telling a single provable lie?",
+      "When dozens of invisible AI bots are working behind the scenes for you, what do you need to be able to see, pause, or undo?",
+      "Does a product still have a clear \"user experience\" when AI agents do all the clicking, negotiating, and buying for us?",
+      "If companies hire teams of AI agents instead of buying software logins, should they pay for the hours worked, the final results, or the risks taken?",
+      "Can a group of independent AI coders build a solid software system if no one is overseeing the big-picture blueprint?",
+      "What happens when a thousand simple robots team up to complete a massive task that none of them could understand on their own?",
+      "Would a personal army of AI assistants actually free up our time, or just exhaust us with constant decisions about what to delegate?",
+      "If a swarm of drones makes a lethal strike based on group behavior, who actually made the final call?",
+      "How do we keep society from mistaking an echo chamber of agreeing AI bots for real, independent expert consensus?",
 
       // 4. Consciousness (37..46)
-      "If conscious awareness captures only a fraction of the brain's activity, why does that fraction feel like the whole self?",
-      "Do we discover who we are through memory, or construct a self by choosing which memories become our story?",
-      "Should a conversational interface feel human if that design will lead users to attribute an inner life to it?",
-      "Can a product be designed to deepen awareness rather than compete for it\u2014and how would we measure success?",
-      "If an AI service made a credible claim to consciousness, could it ethically be copied, licensed, or shut down like ordinary software?",
-      "When software embodies a creator's intentions but not their implementation choices, where does authorship actually reside?",
-      "Does possessing a body make an artificial mind more likely to have experiences, or simply more convincing at appearing to have them?",
-      "Can the subjective feeling of being focused be trusted as evidence that we are performing well?",
-      "Would uncertainty about machine consciousness change the ethics of building machines designed to use lethal force?",
-      "How much of our supposedly private sense of self is constructed by the roles other people expect us to play?",
+      "If our conscious awareness is only a tiny slice of what the brain actually does, why does that tiny slice feel like our entire self?",
+      "Do we discover who we are through our memories, or do we invent ourselves by choosing which memories to turn into our life story?",
+      "Should a chatbot be designed to act human if that makes users falsely believe it has real feelings?",
+      "Can we design apps and gadgets that expand our mindfulness instead of hijacking our attention—and how would we measure if it works?",
+      "If an AI service ever gave a convincing reason to believe it was conscious, would it still be ethical to copy it, rent it out, or shut it down?",
+      "When software captures a creator's rough idea, even though the AI wrote all the actual code, who is the true author?",
+      "Does giving an AI a physical body make it more likely to experience real feelings, or just better at tricking us into thinking it does?",
+      "Just because we *feel* deeply focused, does that actually mean we are doing our best work?",
+      "If we aren't sure whether a machine is conscious, how does that change the ethics of building killer robots?",
+      "How much of our private identity is actually just a performance shaped by the roles other people expect us to play?",
 
       // 5. Cognitive Science (47..55)
-      "Why can a compelling explanation change what people remember even when it cannot change what they originally witnessed?",
-      "Which cognitive biases should interfaces correct for us, and which should they reveal so we can learn to recognize them?",
-      "When does adding friction to a choice protect people from impulsivity, and when does it become paternalism?",
-      "Can a subscription service genuinely solve a user's problem when its business model rewards keeping that user dependent?",
-      "Does describing software in natural language reduce complexity, or merely hide it inside assumptions that are harder to inspect?",
-      "Why might a clumsy physical robot reveal more about human cognition than a perfectly fluent chatbot?",
-      "Should an effective productivity system minimize mental effort, or deliberately train our tolerance for it?",
-      "How do time pressure and automation bias affect a commander's willingness to challenge an AI-generated targeting recommendation?",
-      "At what point do harmless individual mental shortcuts combine into a predictable failure of an entire society?",
+      "Why can a good story rewrite what we think we remember, even when it contradicts what we actually saw?",
+      "Which human mental blind spots should our apps quietly fix for us, and which ones should they point out so we can learn from them?",
+      "When does adding an extra step or \"speed bump\" to an app protect users from bad impulse decisions, and when does it just become annoying control?",
+      "Can a subscription app truly fix your problem if its business model relies on keeping you hooked and coming back?",
+      "Does creating software using plain English actually make things simpler, or does it just hide messy technical problems out of sight?",
+      "Why might a clumsy physical robot teach us more about how the human brain works than a smooth-talking chatbot?",
+      "Should a great productivity tool make our work effortless, or intentionally challenge our brains so we stay sharp?",
+      "Under intense time pressure, how likely is a military commander to blindly trust an AI's target recommendation instead of questioning it?",
+      "When do harmless, everyday mental shortcuts taken by individuals add up to a massive disaster for society as a whole?",
 
       // 6. Narrative Intelligence (56..63)
-      "When a conversational interface decides what to explain first, is it also deciding which version of reality the user encounters?",
-      "Can the same product be a practical tool for one person and an identity symbol for another\u2014and which experience should design prioritize?",
-      "When software sells a vision of who customers could become, how much of its value lies in functionality versus the story?",
-      "What happens when a product's founding story becomes easier to generate than the product itself is to make useful?",
-      "Why do people forgive a robot that appears to be \"trying\" but distrust an equally capable machine whose intentions are unreadable?",
-      "Can the story someone tells about their limitations become a greater obstacle than the limitations themselves?",
-      "How does labeling the same targeting technology \"defensive protection\" rather than \"automated killing\" change the debate before any facts change?",
-      "When does a shared story stop helping a community cooperate and start preventing it from correcting its mistakes?",
+      "When a chatbot decides what information to show you first, is it quietly shaping your version of reality?",
+      "Can the same product be a simple utility for one person and a status symbol for another—and which one should designers cater to?",
+      "When software sells you a dream of becoming a better, more organized person, how much are you paying for the tool versus the fantasy?",
+      "What happens when it becomes easier to spin a great marketing story about a product than to actually make the product useful?",
+      "Why do people forgive a robot that looks like it's \"trying hard,\" yet distrust a smarter machine whose motives they can't read?",
+      "Can the story you tell yourself about your own weaknesses hold you back more than the weaknesses themselves?",
+      "How does calling the exact same weapon system \"defensive protection\" instead of \"automated killing\" change public opinion before any facts are even shared?",
+      "When does a society's shared origin story stop uniting people and start blinding them to their own mistakes?",
 
       // 7. Human-Computer Interaction (64..70)
-      "When an interface anticipates what someone needs, how can it remain helpful without quietly making alternative choices disappear?",
-      "Will people still learn software interfaces when AI agents can operate the products for them\u2014and who then becomes the real user?",
-      "If people can create their own interfaces by conversation, what design principles must remain non-negotiable?",
-      "How should a robot communicate uncertainty before moving through a physical space shared with people?",
-      "Should a good interface help us complete more tasks per hour, or preserve our capacity to concentrate on fewer, meaningful ones?",
-      "How should a human approval screen communicate uncertainty when a mistaken click could have irreversible consequences?",
-      "If access to public services is mediated by AI interfaces, which forms of civic exclusion could become invisible to policymakers?",
+      "When an app predicts what you want before you ask, how can it stay helpful without quietly hiding your other choices?",
+      "Will people even bother learning how to use software menus once AI agents can operate apps for us—and who is the \"user\" then?",
+      "If anyone can generate their own custom app screen just by asking for it, what basic design rules must never be broken?",
+      "How should a robot let people know it's confused or unsure before it moves through a crowded room?",
+      "Should good software help us blaze through more tasks per hour, or protect our focus so we can do fewer, more meaningful things?",
+      "How should a military control screen warn a human operator that the AI is uncertain, when one wrong click costs lives?",
+      "When government services are run through AI chatbots, which groups of people get quietly shut out without policymakers ever noticing?",
 
       // 8. Product Design (71..76)
-      "What does \"user-centered\" mean when users want simplicity but a company's incentives reward perpetual feature expansion?",
-      "When prototypes become almost free to build, does product design shift from making things to deciding what should never be made?",
-      "How does designing a machine that physically occupies shared space change the meaning of a bad user experience?",
-      "Can a product designed for our most ambitious selves still serve us well when we are exhausted, distracted, or discouraged?",
-      "Can the methods used to make technology intuitive ever be ethically neutral when the action being simplified is lethal?",
-      "If a service works beautifully for each individual but damages the collective outcome, can it still be called well designed?",
+      "What does \"putting the user first\" really mean when customers want simple software, but companies make more money by endlessly adding new features?",
+      "When building a working app prototype becomes almost free, does a designer's job shift from *making things* to deciding what *shouldn't* be made?",
+      "How does designing a machine that shares our physical space change what a \"bad user experience\" feels like?",
+      "Can an app designed for us on our most motivated days still be helpful when we're exhausted, distracted, or burned out?",
+      "Can the design tricks used to make apps easy and intuitive ever be neutral when the button being pressed launches a lethal strike?",
+      "If an app works wonderfully for each individual user, yet ruins things for society as a whole, can we really call it \"well designed\"?",
 
       // 9. SaaS (77..81)
-      "If customers can recreate a basic application over a weekend, what durable value can a SaaS company offer beyond its code?",
-      "When software directs physical workers, should customers pay per machine, per completed task, or per risk transferred?",
-      "How can a productivity subscription succeed financially by helping users become less dependent on it?",
-      "What happens when a military capability depends on subscription renewals, proprietary models, or a vendor's remote updates?",
-      "As public institutions outsource decisions to recurring software contracts, who ultimately controls the rules of civic life?",
+      "If customers can use AI to build a basic version of your app over a weekend, what can a software company offer that is still worth paying for?",
+      "When software controls physical robots on a factory floor, should companies pay per robot, per finished job, or based on who takes the blame if something breaks?",
+      "How can a self-improvement or productivity app make money if its ultimate goal is to help you outgrow needing it?",
+      "What happens when a country's military depends on software subscriptions, private AI models, or remote updates from a tech vendor?",
+      "As governments hand over public services to private subscription software, who actually ends up writing the rules of civic life?",
 
       // 10. Vibe Coding (82..85)
-      "What changes when someone can describe a robot's behavior faster than they can understand the physical consequences of that behavior?",
-      "Does removing the struggle of learning to code expand creativity, or remove the friction through which engineering judgment develops?",
-      "Where should the accessibility of natural-language programming stop when software can control systems capable of lethal harm?",
-      "If creating software becomes conversational, which communities gain independence\u2014and which become dependent on the companies controlling the models?",
+      "What happens when someone can program a robot's actions in seconds using plain English, without understanding the physical danger those actions might cause?",
+      "Does skipping the hard work of learning to code unlock more creativity, or rob people of the tough lessons that build real engineering wisdom?",
+      "Where should we draw the line on making coding as easy as chatting, when that code can control lethal machines?",
+      "If anyone can build apps just by talking to an AI, which communities gain real independence—and which ones just become dependent on the big tech companies running the AI?",
 
       // 11. Robotics (86..88)
-      "When robots take over physically demanding work, which human capacities atrophy and which entirely new skills emerge?",
-      "What is the moral difference between a robot that physically uses a weapon and an algorithm that remotely selects its target?",
-      "As robots enter shared spaces, whose social norms should they follow when politeness, efficiency, and safety conflict?",
+      "As robots take over heavy physical labor, which human physical skills will fade away, and what brand-new skills will take their place?",
+      "What is the moral difference between a physical robot pulling a trigger and a hidden software algorithm picking the target from miles away?",
+      "As robots move into our sidewalks and stores, whose rules should they follow when politeness, speed, and safety clash?",
 
       // 12. Human Performance (89..90)
-      "When AI accelerates battlefield decisions beyond human reaction time, does \"human in the loop\" become a meaningful safeguard or a ritual?",
-      "Why do technologies that make individuals more productive sometimes leave whole societies feeling more exhausted?",
+      "When AI makes battlefield decisions faster than the human brain can react, is keeping a \"human in charge\" a real safety check or just an illusion?",
+      "Why do technologies meant to make us individually faster and more productive often leave society as a whole feeling more exhausted?",
 
-      // 13. Autonomous Weapons (91)
-      "If lethal force can be delegated to machines, how does that change the political cost of starting or prolonging a conflict?"
+      // 13. Autonomous Weapons (91..91)
+      "If machines can fight wars without risking human soldiers, how does that change a politician's willingness to start or drag out a conflict?"
     ];
 
     // Build lookup dictionary for all 91 pairs
@@ -1506,12 +1515,12 @@
     });
 
     // Interactive Section 04: Venn Intersection Engine (14 Topics / 91 Collisions)
-    let selectedTopics = ['Consciousness', 'Social Systems'];
+    let selectedTopics = ['Social Systems', 'Vibe Coding'];
 
     const topicBubbles = document.querySelectorAll('.topic-bubble');
     const statusEl = document.getElementById('topicSelectionStatus');
     const hintEl = document.getElementById('topicSelectionHint');
-    const vennBadgeEl = document.getElementById('vennStateBadge');
+    const vennBadgeTextEl = document.getElementById('vennStateBadgeText');
     const stageEl = document.getElementById('intersectionStage');
     const cardEl = document.getElementById('intersectionCard');
 
@@ -1519,7 +1528,6 @@
     const circleB = document.getElementById('vennCircleB');
     const clipCircleA = document.getElementById('vennClipCircleA');
     const lensCircleB = document.getElementById('vennLensCircleB');
-    const hatchCircleB = document.getElementById('vennHatchCircleB');
     const lensStrokeB = document.getElementById('vennLensStrokeB');
     const slotAEl = document.getElementById('vennSlotA');
     const labelAEl = document.getElementById('vennLabelA');
@@ -1533,11 +1541,49 @@
     const questionEl = document.getElementById('intersectionQuestion');
     const subnoteEl = document.getElementById('intersectionSubnote');
 
+    function wrapTopicName(name) {
+      if (!name) return [''];
+      if (name === 'Human-Computer Interaction') return ['Human-Computer', 'Interaction'];
+      if (name === 'Narrative Intelligence') return ['Narrative', 'Intelligence'];
+      if (name === 'Cognitive Science') return ['Cognitive', 'Science'];
+      if (name === 'Autonomous Weapons') return ['Autonomous', 'Weapons'];
+      if (name === 'Social Systems') return ['Social', 'Systems'];
+      if (name === 'Product Design') return ['Product', 'Design'];
+      if (name === 'Vibe Coding') return ['Vibe', 'Coding'];
+      if (name === 'Human Performance') return ['Human', 'Performance'];
+      if (name === 'AI Swarms') return ['AI', 'Swarms'];
+      return [name];
+    }
+
+    function renderTopicText(el, name, x) {
+      if (!el) return;
+      el.setAttribute('x', String(x));
+      el.innerHTML = '';
+      if (!name) return;
+
+      const lines = wrapTopicName(name);
+      if (lines.length === 1) {
+        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        tspan.setAttribute('x', String(x));
+        tspan.setAttribute('dy', '6');
+        tspan.textContent = lines[0];
+        el.appendChild(tspan);
+      } else {
+        lines.forEach((line, idx) => {
+          const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+          tspan.setAttribute('x', String(x));
+          tspan.setAttribute('dy', idx === 0 ? '-5' : '22');
+          tspan.textContent = line;
+          el.appendChild(tspan);
+        });
+      }
+    }
+
     function setCircleX(cxA, cxB, textAx, textBx) {
       [circleA, clipCircleA].forEach(el => el && el.setAttribute('cx', String(cxA)));
-      [circleB, lensCircleB, hatchCircleB, lensStrokeB].forEach(el => el && el.setAttribute('cx', String(cxB)));
-      [slotAEl, labelAEl].forEach(el => el && el.setAttribute('x', String(textAx)));
-      [slotBEl, labelBEl].forEach(el => el && el.setAttribute('x', String(textBx)));
+      [circleB, lensCircleB, lensStrokeB].forEach(el => el && el.setAttribute('cx', String(cxB)));
+      if (slotAEl) slotAEl.setAttribute('x', String(textAx));
+      if (slotBEl) slotBEl.setAttribute('x', String(textBx));
     }
 
     function updateIntersectionEngine(animateCollision = true) {
@@ -1557,12 +1603,12 @@
       if (count === 0) {
         statusEl.textContent = '0 / 2 threads selected';
         hintEl.textContent = 'Select any two topic bubbles below to collide them';
-        vennBadgeEl.textContent = 'STANDBY // AWAITING INPUT';
-        setCircleX(126, 334, 126, 334);
-        slotAEl.textContent = 'THREAD 01';
-        labelAEl.textContent = 'Select a topic';
-        slotBEl.textContent = 'THREAD 02';
-        labelBEl.textContent = 'Select a topic';
+        if (vennBadgeTextEl) vennBadgeTextEl.textContent = 'STANDBY // AWAITING INPUT';
+        setCircleX(150, 370, 150, 370);
+        if (slotAEl) slotAEl.textContent = 'THREAD 01';
+        renderTopicText(labelAEl, 'Select topic', 150);
+        if (slotBEl) slotBEl.textContent = 'THREAD 02';
+        renderTopicText(labelBEl, 'Select topic', 370);
         pillAEl.textContent = 'Awaiting thread 01';
         pillBEl.textContent = 'Awaiting thread 02';
         eyebrowEl.textContent = 'SELECT TWO THREADS';
@@ -1574,18 +1620,17 @@
 
       if (count === 1) {
         const tA = selectedTopics[0];
-        const shortA = vennShortLabels[tA] || tA;
         statusEl.textContent = '1 / 2 threads selected';
         hintEl.textContent = 'Choose one more topic bubble to complete the intersection';
-        vennBadgeEl.textContent = '1 THREAD LOCKED // SELECT 2ND';
-        setCircleX(142, 318, 142, 318);
-        slotAEl.textContent = 'THREAD 01';
-        labelAEl.textContent = shortA;
-        slotBEl.textContent = 'WAITING...';
-        labelBEl.textContent = 'Choose 2nd topic';
+        if (vennBadgeTextEl) vennBadgeTextEl.textContent = '1 THREAD LOCKED // SELECT 2ND';
+        setCircleX(175, 345, 160, 360);
+        if (slotAEl) slotAEl.textContent = 'THREAD 01';
+        renderTopicText(labelAEl, tA, 160);
+        if (slotBEl) slotBEl.textContent = 'WAITING...';
+        renderTopicText(labelBEl, 'Choose 2nd topic', 360);
         pillAEl.textContent = tA;
         pillBEl.textContent = 'Select 2nd thread...';
-        eyebrowEl.textContent = `${tA.toUpperCase()} \u00d7 [ ? ]`;
+        eyebrowEl.textContent = `${tA} \u00d7 [ ? ]`;
         if (numberBadgeEl) numberBadgeEl.textContent = 'AWAITING 2ND THREAD';
         questionEl.textContent = `${tA} is locked in. Pick a second thread to see what question emerges at their boundary.`;
         if (subnoteEl) subnoteEl.textContent = '13 possible collisions available from this thread.';
@@ -1595,19 +1640,17 @@
       // 2 topics selected: Full Venn Overlap!
       const tA = selectedTopics[0];
       const tB = selectedTopics[1];
-      const shortA = vennShortLabels[tA] || tA;
-      const shortB = vennShortLabels[tB] || tB;
       const output = getIntersectionOutput(tA, tB);
 
       statusEl.textContent = '2 / 2 threads active';
       hintEl.textContent = 'Click a selected bubble to deselect, or pick another to swap';
-      vennBadgeEl.textContent = 'OVERLAP ACTIVE';
+      if (vennBadgeTextEl) vennBadgeTextEl.textContent = 'OVERLAP ACTIVE';
 
-      setCircleX(174, 286, 122, 338);
-      slotAEl.textContent = 'THREAD 01';
-      labelAEl.textContent = shortA;
-      slotBEl.textContent = 'THREAD 02';
-      labelBEl.textContent = shortB;
+      setCircleX(195, 325, 155, 365);
+      if (slotAEl) slotAEl.textContent = 'THREAD 01';
+      renderTopicText(labelAEl, tA, 155);
+      if (slotBEl) slotBEl.textContent = 'THREAD 02';
+      renderTopicText(labelBEl, tB, 365);
       pillAEl.textContent = tA;
       pillBEl.textContent = tB;
 
@@ -1618,8 +1661,8 @@
         cardEl.style.opacity = '0.35';
         cardEl.style.transform = 'translateY(4px)';
         setTimeout(() => {
-          eyebrowEl.textContent = output.eyebrow;
-          if (numberBadgeEl) numberBadgeEl.textContent = `INTERSECTION ${output.num} / 091`;
+          eyebrowEl.textContent = `${tA} \u00d7 ${tB}`;
+          if (numberBadgeEl) numberBadgeEl.textContent = `COLLISION / ${output.num}`;
           questionEl.textContent = output.question;
           if (subnoteEl) subnoteEl.textContent = 'A question worth exploring.';
           cardEl.style.opacity = '1';
@@ -1629,8 +1672,8 @@
           stageEl.classList.remove('is-colliding');
         }, 440);
       } else {
-        eyebrowEl.textContent = output.eyebrow;
-        if (numberBadgeEl) numberBadgeEl.textContent = `INTERSECTION ${output.num} / 091`;
+        eyebrowEl.textContent = `${tA} \u00d7 ${tB}`;
+        if (numberBadgeEl) numberBadgeEl.textContent = `COLLISION / ${output.num}`;
         questionEl.textContent = output.question;
         if (subnoteEl) subnoteEl.textContent = 'A question worth exploring.';
       }
@@ -1671,6 +1714,26 @@
         }
         selectedTopics = [first, second];
         updateIntersectionEngine(true);
+      });
+    }
+
+    // Central Venn X intersection button: accessible click and focus interactions
+    const centerBadgeEl = document.getElementById('vennCenterBadge');
+    if (centerBadgeEl) {
+      const handleCenterInteraction = () => {
+        if (selectedTopics.length === 2) {
+          updateIntersectionEngine(true);
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }
+        }
+      };
+      centerBadgeEl.addEventListener('click', handleCenterInteraction);
+      centerBadgeEl.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleCenterInteraction();
+        }
       });
     }
 

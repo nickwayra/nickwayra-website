@@ -651,7 +651,6 @@ html[data-mode="lab"] .headline-wave {
 .venn-circle,
 #vennClipCircleA,
 #vennLensCircleB,
-#vennHatchCircleB,
 #vennLensStrokeB {
   transition: cx 0.48s cubic-bezier(0.16, 1, 0.3, 1),
               stroke 0.3s ease,
@@ -674,9 +673,43 @@ html[data-mode="lab"] .headline-wave {
 
 .venn-overlap-group,
 .venn-center-badge {
-  transition: opacity 0.35s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity 0.35s ease, transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), filter 0.25s ease;
   transform-box: fill-box;
   transform-origin: center;
+}
+
+.venn-center-badge {
+  cursor: pointer;
+  outline: none;
+}
+
+.venn-center-badge:hover,
+.venn-center-badge:focus-visible {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 14px rgba(102, 227, 174, 0.65));
+}
+
+.venn-center-btn-bg {
+  fill: #191B1E;
+  stroke: #66E3AE;
+  stroke-width: 2px;
+  transition: fill 0.2s ease, stroke-width 0.2s ease, stroke 0.2s ease;
+}
+
+.venn-center-badge:hover .venn-center-btn-bg,
+.venn-center-badge:focus-visible .venn-center-btn-bg {
+  fill: #163D30;
+  stroke: #66E3AE;
+  stroke-width: 2.5px;
+}
+
+.venn-center-btn-text {
+  fill: #66E3AE;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  user-select: none;
+  pointer-events: none;
 }
 
 #intersectionStage[data-venn-state="0"] .venn-overlap-group,
@@ -689,8 +722,8 @@ html[data-mode="lab"] .headline-wave {
 }
 
 #intersectionStage.is-colliding .venn-center-badge {
-  transform: scale(1.18);
-  filter: drop-shadow(0 0 12px rgba(102, 227, 174, 0.75));
+  transform: scale(1.22);
+  filter: drop-shadow(0 0 16px rgba(102, 227, 174, 0.85));
 }
 
 #intersectionStage.is-colliding .intersection-radial-glow {

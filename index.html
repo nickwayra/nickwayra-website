@@ -838,7 +838,7 @@
               <span class="topic-bubble-dot"></span>
               <span>AI Swarms</span>
             </button>
-            <button type="button" class="topic-bubble is-dimmed" data-topic="Consciousness" aria-pressed="false">
+            <button type="button" class="topic-bubble" data-topic="Consciousness" data-slot="1" aria-pressed="true">
               <span class="topic-bubble-dot"></span>
               <span>Consciousness</span>
             </button>
@@ -862,7 +862,7 @@
               <span class="topic-bubble-dot"></span>
               <span>SaaS</span>
             </button>
-            <button type="button" class="topic-bubble" data-topic="Vibe Coding" aria-pressed="true">
+            <button type="button" class="topic-bubble is-dimmed" data-topic="Vibe Coding" aria-pressed="false">
               <span class="topic-bubble-dot"></span>
               <span>Vibe Coding</span>
             </button>
@@ -878,133 +878,143 @@
               <span class="topic-bubble-dot"></span>
               <span>Autonomous Weapons</span>
             </button>
-            <button type="button" class="topic-bubble" data-topic="Social Systems" aria-pressed="true">
+            <button type="button" class="topic-bubble" data-topic="Social Systems" data-slot="2" aria-pressed="true">
               <span class="topic-bubble-dot"></span>
               <span>Social Systems</span>
             </button>
           </div>
         </div>
 
-        <!-- ZONES 2 & 3: WIDE VENN STAGE + RESULT PANEL (STACKED FOR MAX VISIBILITY & BALANCE) -->
-        <div class="max-w-4xl mx-auto space-y-6">
+        <!-- ZONES 2 & 3: TWIN INTERACTIVE PANELS (VENN COLLISION STAGE + QUESTION CARD) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch intersection-twin-grid">
           
-          <!-- ZONE 2: Animated Venn Diagram Stage (Spacious, balanced, wide ratio) -->
-          <div class="p-6 sm:p-9 rounded-3xl bg-[#252A2E] border border-[#343B40] relative overflow-hidden" id="intersectionStage" data-venn-state="2">
+          <!-- ZONE 2 (Left on Desktop): Animated Venn Diagram Stage -->
+          <div class="w-full flex flex-col justify-between p-6 sm:p-8 rounded-3xl bg-[#252A2E] border border-[#343B40] relative overflow-hidden" id="intersectionStage" data-venn-state="2">
             <div class="intersection-radial-glow" aria-hidden="true"></div>
 
-            <!-- Top Stage Micro-Header (Matching Mockup: VENN SYNTHESIS FIELD ... ● OVERLAP ACTIVE) -->
-            <div class="flex items-center justify-between font-mono text-xs uppercase tracking-widest text-[#ABB8B2] relative z-10 mb-2 sm:mb-4">
+            <!-- Top Stage Micro-Header -->
+            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest text-[#ABB8B2] relative z-10 mb-2">
               <span>VENN SYNTHESIS FIELD</span>
-              <span id="vennStateBadge" class="inline-flex items-center gap-2 text-[#66E3AE] font-semibold text-[11px] sm:text-xs">
-                <span class="w-2 h-2 rounded-full bg-[#66E3AE] shadow-[0_0_8px_#66E3AE]" id="vennStateDot"></span>
-                <span id="vennStateBadgeText">OVERLAP ACTIVE</span>
-              </span>
+              <span id="vennStateBadge" class="text-[#66E3AE]">COLLISION ACTIVE</span>
             </div>
 
-            <!-- Animated SVG Venn Diagram (Wide 520x250 aspect ratio, big circles, balanced wings) -->
+            <!-- Two-Column Thread Anchor Labels Above the Diagram (Gold & Crimson Underlines) -->
+            <div class="grid grid-cols-2 gap-4 pt-1 pb-3 mb-1 border-b border-[#343B40]/70 relative z-10">
+              <!-- Thread 01 (Phoenix Gold) -->
+              <div class="flex flex-col min-w-0">
+                <div class="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#E8B45B] mb-1">
+                  <span class="w-2 h-2 rounded-full bg-[#E8B45B] shadow-[0_0_8px_#E8B45B] shrink-0"></span>
+                  <span id="threadSlotA">THREAD 01</span>
+                </div>
+                <div id="threadNameA" class="font-bold text-sm sm:text-base text-[#F4F5EF] truncate pb-1.5 border-b-2 border-[#E8B45B] transition-colors">
+                  Consciousness
+                </div>
+              </div>
+
+              <!-- Thread 02 (Ember Crimson) -->
+              <div class="flex flex-col min-w-0">
+                <div class="flex items-center gap-1.5 font-mono text-[10px] font-bold uppercase tracking-wider text-[#D94F5C] mb-1">
+                  <span class="w-2 h-2 rounded-full bg-[#D94F5C] shadow-[0_0_8px_#D94F5C] shrink-0"></span>
+                  <span id="threadSlotB">THREAD 02</span>
+                </div>
+                <div id="threadNameB" class="font-bold text-sm sm:text-base text-[#F4F5EF] truncate pb-1.5 border-b-2 border-[#D94F5C] transition-colors">
+                  Social Systems
+                </div>
+              </div>
+            </div>
+
+            <!-- Animated SVG Venn Diagram (Pure, Uncluttered Visual Lenses) -->
             <div class="w-full my-auto py-2 relative z-10">
-              <svg class="w-full h-auto overflow-visible select-none" viewBox="0 0 520 250" fill="none" aria-label="Interactive Venn diagram showing the collision of two selected topics">
+              <svg class="w-full h-auto overflow-visible select-none" viewBox="0 0 460 210" fill="none" aria-label="Interactive Venn diagram showing the intersection of two selected topics">
                 <defs>
-                  <!-- Translucent emerald to mint gradient for overlap lens -->
-                  <radialGradient id="vennOverlapGrad" cx="50%" cy="50%" r="55%">
-                    <stop offset="0%" stop-color="#239B72" stop-opacity="0.55" />
-                    <stop offset="70%" stop-color="#163D30" stop-opacity="0.82" />
-                    <stop offset="100%" stop-color="#102820" stop-opacity="0.95" />
+                  <!-- Radial glow for the Venn overlap lens (Electric Mint) -->
+                  <radialGradient id="vennOverlapGrad" cx="50%" cy="50%" r="60%">
+                    <stop offset="0%" stop-color="#66E3AE" stop-opacity="0.48" />
+                    <stop offset="70%" stop-color="#239B72" stop-opacity="0.28" />
+                    <stop offset="100%" stop-color="#163D30" stop-opacity="0.14" />
                   </radialGradient>
-                  <!-- Dynamic Clip Path matching Circle A -->
+                  <!-- Subtle hatch pattern for the Venn intersection lens -->
+                  <pattern id="vennHatch" width="8" height="8" patternTransform="rotate(45 0 0)" patternUnits="userSpaceOnUse">
+                    <line x1="0" y1="0" x2="0" y2="8" stroke="#66E3AE" stroke-opacity="0.25" stroke-width="1" />
+                  </pattern>
+                  <!-- Dynamic Clip Paths matching Circle A & B so lens strokes render only inside the overlap! -->
                   <clipPath id="vennClipLeft">
-                    <circle id="vennClipCircleA" cx="195" cy="125" r="105" />
+                    <circle id="vennClipCircleA" cx="174" cy="105" r="86" />
+                  </clipPath>
+                  <clipPath id="vennClipRight">
+                    <circle id="vennClipCircleB" cx="286" cy="105" r="86" />
                   </clipPath>
                 </defs>
 
-                <!-- LEFT CIRCLE (Topic A) -->
-                <circle id="vennCircleA" cx="195" cy="125" r="105" fill="#102820" fill-opacity="0.85" stroke="#167451" stroke-width="2.5" class="venn-circle" />
+                <!-- Background technical axis & outer orbital ring -->
+                <line x1="20" y1="105" x2="440" y2="105" stroke="#343B40" stroke-opacity="0.75" stroke-dasharray="3 5" stroke-width="1" />
+                <circle cx="230" cy="105" r="102" stroke="#343B40" stroke-opacity="0.85" stroke-dasharray="4 6" stroke-width="1" class="venn-outer-orbit" />
 
-                <!-- RIGHT CIRCLE (Topic B) -->
-                <circle id="vennCircleB" cx="325" cy="125" r="105" fill="#102820" fill-opacity="0.85" stroke="#167451" stroke-width="2.5" class="venn-circle" />
+                <!-- LEFT CIRCLE (Topic A - Phoenix Gold) -->
+                <circle id="vennCircleA" cx="174" cy="105" r="86" class="venn-circle" stroke-width="2.5" />
 
-                <!-- VENN INTERSECTION LENS -->
-                <g clip-path="url(#vennClipLeft)" id="vennOverlapGroup" class="venn-overlap-group">
-                  <circle id="vennLensCircleB" cx="325" cy="125" r="105" fill="url(#vennOverlapGrad)" />
-                  <circle id="vennLensStrokeB" cx="325" cy="125" r="105" fill="none" stroke="#66E3AE" stroke-width="2.5" />
+                <!-- RIGHT CIRCLE (Topic B - Ember Crimson) -->
+                <circle id="vennCircleB" cx="286" cy="105" r="86" class="venn-circle" stroke-width="2.5" />
+
+                <!-- VENN INTERSECTION LENS (Electric Mint Overlap - Both Arcs) -->
+                <g id="vennOverlapGroup" class="venn-overlap-group">
+                  <circle id="vennLensCircleB" cx="286" cy="105" r="86" fill="url(#vennOverlapGrad)" clip-path="url(#vennClipLeft)" />
+                  <circle id="vennHatchCircleB" cx="286" cy="105" r="86" fill="url(#vennHatch)" clip-path="url(#vennClipLeft)" />
+                  <!-- Left Boundary Arc (Circle B perimeter inside Circle A) -->
+                  <circle id="vennLensStrokeB" cx="286" cy="105" r="86" fill="none" stroke="#66E3AE" stroke-width="3" clip-path="url(#vennClipLeft)" />
+                  <!-- Right Boundary Arc (Circle A perimeter inside Circle B) -->
+                  <circle id="vennLensStrokeA" cx="174" cy="105" r="86" fill="none" stroke="#66E3AE" stroke-width="3" clip-path="url(#vennClipRight)" />
                 </g>
 
-                <!-- Left Circle Label Group (Centered in non-overlapping wing) -->
-                <g id="vennTextGroupA" class="venn-text-group select-none pointer-events-none">
-                  <text id="vennSlotA" x="155" y="94" text-anchor="middle" fill="#66E3AE" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="0.14em">THREAD 01</text>
-                  <text id="vennLabelA" x="155" y="125" text-anchor="middle" fill="#F4F5EF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">
-                    <tspan x="155" dy="-5">Social</tspan>
-                    <tspan x="155" dy="22">Systems</tspan>
-                  </text>
-                </g>
-
-                <!-- Right Circle Label Group (Centered in non-overlapping wing) -->
-                <g id="vennTextGroupB" class="venn-text-group select-none pointer-events-none">
-                  <text id="vennSlotB" x="365" y="94" text-anchor="middle" fill="#66E3AE" font-family="'JetBrains Mono', monospace" font-size="10.5" font-weight="700" letter-spacing="0.14em">THREAD 02</text>
-                  <text id="vennLabelB" x="365" y="125" text-anchor="middle" fill="#F4F5EF" font-family="'Inter', sans-serif" font-size="16" font-weight="700">
-                    <tspan x="365" dy="-5">Vibe</tspan>
-                    <tspan x="365" dy="22">Coding</tspan>
-                  </text>
-                </g>
-
-                <!-- Center Intersection Interactive Control -->
-                <g id="vennCenterBadge" class="venn-center-badge" role="button" tabindex="0" aria-label="Explore intersection question">
-                  <circle id="vennCenterCircle" cx="260" cy="125" r="22" class="venn-center-btn-bg" />
-                  <text x="260" y="131.5" text-anchor="middle" class="venn-center-btn-text">&times;</text>
+                <!-- Center Intersection Core Badge (Electric Mint) -->
+                <g id="vennCenterBadge" class="venn-center-badge">
+                  <circle cx="230" cy="105" r="19" fill="#191B1E" stroke="#66E3AE" stroke-width="2" />
+                  <text x="230" y="110.5" text-anchor="middle" fill="#66E3AE" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700">&times;</text>
                 </g>
               </svg>
             </div>
 
             <!-- Bottom Active Formula Strip -->
-            <div class="flex flex-wrap items-center justify-center gap-2.5 pt-4 border-t border-[#343B40] relative z-10" aria-live="polite">
-              <span id="intersectionPillA" class="px-3.5 py-1.5 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-xs font-medium text-[#F4F5EF]">
-                Social Systems
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-3 border-t border-[#343B40] relative z-10" aria-live="polite">
+              <span id="intersectionPillA" class="px-3 py-1 rounded-full bg-[#191B1E] border border-[#E8B45B]/60 font-mono text-[11px] font-semibold text-[#E8B45B] transition-all">
+                Consciousness
               </span>
-              <span class="font-mono text-xs font-bold text-[#66E3AE]">&times;</span>
-              <span id="intersectionPillB" class="px-3.5 py-1.5 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-xs font-medium text-[#F4F5EF]">
-                Vibe Coding
+              <span class="font-mono text-sm font-bold text-[#66E3AE]">&times;</span>
+              <span id="intersectionPillB" class="px-3 py-1 rounded-full bg-[#191B1E] border border-[#D94F5C]/60 font-mono text-[11px] font-semibold text-[#D94F5C] transition-all">
+                Social Systems
               </span>
             </div>
           </div>
 
-          <!-- ZONE 3: Curated Interdisciplinary Question Result Panel BENEATH the diagram -->
-          <div class="p-7 sm:p-10 rounded-3xl bg-[#252A2E] border border-[#239B72]/50 relative overflow-hidden transition-all duration-300"
-               style="background-image: radial-gradient(550px circle at 50% 0%, rgba(35, 155, 114, 0.15), transparent 70%);"
+          <!-- ZONE 3 (Right on Desktop): Refined Editorial Question Card -->
+          <div class="w-full flex flex-col justify-between p-7 sm:p-9 rounded-3xl bg-[#252A2E] border border-[#239B72]/45 relative overflow-hidden transition-all duration-300"
+               style="background-image: radial-gradient(420px circle at 100% 0%, rgba(35, 155, 114, 0.12), transparent 70%);"
                id="intersectionCard" aria-live="polite">
             <div>
               <!-- Output Top Meta Row -->
-              <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-4 border-b border-[#343B40]">
-                <div class="flex items-center gap-2.5">
-                  <span class="w-2 h-2 rounded-full bg-[#66E3AE] shadow-[0_0_8px_#66E3AE]"></span>
-                  <span id="intersectionNumberBadge" class="font-mono text-xs font-bold uppercase tracking-widest text-[#E8B45B]">
-                    COLLISION / 085
-                  </span>
-                </div>
-                <span id="intersectionEyebrow" class="font-mono text-xs font-semibold uppercase tracking-wider text-[#ABB8B2]">
-                  Social Systems &times; Vibe Coding
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-6 pb-4 border-b border-[#343B40]">
+                <span id="intersectionEyebrow" class="font-mono text-xs font-bold uppercase tracking-widest text-[#66E3AE]">
+                  CONSCIOUSNESS &times; SOCIAL SYSTEMS
+                </span>
+                <span id="intersectionNumberBadge" class="font-mono text-[11px] font-semibold uppercase tracking-widest text-[#E8B45B]">
+                  INTERSECTION 046 / 091
                 </span>
               </div>
 
               <!-- Main Generated Question -->
-              <h3 id="intersectionQuestion" class="text-2xl sm:text-3xl lg:text-[32px] font-bold text-[#F4F5EF] leading-snug tracking-tight mb-6">
-                If anyone can build apps just by talking to an AI, which communities gain real independence—and which ones just become dependent on the big tech companies running the AI?
+              <h3 id="intersectionQuestion" class="text-xl sm:text-2xl lg:text-[26px] font-bold text-[#F4F5EF] leading-snug mb-6">
+                How much of our private identity is actually just a performance shaped by the roles other people expect us to play?
               </h3>
 
-              <div class="flex items-center justify-between flex-wrap gap-3">
-                <p id="intersectionSubnote" class="font-mono text-xs font-medium text-[#66E3AE] flex items-center gap-2">
-                  <span class="inline-block w-1.5 h-1.5 rounded-full bg-[#66E3AE]"></span>
-                  <span>A question worth exploring.</span>
-                </p>
-                <span class="font-mono text-[11px] text-[#ABB8B2]">
-                  91 curated pairings
-                </span>
-              </div>
+              <p id="intersectionSubnote" class="font-mono text-xs font-medium text-[#66E3AE]">
+                A question worth exploring.
+              </p>
             </div>
 
             <!-- Bottom Footnote -->
             <div class="pt-5 mt-8 border-t border-[#343B40]">
               <p class="text-xs text-[#ABB8B2] leading-relaxed">
-                Curated questions for exploration across 91 unique interdisciplinary pairings—not claims of established fact.
+                Questions for exploration across 91 unique interdisciplinary pairings—not claims of established fact.
               </p>
             </div>
           </div>
@@ -1515,24 +1525,27 @@
     });
 
     // Interactive Section 04: Venn Intersection Engine (14 Topics / 91 Collisions)
-    let selectedTopics = ['Social Systems', 'Vibe Coding'];
+    let selectedTopics = ['Consciousness', 'Social Systems'];
 
     const topicBubbles = document.querySelectorAll('.topic-bubble');
     const statusEl = document.getElementById('topicSelectionStatus');
     const hintEl = document.getElementById('topicSelectionHint');
-    const vennBadgeTextEl = document.getElementById('vennStateBadgeText');
+    const vennBadgeEl = document.getElementById('vennStateBadge');
     const stageEl = document.getElementById('intersectionStage');
     const cardEl = document.getElementById('intersectionCard');
 
     const circleA = document.getElementById('vennCircleA');
     const circleB = document.getElementById('vennCircleB');
     const clipCircleA = document.getElementById('vennClipCircleA');
+    const clipCircleB = document.getElementById('vennClipCircleB');
     const lensCircleB = document.getElementById('vennLensCircleB');
+    const hatchCircleB = document.getElementById('vennHatchCircleB');
     const lensStrokeB = document.getElementById('vennLensStrokeB');
-    const slotAEl = document.getElementById('vennSlotA');
-    const labelAEl = document.getElementById('vennLabelA');
-    const slotBEl = document.getElementById('vennSlotB');
-    const labelBEl = document.getElementById('vennLabelB');
+    const lensStrokeA = document.getElementById('vennLensStrokeA');
+    const threadSlotA = document.getElementById('threadSlotA');
+    const threadNameA = document.getElementById('threadNameA');
+    const threadSlotB = document.getElementById('threadSlotB');
+    const threadNameB = document.getElementById('threadNameB');
 
     const pillAEl = document.getElementById('intersectionPillA');
     const pillBEl = document.getElementById('intersectionPillB');
@@ -1541,61 +1554,28 @@
     const questionEl = document.getElementById('intersectionQuestion');
     const subnoteEl = document.getElementById('intersectionSubnote');
 
-    function wrapTopicName(name) {
-      if (!name) return [''];
-      if (name === 'Human-Computer Interaction') return ['Human-Computer', 'Interaction'];
-      if (name === 'Narrative Intelligence') return ['Narrative', 'Intelligence'];
-      if (name === 'Cognitive Science') return ['Cognitive', 'Science'];
-      if (name === 'Autonomous Weapons') return ['Autonomous', 'Weapons'];
-      if (name === 'Social Systems') return ['Social', 'Systems'];
-      if (name === 'Product Design') return ['Product', 'Design'];
-      if (name === 'Vibe Coding') return ['Vibe', 'Coding'];
-      if (name === 'Human Performance') return ['Human', 'Performance'];
-      if (name === 'AI Swarms') return ['AI', 'Swarms'];
-      return [name];
-    }
-
-    function renderTopicText(el, name, x) {
-      if (!el) return;
-      el.setAttribute('x', String(x));
-      el.innerHTML = '';
-      if (!name) return;
-
-      const lines = wrapTopicName(name);
-      if (lines.length === 1) {
-        const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-        tspan.setAttribute('x', String(x));
-        tspan.setAttribute('dy', '6');
-        tspan.textContent = lines[0];
-        el.appendChild(tspan);
-      } else {
-        lines.forEach((line, idx) => {
-          const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-          tspan.setAttribute('x', String(x));
-          tspan.setAttribute('dy', idx === 0 ? '-5' : '22');
-          tspan.textContent = line;
-          el.appendChild(tspan);
-        });
-      }
-    }
-
-    function setCircleX(cxA, cxB, textAx, textBx) {
-      [circleA, clipCircleA].forEach(el => el && el.setAttribute('cx', String(cxA)));
-      [circleB, lensCircleB, lensStrokeB].forEach(el => el && el.setAttribute('cx', String(cxB)));
-      if (slotAEl) slotAEl.setAttribute('x', String(textAx));
-      if (slotBEl) slotBEl.setAttribute('x', String(textBx));
+    function setCircleX(cxA, cxB) {
+      [circleA, clipCircleA, lensStrokeA].forEach(el => el && el.setAttribute('cx', String(cxA)));
+      [circleB, clipCircleB, lensCircleB, hatchCircleB, lensStrokeB].forEach(el => el && el.setAttribute('cx', String(cxB)));
     }
 
     function updateIntersectionEngine(animateCollision = true) {
       const count = selectedTopics.length;
       if (stageEl) stageEl.setAttribute('data-venn-state', String(count));
 
-      // Update bubble visual states
+      // Update bubble visual states with slot colors (Slot 1 = Gold, Slot 2 = Crimson)
       topicBubbles.forEach(btn => {
         const id = btn.getAttribute('data-topic');
         const isSelected = selectedTopics.includes(id);
         btn.setAttribute('aria-pressed', String(isSelected));
         btn.classList.toggle('is-dimmed', count === 2 && !isSelected);
+        if (selectedTopics[0] === id) {
+          btn.setAttribute('data-slot', '1');
+        } else if (selectedTopics[1] === id) {
+          btn.setAttribute('data-slot', '2');
+        } else {
+          btn.removeAttribute('data-slot');
+        }
       });
 
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1603,14 +1583,16 @@
       if (count === 0) {
         statusEl.textContent = '0 / 2 threads selected';
         hintEl.textContent = 'Select any two topic bubbles below to collide them';
-        if (vennBadgeTextEl) vennBadgeTextEl.textContent = 'STANDBY // AWAITING INPUT';
-        setCircleX(150, 370, 150, 370);
-        if (slotAEl) slotAEl.textContent = 'THREAD 01';
-        renderTopicText(labelAEl, 'Select topic', 150);
-        if (slotBEl) slotBEl.textContent = 'THREAD 02';
-        renderTopicText(labelBEl, 'Select topic', 370);
+        vennBadgeEl.textContent = 'STANDBY // AWAITING INPUT';
+        setCircleX(130, 330);
+        if (threadSlotA) threadSlotA.textContent = 'THREAD 01';
+        if (threadNameA) threadNameA.textContent = 'Select first topic';
+        if (threadSlotB) threadSlotB.textContent = 'THREAD 02';
+        if (threadNameB) threadNameB.textContent = 'Select second topic';
         pillAEl.textContent = 'Awaiting thread 01';
+        pillAEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-[11px] font-medium text-[#ABB8B2] transition-all';
         pillBEl.textContent = 'Awaiting thread 02';
+        pillBEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-[11px] font-medium text-[#ABB8B2] transition-all';
         eyebrowEl.textContent = 'SELECT TWO THREADS';
         if (numberBadgeEl) numberBadgeEl.textContent = 'STANDBY // 091 PAIRS';
         questionEl.textContent = 'Choose any two topics from the field above to surface an interdisciplinary question.';
@@ -1622,15 +1604,17 @@
         const tA = selectedTopics[0];
         statusEl.textContent = '1 / 2 threads selected';
         hintEl.textContent = 'Choose one more topic bubble to complete the intersection';
-        if (vennBadgeTextEl) vennBadgeTextEl.textContent = '1 THREAD LOCKED // SELECT 2ND';
-        setCircleX(175, 345, 160, 360);
-        if (slotAEl) slotAEl.textContent = 'THREAD 01';
-        renderTopicText(labelAEl, tA, 160);
-        if (slotBEl) slotBEl.textContent = 'WAITING...';
-        renderTopicText(labelBEl, 'Choose 2nd topic', 360);
+        vennBadgeEl.textContent = '1 THREAD LOCKED // SELECT 2ND';
+        setCircleX(146, 314);
+        if (threadSlotA) threadSlotA.textContent = 'THREAD 01';
+        if (threadNameA) threadNameA.textContent = tA;
+        if (threadSlotB) threadSlotB.textContent = 'THREAD 02';
+        if (threadNameB) threadNameB.textContent = 'Choose 2nd topic...';
         pillAEl.textContent = tA;
+        pillAEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#E8B45B]/70 font-mono text-[11px] font-semibold text-[#E8B45B] transition-all';
         pillBEl.textContent = 'Select 2nd thread...';
-        eyebrowEl.textContent = `${tA} \u00d7 [ ? ]`;
+        pillBEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#343B40] font-mono text-[11px] font-medium text-[#ABB8B2] transition-all';
+        eyebrowEl.textContent = `${tA.toUpperCase()} \u00d7 [ ? ]`;
         if (numberBadgeEl) numberBadgeEl.textContent = 'AWAITING 2ND THREAD';
         questionEl.textContent = `${tA} is locked in. Pick a second thread to see what question emerges at their boundary.`;
         if (subnoteEl) subnoteEl.textContent = '13 possible collisions available from this thread.';
@@ -1644,15 +1628,17 @@
 
       statusEl.textContent = '2 / 2 threads active';
       hintEl.textContent = 'Click a selected bubble to deselect, or pick another to swap';
-      if (vennBadgeTextEl) vennBadgeTextEl.textContent = 'OVERLAP ACTIVE';
+      vennBadgeEl.textContent = 'COLLISION ACTIVE';
 
-      setCircleX(195, 325, 155, 365);
-      if (slotAEl) slotAEl.textContent = 'THREAD 01';
-      renderTopicText(labelAEl, tA, 155);
-      if (slotBEl) slotBEl.textContent = 'THREAD 02';
-      renderTopicText(labelBEl, tB, 365);
+      setCircleX(174, 286);
+      if (threadSlotA) threadSlotA.textContent = 'THREAD 01';
+      if (threadNameA) threadNameA.textContent = tA;
+      if (threadSlotB) threadSlotB.textContent = 'THREAD 02';
+      if (threadNameB) threadNameB.textContent = tB;
       pillAEl.textContent = tA;
+      pillAEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#E8B45B]/80 font-mono text-[11px] font-semibold text-[#E8B45B] transition-all';
       pillBEl.textContent = tB;
+      pillBEl.className = 'px-3 py-1 rounded-full bg-[#191B1E] border border-[#D94F5C]/80 font-mono text-[11px] font-semibold text-[#D94F5C] transition-all';
 
       if (animateCollision && !reduced && stageEl && cardEl) {
         stageEl.classList.remove('is-colliding');
@@ -1661,8 +1647,8 @@
         cardEl.style.opacity = '0.35';
         cardEl.style.transform = 'translateY(4px)';
         setTimeout(() => {
-          eyebrowEl.textContent = `${tA} \u00d7 ${tB}`;
-          if (numberBadgeEl) numberBadgeEl.textContent = `COLLISION / ${output.num}`;
+          eyebrowEl.textContent = output.eyebrow;
+          if (numberBadgeEl) numberBadgeEl.textContent = `INTERSECTION ${output.num} / 091`;
           questionEl.textContent = output.question;
           if (subnoteEl) subnoteEl.textContent = 'A question worth exploring.';
           cardEl.style.opacity = '1';
@@ -1672,8 +1658,8 @@
           stageEl.classList.remove('is-colliding');
         }, 440);
       } else {
-        eyebrowEl.textContent = `${tA} \u00d7 ${tB}`;
-        if (numberBadgeEl) numberBadgeEl.textContent = `COLLISION / ${output.num}`;
+        eyebrowEl.textContent = output.eyebrow;
+        if (numberBadgeEl) numberBadgeEl.textContent = `INTERSECTION ${output.num} / 091`;
         questionEl.textContent = output.question;
         if (subnoteEl) subnoteEl.textContent = 'A question worth exploring.';
       }
@@ -1714,26 +1700,6 @@
         }
         selectedTopics = [first, second];
         updateIntersectionEngine(true);
-      });
-    }
-
-    // Central Venn X intersection button: accessible click and focus interactions
-    const centerBadgeEl = document.getElementById('vennCenterBadge');
-    if (centerBadgeEl) {
-      const handleCenterInteraction = () => {
-        if (selectedTopics.length === 2) {
-          updateIntersectionEngine(true);
-          if (cardEl) {
-            cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          }
-        }
-      };
-      centerBadgeEl.addEventListener('click', handleCenterInteraction);
-      centerBadgeEl.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          handleCenterInteraction();
-        }
       });
     }
 

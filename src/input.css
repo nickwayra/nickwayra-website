@@ -219,6 +219,17 @@ html[data-mode="lab"] .mode-switch {
   align-items: center;
   gap: 6px;
 }
+@media (max-width: 640px) {
+  .mode-switch {
+    gap: 2px;
+    padding: 3px;
+  }
+  .mode-switch button {
+    padding: 6px 10px;
+    font-size: 10.5px;
+    gap: 5px;
+  }
+}
 html[data-mode="lab"] .mode-switch button {
   color: var(--pf-silver-sage);
 }

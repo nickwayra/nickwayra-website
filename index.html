@@ -17,7 +17,22 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./style.css?v=3">
+  <script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous" defer></script>
+  <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous" defer></script>
+  <script>
+    // Apply initial mode before first paint to prevent flash when linking to ?mode=lab or /x
+    (function() {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var paramMode = params.get('mode');
+        var pathIsX = /^\/x(\/|$)/i.test(window.location.pathname);
+        var saved = localStorage.getItem('nick-wayra-mode');
+        var mode = pathIsX ? 'lab' : ((paramMode === 'lab' || paramMode === 'human') ? paramMode : (saved === 'lab' ? 'lab' : 'human'));
+        document.documentElement.setAttribute('data-mode', mode);
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body class="ambient-glow antialiased selection:bg-[#00E599] selection:text-black min-h-screen">
 
@@ -77,13 +92,54 @@
       <section class="max-w-6xl mx-auto px-6 py-12 sm:py-16">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-14 items-center">
           
-          <!-- Left: Asymmetric Portrait (from starter specification) -->
-          <div class="md:col-span-5 order-2 md:order-1 flex justify-center">
-            <div class="portrait-frame">
-              <img src="./avatar.png" alt="Nick Wayra" class="portrait-img" fetchpriority="high">
-              <div class="portrait-note">
-                BUILDER &middot; THINKER
+          <!-- Left: Asymmetric Portrait & Visual Autobiography Switcher -->
+          <div class="md:col-span-5 order-2 md:order-1 flex flex-col items-center">
+            <div class="portrait-frame w-full">
+              <div class="portrait-stage" id="heroPortraitStage" aria-live="polite">
+                <!-- Slide 01: Authentic Welcome Portrait (Barcelona) -->
+                <div class="portrait-slide active" data-slide="0">
+                  <img src="./images/hero/barcelona.jpg" alt="Nick Wayra - Welcome portrait in Barcelona" fetchpriority="high">
+                </div>
+
+                <!-- Slide 02: Reading & Ideas (Porto Library) -->
+                <div class="portrait-slide" data-slide="1">
+                  <img src="./images/hero/library-reader.jpg" alt="Nick Wayra reading at Livraria Lello, Porto" loading="lazy">
+                </div>
+
+                <!-- Slide 03: On The Road (Bridge at Dusk - San Diego) -->
+                <div class="portrait-slide" data-slide="2">
+                  <img src="./images/hero/bridge-dusk.jpg" alt="Nick Wayra at dusk with coffee on vintage bridge in San Diego" loading="lazy">
+                </div>
+
+                <!-- Slide 04: In Conversation (Cambridge Lawn) -->
+                <div class="portrait-slide" data-slide="3">
+                  <img src="./images/hero/cambridge-lawn.jpg" alt="Nick Wayra laughing with friends on Cambridge lawn" loading="lazy">
+                </div>
+
+                <!-- Slide 05: Outdoors & Mountains (Big Bear, CA) -->
+                <div class="portrait-slide" data-slide="4">
+                  <img src="./images/hero/big-bear.jpg" alt="Nick Wayra in the snow at Big Bear, CA" loading="lazy">
+                </div>
+
+                <!-- Slide 06: Field Notes (Late Night Patio - UCSD) -->
+                <div class="portrait-slide" data-slide="5">
+                  <img src="./images/hero/night-patio.jpg" alt="Nick Wayra working on late night patio at UCSD" loading="lazy">
+                </div>
               </div>
+
+              <div class="portrait-note" id="heroPortraitBadge">
+                BUILDER &middot; THINKER &middot; TRAVELER
+              </div>
+            </div>
+
+            <!-- Minimalist Photo Location Switcher -->
+            <div class="portrait-location-bar" role="group" aria-label="Browse portrait photos">
+              <button type="button" class="portrait-arrow-btn" id="portraitPrevBtn" aria-label="Previous photo">&larr;</button>
+              <div class="portrait-location-info">
+                <span class="portrait-location-name" id="heroPhotoLocation">Barcelona</span>
+                <span class="portrait-location-counter" id="heroPhotoCounter">01 / 06</span>
+              </div>
+              <button type="button" class="portrait-arrow-btn" id="portraitNextBtn" aria-label="Next photo">&rarr;</button>
             </div>
           </div>
 
@@ -97,8 +153,9 @@
               </span>
             </div>
 
-            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] mb-3">
-              The human side &middot; ideas, conversations, perspectives
+            <div class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] mb-3 flex items-center gap-2.5">
+              <span class="pf-tri" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span>The human side &middot; ideas, conversations, perspectives</span>
             </div>
 
             <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-bold tracking-tight text-[#163D30] leading-[1.08] mb-6">
@@ -107,7 +164,7 @@
             </h1>
 
             <p class="text-base sm:text-lg text-[#191B1E]/85 leading-relaxed max-w-xl mb-8">
-              I'm Nick Wayra. I explore human behavior, philosophy, technology, culture, and the ideas that shape how we understand ourselves and the world.
+              I'm Nick Wayra. I explore human behavior, philosophy, technology, culture, and the relationships between ideas, people, places, and experiences.
             </p>
 
             <div class="flex flex-wrap items-center gap-3">
@@ -116,13 +173,13 @@
                 Pick Your Session
                 <span>&darr;</span>
               </a>
-              <a href="#ideas"
+              <a href="#atlas"
                  class="px-6 py-3.5 rounded-full text-sm font-semibold text-[#163D30] bg-white border border-[#D5DFD9] hover:border-[#239B72] hover:bg-[#E5FFF1]/50 transition shadow-xs inline-flex items-center gap-1.5">
-                Explore ideas &darr;
+                Explore the Atlas &darr;
               </a>
-              <a href="mailto:nickwayra@gmail.com?subject=Let%E2%80%99s%20talk"
+              <a href="#ideas"
                  class="px-5 py-3.5 rounded-full text-sm font-semibold text-[#167451] hover:text-[#239B72] transition inline-flex items-center gap-1">
-                Let's talk &nearr;
+                Ideas &amp; Media &darr;
               </a>
             </div>
           </div>
@@ -138,17 +195,17 @@
             <h2 class="text-3xl font-bold tracking-tight text-[#163D30]">Three lenses on a wide world</h2>
           </div>
           <p class="text-sm text-[#697B70] max-w-md">
-            Obsessions, frameworks, and questions explored through essays, videos, and research.
+            Obsessions, frameworks, and questions explored through essays, conversations, and lived experience.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group" style="border-top: 3px solid #167451;">
             <div>
               <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#167451]">MIND / 01</span>
               <h3 class="text-2xl font-bold text-[#163D30] mt-3 mb-2 group-hover:text-[#167451] transition-colors">Architecture of belief</h3>
               <p class="text-sm text-[#191B1E]/80 leading-relaxed mb-6">
-                Belief, attention, consciousness, and the stories we use to make sense of reality.
+                Belief, attention, consciousness, and the internal stories we use to make sense of reality and ourselves.
               </p>
             </div>
             <div class="pt-4 border-t border-[#E6ECE8] font-mono text-[10px] font-semibold uppercase tracking-wider text-[#697B70]">
@@ -156,25 +213,25 @@
             </div>
           </article>
 
-          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group" style="border-top: 3px solid #E8B45B;">
             <div>
               <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#B67E22]">WORLD / 02</span>
               <h3 class="text-2xl font-bold text-[#163D30] mt-3 mb-2 group-hover:text-[#167451] transition-colors">Life across borders</h3>
               <p class="text-sm text-[#191B1E]/80 leading-relaxed mb-6">
-                Culture, travel, relationships, and the everyday patterns of modern society.
+                How cultures shape behavior, why societies develop the way they do, and how unfamiliar environments challenge our assumptions.
               </p>
             </div>
             <div class="pt-4 border-t border-[#E6ECE8] font-mono text-[10px] font-semibold uppercase tracking-wider text-[#697B70]">
-              CULTURE &middot; SOCIETY &middot; EXPERIENCE
+              CULTURE &middot; TRAVEL &middot; HUMAN CONNECTION
             </div>
           </article>
 
-          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group">
+          <article class="glass-card rounded-3xl p-7 flex flex-col justify-between group" style="border-top: 3px solid #773B42;">
             <div>
-              <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#239B72]">FUTURE / 03</span>
+              <span class="font-mono text-[11px] font-bold uppercase tracking-wider text-[#773B42]">FUTURE / 03</span>
               <h3 class="text-2xl font-bold text-[#163D30] mt-3 mb-2 group-hover:text-[#167451] transition-colors">Building for tomorrow</h3>
               <p class="text-sm text-[#191B1E]/80 leading-relaxed mb-6">
-                Futurism, AI, extended reality, and the friction between emerging tech and human agency.
+                Futurism, AI, extended reality, and the friction between emerging technology and human agency.
               </p>
             </div>
             <div class="pt-4 border-t border-[#E6ECE8] font-mono text-[10px] font-semibold uppercase tracking-wider text-[#697B70]">
@@ -182,45 +239,345 @@
             </div>
           </article>
         </div>
+
+        <!-- Editorial Philosophy Pull-Quote Strip -->
+        <div class="editorial-quote-strip">
+          <div>
+            <span class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#B67E22] block mb-1">Underlying Thesis</span>
+            <p class="font-serif italic text-xl sm:text-2xl text-[#163D30] leading-snug">
+              &ldquo;The world is endlessly interesting, and there is always another perspective worth discovering.&rdquo;
+            </p>
+          </div>
+          <a href="#atlas" class="font-mono text-xs font-semibold text-[#167451] hover:text-[#239B72] shrink-0 inline-flex items-center gap-1.5">
+            <span>Step into the Travel Atlas</span>
+            <span>&darr;</span>
+          </a>
+        </div>
       </section>
 
-      <!-- 02 / MEDIA & RESEARCH -->
+      <!-- 02 / MEDIA & RESEARCH (INTERACTIVE EDITORIAL SHOWCASE) -->
       <section id="media" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10 pb-4 border-b border-[#D5DFD9]">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 pb-4 border-b border-[#D5DFD9]">
           <div>
             <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">02 / Media &amp; Research</span>
             <h2 class="text-3xl font-bold tracking-tight text-[#163D30]">Ideas in different forms</h2>
+            <p class="text-sm text-[#697B70] mt-1">Select a medium below to preview how different ideas take shape across writing, video, audio, and creative work.</p>
           </div>
-          <a href="/research/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#239B72]/40 bg-[#E5FFF1] text-[#163D30] font-semibold text-xs font-mono hover:bg-[#167451] hover:text-[#F4F5EF] hover:border-[#167451] transition">
+          <a href="/research/" class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#239B72]/40 bg-[#E5FFF1] text-[#163D30] font-semibold text-xs font-mono hover:bg-[#167451] hover:text-[#F4F5EF] hover:border-[#167451] transition shrink-0">
             Open Research Library &nearr;
           </a>
         </div>
 
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div class="p-6 rounded-2xl border-t-2 border-t-[#167451] bg-white border border-[#D5DFD9] shadow-xs">
-            <h4 class="font-bold text-[#163D30] text-base mb-1">Video essays</h4>
-            <p class="text-xs text-[#697B70]">Long-form ideas &amp; field notes</p>
-          </div>
-          <div class="p-6 rounded-2xl border-t-2 border-t-[#239B72] bg-white border border-[#D5DFD9] shadow-xs">
-            <h4 class="font-bold text-[#163D30] text-base mb-1">Audio</h4>
-            <p class="text-xs text-[#697B70]">Podcasts &amp; spoken reflections</p>
-          </div>
-          <div class="p-6 rounded-2xl border-t-2 border-t-[#E8B45B] bg-white border border-[#D5DFD9] shadow-xs">
+        <!-- 4 Interactive Format Selector Tabs -->
+        <div class="media-tab-grid" role="tablist" aria-label="Explore ideas by medium">
+          <button type="button" class="media-tab-card" role="tab" aria-selected="true" data-media="writing">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#B67E22]">01 / Format</span>
+              <span class="font-mono text-xs text-[#697B70]">&#9998;</span>
+            </div>
             <h4 class="font-bold text-[#163D30] text-base mb-1">Writing</h4>
-            <p class="text-xs text-[#697B70]">Research notes &amp; essays</p>
-          </div>
-          <div class="p-6 rounded-2xl border-t-2 border-t-[#773B42] bg-white border border-[#D5DFD9] shadow-xs">
+            <p class="text-xs text-[#697B70]">Research notes, essays &amp; reflections</p>
+          </button>
+
+          <button type="button" class="media-tab-card" role="tab" aria-selected="false" data-media="video">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#167451]">02 / Format</span>
+              <span class="font-mono text-xs text-[#697B70]">&#9654;</span>
+            </div>
+            <h4 class="font-bold text-[#163D30] text-base mb-1">Video essays</h4>
+            <p class="text-xs text-[#697B70]">Long-form talks &amp; visual field notes</p>
+          </button>
+
+          <button type="button" class="media-tab-card" role="tab" aria-selected="false" data-media="audio">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#239B72]">03 / Format</span>
+              <span class="font-mono text-xs text-[#697B70]">&#9835;</span>
+            </div>
+            <h4 class="font-bold text-[#163D30] text-base mb-1">Audio</h4>
+            <p class="text-xs text-[#697B70]">Spoken reflections &amp; dialogues</p>
+          </button>
+
+          <button type="button" class="media-tab-card" role="tab" aria-selected="false" data-media="creative">
+            <div class="flex items-center justify-between mb-2">
+              <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#773B42]">04 / Format</span>
+              <span class="font-mono text-xs text-[#697B70]">&#10022;</span>
+            </div>
             <h4 class="font-bold text-[#163D30] text-base mb-1">Creative work</h4>
-            <p class="text-xs text-[#697B70]">Experiments across formats</p>
+            <p class="text-xs text-[#697B70]">Visual storytelling &amp; experiments</p>
+          </button>
+        </div>
+
+        <!-- Featured Editorial Display Stage -->
+        <div class="media-showcase-stage" id="mediaShowcaseStage" aria-live="polite">
+          <!-- Left: Editorial Cover Artwork / Composition -->
+          <div class="media-cover-art" id="mediaCoverArt" data-cover="writing">
+            <div class="flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-widest opacity-80">
+              <span id="mediaCoverBadge">MONOGRAPH &middot; ESSAY SERIES</span>
+              <span id="mediaCoverStatus">[ IN DEVELOPMENT ]</span>
+            </div>
+            <div class="my-auto py-6">
+              <div class="font-mono text-[11px] uppercase tracking-widest opacity-75 mb-2" id="mediaCoverLens">MIND &times; WORLD</div>
+              <div class="font-serif italic text-3xl sm:text-4xl leading-tight mb-3" id="mediaCoverHeadline">
+                On Curiosity, Culture &amp; the Stories We Live By
+              </div>
+              <div class="w-12 h-0.5 bg-current opacity-30"></div>
+            </div>
+            <div class="flex items-center justify-between font-mono text-[10px] uppercase tracking-wider opacity-75 pt-3 border-t border-current/15">
+              <span id="mediaCoverFooterLeft">Editorial Placeholder Cover</span>
+              <span id="mediaCoverFooterRight">Nick Wayra Archive</span>
+            </div>
+          </div>
+
+          <!-- Right: Featured Medium Details & Perspective -->
+          <div class="flex flex-col justify-between py-1 h-full">
+            <div>
+              <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                <span class="font-mono text-xs font-bold uppercase tracking-widest text-[#167451]" id="mediaDetailEyebrow">
+                  WRITING &middot; ESSAYS &amp; FIELD NOTES
+                </span>
+                <span class="px-3 py-1 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] font-mono text-[10px] font-semibold uppercase tracking-wider text-[#697B70]" id="mediaDetailBadge">
+                  Archive Taking Shape
+                </span>
+              </div>
+
+              <h3 class="text-2xl sm:text-3xl font-bold text-[#163D30] tracking-tight mb-3" id="mediaDetailTitle">
+                Long-form essays, research papers, and written reflections.
+              </h3>
+
+              <p class="text-sm sm:text-base text-[#191B1E]/85 leading-relaxed mb-5" id="mediaDetailDesc">
+                Writing is where I slow down a question to see what holds up under scrutiny—exploring psychology, philosophy, cultural differences, and how technology reshapes human behavior.
+              </p>
+
+              <div class="mb-6">
+                <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#697B70] mb-2.5">What lives in this medium</div>
+                <div class="flex flex-wrap gap-2" id="mediaDetailTags">
+                  <span class="px-3 py-1.5 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] text-xs font-medium text-[#163D30]">Cultural essays</span>
+                  <span class="px-3 py-1.5 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] text-xs font-medium text-[#163D30]">Academic papers</span>
+                  <span class="px-3 py-1.5 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] text-xs font-medium text-[#163D30]">Field notes</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-[#E6ECE8] flex flex-wrap items-center justify-between gap-4">
+              <a href="/research/" id="mediaDetailCta" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#167451] hover:bg-[#239B72] text-[#F4F5EF] font-semibold text-xs font-mono uppercase tracking-wider transition shadow-xs">
+                <span>Browse Research Library</span>
+                <span>&nearr;</span>
+              </a>
+              <span class="font-mono text-[11px] text-[#697B70]" id="mediaDetailNote">
+                Editorial preview &middot; Real works published as completed
+              </span>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 03 / THE CONVERSATION STUDIO (BALANCED 2-CARD GRID) -->
+      <!-- 03 / THE TRAVEL ATLAS ("THE WORLD THROUGH MY EYES / AN ATLAS OF PERSPECTIVES") -->
+      <section id="atlas" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-8 pb-5 border-b border-[#D5DFD9]">
+          <div>
+            <div class="flex items-center gap-2.5 mb-2">
+              <span class="pf-tri" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451]">03 / The World Through My Eyes</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl lg:text-[42px] font-bold tracking-tight text-[#163D30] leading-[1.1]">
+              An atlas of <span class="font-serif italic font-normal text-[1.12em]"><span class="headline-wave">perspectives.</span></span>
+            </h2>
+            <p class="text-sm sm:text-base text-[#191B1E]/80 max-w-2xl mt-2.5 leading-relaxed">
+              Travel isn't simply about visiting destinations—it's a way of understanding how different people live, challenging assumptions, and discovering different ways of being human.
+            </p>
+          </div>
+
+          <!-- Region Picker Tabs -->
+          <div class="shrink-0">
+            <div class="font-mono text-[10px] font-semibold uppercase tracking-widest text-[#697B70] mb-2">Filter places by region</div>
+            <div class="atlas-region-tabs" id="atlasRegionTabs" role="tablist" aria-label="Filter places by region">
+              <button type="button" class="atlas-rt on" data-region="all" role="tab" aria-selected="true">All Places (16)</button>
+              <button type="button" class="atlas-rt" data-region="northamerica" role="tab" aria-selected="false">North America</button>
+              <button type="button" class="atlas-rt" data-region="latam" role="tab" aria-selected="false">Latin America</button>
+              <button type="button" class="atlas-rt" data-region="europe" role="tab" aria-selected="false">Europe</button>
+              <button type="button" class="atlas-rt" data-region="asia" role="tab" aria-selected="false">Asia</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2-Column Interactive Map + Personal Journal Panel -->
+        <div class="atlas-shell">
+          <!-- Left: Interactive D3 + TopoJSON World & Regional Map -->
+          <div class="atlas-map-box" id="atlasMapBox">
+            <button type="button" class="atlas-reset" id="atlasReset" aria-label="Zoom back out">&larr; All places</button>
+            <svg id="atlasMap" viewBox="0 0 720 560" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive world map highlighting 16 countries explored across North America, Latin America, Europe, and Asia">
+              <g id="atlasZoom">
+                <g id="atlasGraticule"></g>
+                <g id="atlasLand"></g>
+                <g id="atlasPins"></g>
+              </g>
+              <g id="atlasLabels"></g>
+            </svg>
+            <div class="atlas-map-legend">
+              <div class="flex items-center gap-4">
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#167451] inline-block"></span>
+                  <span>Explored (16 countries)</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-[#163D30]/15 border border-[#163D30]/30 inline-block"></span>
+                  <span>Click any highlighted country to open journal</span>
+                </span>
+              </div>
+              <span id="atlasCameraStatus">GLOBAL VIEW // 4 REGIONS</span>
+            </div>
+          </div>
+
+          <!-- Right: 3-State Personal Journal & Media Panel -->
+          <div class="atlas-panel" id="atlasPanel" data-view="overview" aria-live="polite">
+            <button type="button" class="ap-close" id="apClose" aria-label="Back">&times;</button>
+
+            <!-- VIEW 1: GLOBAL OVERVIEW -->
+            <div class="ap-view ap-overview">
+              <div class="ap-eyebrow">Interactive Travel Journal &middot; 16 Countries</div>
+              <div class="ap-title">Places that shaped a worldview.</div>
+              <p class="ap-note">
+                Every environment has its own rhythm—how people greet strangers, how cities balance public and private life, and what a culture treats as normal. Click any highlighted country on the map or choose a region below to browse personal observations.
+              </p>
+
+              <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#697B70] mb-2.5 flex items-center justify-between">
+                <span>Browse by region</span>
+                <span class="text-[#167451] font-semibold">4 hubs</span>
+              </div>
+              <div class="ap-region-pill-grid" id="atlasRegionPillGrid">
+                <button type="button" class="ap-region-chip" data-region="northamerica">
+                  <span class="inline-flex items-center gap-2">
+                    <span class="ap-rc-dot bg-[#167451]"></span>
+                    <span>North America</span>
+                  </span>
+                  <span class="ap-rc-count">3</span>
+                </button>
+                <button type="button" class="ap-region-chip" data-region="latam">
+                  <span class="inline-flex items-center gap-2">
+                    <span class="ap-rc-dot bg-[#E8B45B]"></span>
+                    <span>Latin America</span>
+                  </span>
+                  <span class="ap-rc-count">1</span>
+                </button>
+                <button type="button" class="ap-region-chip" data-region="europe">
+                  <span class="inline-flex items-center gap-2">
+                    <span class="ap-rc-dot bg-[#167451]"></span>
+                    <span>Europe</span>
+                  </span>
+                  <span class="ap-rc-count">9</span>
+                </button>
+                <button type="button" class="ap-region-chip" data-region="asia">
+                  <span class="inline-flex items-center gap-2">
+                    <span class="ap-rc-dot bg-[#773B42]"></span>
+                    <span>Asia</span>
+                  </span>
+                  <span class="ap-rc-count">3</span>
+                </button>
+              </div>
+
+              <div class="p-3 px-3.5 rounded-xl bg-[#F7F8F4] border border-[#D5DFD9]/80 flex items-start gap-2.5 text-xs text-[#191B1E]/75 leading-relaxed mb-4">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#B67E22] shrink-0 mt-0.5">[ Living Archive ]</span>
+                <span>Field notes, photographs, and voice memos currently being organized from personal camera rolls and journals.</span>
+              </div>
+
+              <div class="mt-auto pt-3 border-t border-[#E6ECE8] flex items-center justify-between gap-3">
+                <button type="button" id="atlasRandomBtn" class="px-4 py-2.5 rounded-full bg-[#167451] hover:bg-[#239B72] text-[#F4F5EF] font-mono text-xs font-semibold transition shadow-xs cursor-pointer">
+                  Explore a random country &#8635;
+                </button>
+                <span class="font-mono text-[11px] text-[#697B70]">16 places &middot; 4 regions</span>
+              </div>
+            </div>
+
+            <!-- VIEW 2: REGION PERSPECTIVE -->
+            <div class="ap-view ap-regionview">
+              <div class="ap-eyebrow" id="arEyebrow">Region</div>
+              <div class="ap-title" id="arName"></div>
+              <p class="ap-note" id="arNote"></p>
+
+              <div class="p-4 rounded-2xl bg-[#F4F5EF] border border-[#D5DFD9] mb-5">
+                <span class="font-mono text-[10px] font-bold uppercase tracking-wider text-[#167451] block mb-1">Themes &amp; Questions in Focus</span>
+                <p class="text-xs sm:text-sm text-[#191B1E]/85 leading-relaxed" id="arThemes"></p>
+              </div>
+
+              <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#697B70] mb-2.5">
+                Places explored in this region &mdash; click to open journal
+              </div>
+              <div class="ap-pill-grid" id="arCountries"></div>
+
+              <div class="mt-auto pt-3 border-t border-[#E6ECE8] flex items-center justify-between text-xs text-[#697B70]">
+                <span class="font-mono text-[11px]">Click a country on the map or above</span>
+                <button type="button" id="arBackAllBtn" class="font-mono text-xs font-semibold text-[#167451] hover:underline cursor-pointer">&larr; All regions</button>
+              </div>
+            </div>
+
+            <!-- VIEW 3: COUNTRY MULTIMEDIA JOURNAL (MULTI-ENTRY CAROUSEL) -->
+            <div class="ap-view ap-country">
+              <div class="ap-eyebrow" id="acRegion">Region</div>
+              <div class="flex items-baseline justify-between gap-2 pr-8">
+                <div class="ap-title" id="acName">Country</div>
+                <span class="font-mono text-[11px] font-semibold text-[#697B70]" id="acEntryCounter">Entry 01 / 03</span>
+              </div>
+              <p class="text-xs sm:text-sm text-[#191B1E]/80 leading-relaxed mb-3.5" id="acIntro"></p>
+
+              <!-- Multi-Entry Journal Carousel Controls -->
+              <div class="journal-carousel-bar">
+                <div class="journal-type-tabs" role="tablist" aria-label="Journal entry formats">
+                  <button type="button" class="journal-type-tab active" data-entry-idx="0">01 Reflection</button>
+                  <button type="button" class="journal-type-tab" data-entry-idx="1">02 Visuals</button>
+                  <button type="button" class="journal-type-tab" data-entry-idx="2">03 Voice</button>
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <button type="button" class="portrait-arrow-btn" id="acEntryPrev" aria-label="Previous journal entry">&larr;</button>
+                  <button type="button" class="portrait-arrow-btn" id="acEntryNext" aria-label="Next journal entry">&rarr;</button>
+                </div>
+              </div>
+
+              <!-- Active Journal Entry Card -->
+              <div class="journal-entry-card" id="acEntryCard">
+                <div>
+                  <div class="journal-visual-frame" id="acVisualFrame" data-entry-kind="reflection">
+                    <div class="flex items-center justify-between font-mono text-[10px] font-bold uppercase tracking-wider text-[#167451]" id="acVisualTop">
+                      <span id="acVisualFormat">FIELD NOTE // WRITTEN REFLECTION</span>
+                      <span>[ ARCHIVE SLOT ]</span>
+                    </div>
+                    <div class="my-3">
+                      <div class="font-serif italic text-xl sm:text-2xl text-[#163D30] leading-snug" id="acVisualPrompt"></div>
+                    </div>
+                    <div class="font-mono text-[10px] text-[#697B70]" id="acVisualCaption">
+                      Personal journal entry &amp; photography being organized for publication.
+                    </div>
+                  </div>
+
+                  <div class="font-mono text-[10px] font-bold uppercase tracking-widest text-[#697B70] mb-1.5" id="acThemesLabel">
+                    PERSPECTIVES &amp; CURIOSITIES
+                  </div>
+                  <p class="text-xs sm:text-sm text-[#191B1E]/85 leading-relaxed mb-3" id="acEntryBody"></p>
+                </div>
+
+                <div class="flex flex-wrap gap-1.5 pt-2 border-t border-[#E6ECE8]" id="acTags"></div>
+              </div>
+
+              <!-- Bottom Action / Conversation Link -->
+              <div class="mt-auto pt-3 border-t border-[#E6ECE8] flex items-center justify-between gap-2">
+                <button type="button" id="acBackRegionBtn" class="font-mono text-xs font-semibold text-[#697B70] hover:text-[#163D30] transition cursor-pointer">
+                  &larr; Region overview
+                </button>
+                <a href="#conversations" class="font-mono text-xs font-semibold text-[#167451] hover:text-[#239B72] transition inline-flex items-center gap-1">
+                  <span>Swap travel &amp; cultural stories</span>
+                  <span>&darr;</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 / THE CONVERSATION STUDIO (BALANCED 2-CARD GRID) -->
       <section id="conversations" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
         <div class="flex items-end justify-between mb-8 border-b border-[#D5DFD9] pb-4">
           <div>
-            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">03 / The Conversation Studio</span>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">04 / The Conversation Studio</span>
             <h2 class="text-3xl font-bold tracking-tight text-[#163D30]">Choose how we connect</h2>
           </div>
           <span class="font-mono text-xs font-medium text-[#697B70] hidden sm:inline-block">
@@ -368,10 +725,10 @@
         </div>
       </section>
 
-      <!-- 04 / ZERO FRICTION / HOW IT WORKS -->
+      <!-- 05 / ZERO FRICTION / HOW IT WORKS -->
       <section id="how" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
         <div class="mb-8 border-b border-[#D5DFD9] pb-4">
-          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">04 / Zero Friction</span>
+          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">05 / Zero Friction</span>
           <h2 class="text-3xl font-bold tracking-tight text-[#163D30]">How it works</h2>
         </div>
 
@@ -398,7 +755,7 @@
             </div>
 
             <div class="step-item group p-5 sm:p-6 rounded-2xl transition-all duration-200 hover:bg-[#E5FFF1]/60 border border-transparent hover:border-[#239B72]/35">
-              <div class="w-9 h-9 rounded-full bg-[#163D30] text-[#E8B45B] font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
+              <div class="w-9 h-9 rounded-full bg-[#163D30] text-[#F4F5EF] font-mono text-xs font-bold flex items-center justify-center mb-4 transition-transform duration-200 group-hover:scale-105 shadow-xs">
                 03
               </div>
               <h3 class="text-lg font-bold text-[#163D30] mb-2">Show up</h3>
@@ -410,11 +767,11 @@
         </div>
       </section>
 
-      <!-- 05 / ABOUT NICK -->
+      <!-- 06 / ABOUT NICK -->
       <section id="about" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
         <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div class="md:col-span-5">
-            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">05 / About Nick</span>
+            <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">06 / About Nick</span>
             <h2 class="text-3xl sm:text-4xl font-bold tracking-tight text-[#163D30] leading-tight">Curiosity is a way of paying attention</h2>
           </div>
           <div class="md:col-span-7 space-y-4 text-[#191B1E]/85 leading-relaxed text-base">
@@ -433,10 +790,10 @@
         </div>
       </section>
 
-      <!-- 06 / CONNECT ("FOLLOW A THREAD" WITH LIVE BLOCKS) -->
+      <!-- 07 / CONNECT ("FOLLOW A THREAD" WITH LIVE BLOCKS) -->
       <section id="connect" class="max-w-6xl mx-auto px-6 py-16 border-t border-[#D5DFD9] scroll-mt-24">
         <div class="mb-8 border-b border-[#D5DFD9] pb-4">
-          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">06 / Connect</span>
+          <span class="font-mono text-xs font-semibold uppercase tracking-widest text-[#167451] block mb-1">07 / Connect</span>
           <h2 class="text-3xl font-bold tracking-tight text-[#163D30]">Follow a thread</h2>
           <p class="text-sm text-[#697B70] mt-1">Videos, everyday moments, and longer conversations.</p>
         </div>
@@ -519,17 +876,42 @@
       </section>
 
       <!-- HUMAN FOOTER -->
-      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-[#D5DFD9] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs text-[#697B70] font-medium">
-        <div>
-          <span class="text-[#163D30] font-bold">Nick Wayra</span> &mdash; Built for real human connection.
+      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-[#D5DFD9] text-xs text-[#697B70] font-medium">
+        <!-- Dispatches / Email Capture (2-Column Split with Center Divider) -->
+        <div class="dispatch-card">
+          <div>
+            <span class="dispatch-eyebrow">Dispatches &middot; Reader List</span>
+            <h3 class="dispatch-title">Get new essays &amp; field notes by email.</h3>
+            <p class="dispatch-desc">Occasional reflections on philosophy, psychology, and how we live. No spam, ever.</p>
+          </div>
+          <div class="dispatch-divider" aria-hidden="true"></div>
+          <form id="humanNewsletterForm" class="dispatch-form-wrap">
+            <div class="dispatch-form-row">
+              <label for="humanNewsletterEmail" class="sr-only">Email address</label>
+              <input id="humanNewsletterEmail" type="email" required placeholder="Enter your email address..." autocomplete="email"
+                     class="dispatch-input">
+              <button type="submit" data-track="newsletter_subscribe_human" class="dispatch-btn">
+                <span>Subscribe</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+            <p class="dispatch-meta">Delivered occasionally &middot; Unsubscribe anytime</p>
+            <p id="humanNewsletterStatus" class="hidden dispatch-status" aria-live="polite"></p>
+          </form>
         </div>
-        <div class="flex items-center gap-6 flex-wrap">
-          <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">TikTok</a>
-          <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">Instagram</a>
-          <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">YouTube</a>
-          <a href="/research/" class="hover:text-[#167451] transition">Research Library</a>
-          <a href="mailto:nickwayra@gmail.com" class="hover:text-[#167451] transition">nickwayra@gmail.com</a>
-          <a href="#top" class="text-[#697B70] hover:text-[#163D30] transition">Back to top &uarr;</a>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <span class="text-[#163D30] font-bold">Nick Wayra</span> &mdash; Built for real human connection.
+          </div>
+          <div class="flex items-center gap-6 flex-wrap">
+            <a href="https://www.tiktok.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">TikTok</a>
+            <a href="https://www.instagram.com/wayranick" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">Instagram</a>
+            <a href="https://www.youtube.com/@nickwayra" target="_blank" rel="noopener noreferrer" class="hover:text-[#167451] transition">YouTube</a>
+            <a href="/research/" class="hover:text-[#167451] transition">Research Library</a>
+            <a href="mailto:nickwayra@gmail.com" class="hover:text-[#167451] transition">nickwayra@gmail.com</a>
+            <a href="#top" class="text-[#697B70] hover:text-[#163D30] transition">Back to top &uarr;</a>
+          </div>
         </div>
       </footer>
 
@@ -1204,14 +1586,40 @@
       </section>
 
       <!-- LAB FOOTER -->
-      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-[#343B40] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs font-mono text-[#ABB8B2]">
-        <div>
-          &copy; Nick Wayra X &middot; Independent experiments.
+      <footer class="max-w-6xl mx-auto px-6 pt-12 border-t border-[#343B40] text-xs font-mono text-[#ABB8B2]">
+        <!-- Lab Dispatches / Email Capture (2-Column Split with Center Divider) -->
+        <div class="dispatch-card">
+          <div>
+            <span class="dispatch-eyebrow">Lab Dispatches</span>
+            <h3 class="dispatch-title">Follow the experiments.</h3>
+            <p class="dispatch-desc">Occasional field notes on AI systems, human-computer interaction, and products in motion.</p>
+          </div>
+          <div class="dispatch-divider" aria-hidden="true"></div>
+          <form id="labNewsletterForm" class="dispatch-form-wrap">
+            <div class="dispatch-form-row">
+              <label for="labNewsletterEmail" class="sr-only">Email address</label>
+              <input id="labNewsletterEmail" type="email" required placeholder="Enter your email address..." autocomplete="email"
+                     class="dispatch-input">
+              <button type="submit" data-track="newsletter_subscribe_lab" class="dispatch-btn">
+                <span>Subscribe</span>
+                <span>&rarr;</span>
+              </button>
+            </div>
+            <p class="dispatch-meta">Field notes &amp; releases &middot; No noise</p>
+            <p id="labNewsletterStatus" class="hidden dispatch-status" aria-live="polite"></p>
+          </form>
         </div>
-        <div class="flex flex-wrap items-center gap-6">
-          <a href="/research/?view=lab" class="hover:text-[#66E3AE] transition">Research Library</a>
-          <a href="mailto:nickwayra@gmail.com" class="hover:text-[#66E3AE] transition">nickwayra@gmail.com</a>
-          <a href="#top" class="hover:text-[#F4F5EF] transition">Back to top &uarr;</a>
+
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            &copy; Nick Wayra X &middot; Independent experiments.
+          </div>
+          <div class="flex flex-wrap items-center gap-6">
+            <a href="/x/" class="hover:text-[#66E3AE] transition" title="Direct shareable link to Nick Wayra X">nickwayra.com/x</a>
+            <a href="/research/?view=lab" class="hover:text-[#66E3AE] transition">Research Library</a>
+            <a href="mailto:nickwayra@gmail.com" class="hover:text-[#66E3AE] transition">nickwayra@gmail.com</a>
+            <a href="#top" class="hover:text-[#F4F5EF] transition">Back to top &uarr;</a>
+          </div>
         </div>
       </footer>
 
@@ -1239,6 +1647,7 @@
       human: [
         ['Ideas', '#ideas'],
         ['Media', '#media'],
+        ['Atlas', '#atlas'],
         ['Conversations', '#conversations'],
         ['How It Works', '#how'],
         ['About', '#about'],
@@ -1741,13 +2150,17 @@
       } catch (err) {}
     });
 
-    // Check URL mode parameter first, then stored preference, or default to human
+    // Check URL mode parameter or /x route first, then stored preference, or default to human
     let initialMode = 'human';
     try {
       const urlParams = new URLSearchParams(window.location.search);
       const paramMode = urlParams.get('mode');
+      const pathIsX = /^\/x(\/|$)/i.test(window.location.pathname);
       const saved = localStorage.getItem('nick-wayra-mode');
-      if (paramMode === 'lab' || paramMode === 'human') {
+      if (pathIsX) {
+        initialMode = 'lab';
+        localStorage.setItem('nick-wayra-mode', 'lab');
+      } else if (paramMode === 'lab' || paramMode === 'human') {
         initialMode = paramMode;
         localStorage.setItem('nick-wayra-mode', paramMode);
         if (window.history && window.history.replaceState) {
@@ -1759,6 +2172,29 @@
       }
     } catch (e) {}
     setMode(initialMode, false);
+
+    // Subtle Dispatches / Newsletter subscription handler (Human & Lab footers)
+    function wireNewsletterForm(formId, inputId, statusId, listName) {
+      const form = document.getElementById(formId);
+      const input = document.getElementById(inputId);
+      const status = document.getElementById(statusId);
+      if (!form || !input) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = input.value.trim();
+        if (!email) return;
+        const subject = encodeURIComponent(`Subscribe — ${listName}`);
+        const body = encodeURIComponent(`Hi Nick,\n\nPlease add me to your reader list (${listName}).\n\nEmail: ${email}\n`);
+        window.location.href = `mailto:nickwayra@gmail.com?subject=${subject}&body=${body}`;
+        if (status) {
+          status.textContent = 'Opening your email app to confirm subscription — thank you!';
+          status.classList.remove('hidden');
+        }
+        input.value = '';
+      });
+    }
+    wireNewsletterForm('humanNewsletterForm', 'humanNewsletterEmail', 'humanNewsletterStatus', 'Nick Wayra Dispatches');
+    wireNewsletterForm('labNewsletterForm', 'labNewsletterEmail', 'labNewsletterStatus', 'Nick Wayra X Lab Dispatches');
 
     // Typewriter effect for Nick Wayra X hero wordmark
     const xWords = ['perience', 'perimentation', 'ploration'];
@@ -1808,6 +2244,1130 @@
       // Hold on initial pre-rendered word for 2.6s, then begin cycle
       xTimer = setTimeout(runXTypewriter, 2600);
     }
+
+    // =========================================================================
+    // HUMAN SIDE EVOLUTION: 1. HERO PORTRAIT PHOTO SLIDER
+    // =========================================================================
+    (function() {
+      const slides = document.querySelectorAll('#heroPortraitStage .portrait-slide');
+      const locationNameEl = document.getElementById('heroPhotoLocation');
+      const locationCounterEl = document.getElementById('heroPhotoCounter');
+      const prevBtn = document.getElementById('portraitPrevBtn');
+      const nextBtn = document.getElementById('portraitNextBtn');
+      if (!slides.length) return;
+
+      const locations = ['Barcelona', 'Porto', 'San Diego', 'Cambridge', 'Big Bear', 'UCSD'];
+      let currentSlide = 0;
+
+      function showPortraitSlide(idx) {
+        currentSlide = (idx + slides.length) % slides.length;
+        slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide));
+        if (locationNameEl) {
+          locationNameEl.textContent = locations[currentSlide] || 'Barcelona';
+        }
+        if (locationCounterEl) {
+          locationCounterEl.textContent = `0${currentSlide + 1} / 0${slides.length}`;
+        }
+      }
+
+      if (prevBtn) prevBtn.addEventListener('click', () => showPortraitSlide(currentSlide - 1));
+      if (nextBtn) nextBtn.addEventListener('click', () => showPortraitSlide(currentSlide + 1));
+
+      // Gentle auto-rotation every 8.5s, pauses on hover or interaction
+      let autoTimer = setInterval(() => showPortraitSlide(currentSlide + 1), 8500);
+      const heroFrame = document.querySelector('.portrait-frame');
+      const locBar = document.querySelector('.portrait-location-bar');
+      [heroFrame, locBar].forEach(el => {
+        if (!el) return;
+        el.addEventListener('mouseenter', () => clearInterval(autoTimer));
+        el.addEventListener('mouseleave', () => {
+          clearInterval(autoTimer);
+          autoTimer = setInterval(() => showPortraitSlide(currentSlide + 1), 8500);
+        });
+      });
+    })();
+
+    // =========================================================================
+    // HUMAN SIDE EVOLUTION: 2. INTERACTIVE MEDIA SHOWCASE ("IDEAS IN DIFFERENT FORMS")
+    // =========================================================================
+    (function() {
+      const mediaData = {
+        writing: {
+          coverTheme: 'writing',
+          coverBadge: 'MONOGRAPH · ESSAY SERIES',
+          coverStatus: '[ IN DEVELOPMENT ]',
+          coverLens: 'MIND × WORLD',
+          coverHeadline: 'On Curiosity, Culture & the Stories We Live By',
+          coverFooterLeft: 'Editorial Placeholder Cover',
+          coverFooterRight: 'Nick Wayra Archive',
+          eyebrow: 'WRITING · ESSAYS & FIELD NOTES',
+          badge: 'Archive Taking Shape',
+          title: 'Long-form essays, research papers, and written reflections.',
+          desc: 'Writing is where I slow down a question to see what holds up under scrutiny—exploring psychology, philosophy, cultural differences, and how technology reshapes human behavior.',
+          tags: ['Cultural essays', 'Academic papers', 'Field notes'],
+          ctaLabel: 'Browse Research Library',
+          ctaHref: '/research/',
+          ctaExternal: false,
+          note: 'Editorial preview · Real works published as completed'
+        },
+        video: {
+          coverTheme: 'video',
+          coverBadge: 'VIDEO ESSAYS · TALKS',
+          coverStatus: '[ CHANNEL ACTIVE ]',
+          coverLens: 'WORLD × FUTURE',
+          coverHeadline: 'Thinking Out Loud: Perspectives on People, Places & Systems',
+          coverFooterLeft: 'Visual Essay Format',
+          coverFooterRight: '@nickwayra',
+          eyebrow: 'VIDEO · LONG-FORM & SHORT-FORM',
+          badge: 'YouTube & TikTok',
+          title: 'Visual essays, spontaneous yaps, and ideas explored on camera.',
+          desc: 'Some thoughts come alive best when spoken face-to-face. Across long-form YouTube talks and daily short-form series, I explore human psychology, language, travel reflections, and everyday observations.',
+          tags: ['Long-form video essays', 'Daily Yaps & cultural observations', 'Real-world stories'],
+          ctaLabel: 'Watch on YouTube',
+          ctaHref: 'https://www.youtube.com/@nickwayra',
+          ctaExternal: true,
+          note: 'Featured video showcase · Archive expanding'
+        },
+        audio: {
+          coverTheme: 'audio',
+          coverBadge: 'VOICE NOTES · DIALOGUES',
+          coverStatus: '[ IN DEVELOPMENT ]',
+          coverLens: 'MIND × CONVERSATION',
+          coverHeadline: 'Unfiltered Reflections & Late-Night Questions',
+          coverFooterLeft: 'Spoken Field Notes',
+          coverFooterRight: 'Audio Journal',
+          eyebrow: 'AUDIO · SPOKEN REFLECTIONS',
+          badge: 'Coming to the Archive',
+          title: 'Voice memos from the road, recorded dialogues, and spoken notes.',
+          desc: 'Not every idea needs a scripted production. This space is designed for raw voice recordings, travel audio notes captured in unfamiliar cities, and long-form conversations with interesting minds.',
+          tags: ['Travel voice memos', 'Recorded 1-on-1 dialogues', 'Unscripted philosophical notes'],
+          ctaLabel: 'Book a live 1:1 conversation',
+          ctaHref: '#conversations',
+          ctaExternal: false,
+          note: 'Audio player & spoken archive in preparation'
+        },
+        creative: {
+          coverTheme: 'creative',
+          coverBadge: 'CONCEPTUAL · CROSS-MEDIUM',
+          coverStatus: '[ EXPERIMENTAL ]',
+          coverLens: 'MIND × WORLD × FUTURE',
+          coverHeadline: 'Cartography, Visual Storytelling & Interactive Essays',
+          coverFooterLeft: 'Cross-Medium Format',
+          coverFooterRight: 'Nick Wayra Studio',
+          eyebrow: 'CREATIVE WORK · VISUAL & INTERACTIVE',
+          badge: 'Living Experiments',
+          title: 'Projects that blend storytelling, design, and curious exploration.',
+          desc: 'When a standard article or video isn’t the right container for an idea, I like building interactive experiences—like the Travel Atlas below or the Interdisciplinary Collision Engine over in X Labs.',
+          tags: ['Interactive cartography', 'Photographic series', 'Speculative essays'],
+          ctaLabel: 'Explore the Travel Atlas below',
+          ctaHref: '#atlas',
+          ctaExternal: false,
+          note: 'Designed for exploration across mediums'
+        }
+      };
+
+      const tabs = document.querySelectorAll('.media-tab-card');
+      const stage = document.getElementById('mediaShowcaseStage');
+      const coverArt = document.getElementById('mediaCoverArt');
+      if (!tabs.length || !stage || !coverArt) return;
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const key = tab.dataset.media;
+          const d = mediaData[key];
+          if (!d) return;
+
+          tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+
+          stage.style.opacity = '0.45';
+          setTimeout(() => {
+            coverArt.setAttribute('data-cover', d.coverTheme);
+            document.getElementById('mediaCoverBadge').textContent = d.coverBadge;
+            document.getElementById('mediaCoverStatus').textContent = d.coverStatus;
+            document.getElementById('mediaCoverLens').textContent = d.coverLens;
+            document.getElementById('mediaCoverHeadline').textContent = d.coverHeadline;
+            document.getElementById('mediaCoverFooterLeft').textContent = d.coverFooterLeft;
+            document.getElementById('mediaCoverFooterRight').textContent = d.coverFooterRight;
+
+            document.getElementById('mediaDetailEyebrow').textContent = d.eyebrow;
+            document.getElementById('mediaDetailBadge').textContent = d.badge;
+            document.getElementById('mediaDetailTitle').textContent = d.title;
+            document.getElementById('mediaDetailDesc').textContent = d.desc;
+            document.getElementById('mediaDetailTags').innerHTML = d.tags
+              .map(tag => `<span class="px-3 py-1.5 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] text-xs font-medium text-[#163D30]">${tag}</span>`)
+              .join('');
+
+            const cta = document.getElementById('mediaDetailCta');
+            cta.href = d.ctaHref;
+            if (d.ctaExternal) {
+              cta.setAttribute('target', '_blank');
+              cta.setAttribute('rel', 'noopener noreferrer');
+              cta.innerHTML = `<span>${d.ctaLabel}</span><span>&nearr;</span>`;
+            } else {
+              cta.removeAttribute('target');
+              cta.removeAttribute('rel');
+              cta.innerHTML = `<span>${d.ctaLabel}</span><span>${d.ctaHref.startsWith('#') ? '&darr;' : '&nearr;'}</span>`;
+            }
+
+            document.getElementById('mediaDetailNote').textContent = d.note;
+            stage.style.opacity = '1';
+          }, 120);
+        });
+      });
+    })();
+
+    // =========================================================================
+    // HUMAN SIDE EVOLUTION: 3. THE TRAVEL ATLAS (16 COUNTRIES / 4 REGIONS)
+    // =========================================================================
+    function initTravelAtlas() {
+      const svgRoot = document.getElementById('atlasMap');
+      if (!svgRoot || typeof window.d3 === 'undefined' || typeof window.topojson === 'undefined') {
+        setTimeout(initTravelAtlas, 120);
+        return;
+      }
+
+      const ATLAS_DATA = {
+        usa: {
+          n: 'United States', r: 'North America', reg: 'northamerica', iso: '840',
+          intro: 'A continent-scale patchwork of cities, landscapes, and subcultures—where ambition, reinvention, and vastly different ways of living exist side by side.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'How scale and mobility shape the American idea of reinvention.',
+              body: 'Living and traveling across the US reveals how strongly geography and local culture shape everyday assumptions about work, community, and independence. Personal essays from here will be added as the archive is organized.',
+              tags: ['Culture & Identity', 'Urban vs. Open Space', 'Reinvention']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Cities, highways, and everyday scenes across the States.',
+              body: 'Reserved for personal photographs capturing neighborhoods, coastlines, and candid moments from time spent across the US.',
+              tags: ['Personal Photography', 'Street & Landscape', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken reflections on pace of life, conversation culture, and contrast.',
+              body: 'Reserved for recorded voice memos and conversational reflections comparing American social rhythms with life abroad.',
+              tags: ['Voice Memo Slot', 'Social Rhythms', 'Perspective']
+            }
+          ]
+        },
+        canada: {
+          n: 'Canada', r: 'North America', reg: 'northamerica', iso: '124',
+          intro: 'Vast natural scale paired with multicultural cities and a distinct civic calm across provinces and languages.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Politeness, pluralism, and how cities feel when cultures overlap.',
+              body: 'Reflections on how Canadian cities balance international diversity, public order, and relationship with nature. Full written entry incoming.',
+              tags: ['Civic Culture', 'Multicultural Cities', 'North America']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Northern light, urban neighborhoods, and open landscapes.',
+              body: 'Reserved for personal photographs from Canada—being curated from my travel archive.',
+              tags: ['Personal Photography', 'Architecture & Nature', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Firsthand impressions recorded while exploring.',
+              body: 'Reserved for short audio notes on language, social warmth, and subtle cross-border differences.',
+              tags: ['Voice Memo Slot', 'Cross-Border Notes']
+            }
+          ]
+        },
+        mexico: {
+          n: 'Mexico', r: 'Latin America', reg: 'latam', iso: '484',
+          intro: 'Deep history, extraordinary food, warm social fabric, and cities where street life, art, and family connection are woven into every hour of the day.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'What happens when public plazas and shared meals anchor daily life.',
+              body: 'Exploring how warmth, humor, and presence shape everyday human interactions in Mexico—and how that contrasts with more individualistic societies.',
+              tags: ['Social Warmth', 'Public Life', 'Culture & Food']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Color, architecture, markets, and street scenes from Mexico.',
+              body: 'Reserved for personal photographs from time in Mexico—being selected and captioned for the journal.',
+              tags: ['Personal Photography', 'Street Life', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Language, hospitality, and the rhythm of Spanish conversation.',
+              body: 'Reserved for voice reflections on language, expression, and memorable encounters.',
+              tags: ['Voice Memo Slot', 'Language & Connection']
+            }
+          ]
+        },
+        ecuador: {
+          n: 'Ecuador', r: 'Andean South America', reg: 'latam', iso: '218',
+          intro: 'The Andes, Pacific coast, Amazon, and temperate highland cities in one compact country—a place of deep personal connection and perspective.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Four worlds in one country: altitude, geography, and human pace.',
+              body: 'How moving between highland Andean cities and the coast changes the rhythm of daily life, community ties, and what people value most.',
+              tags: ['Andean Perspective', 'Lived Experience', 'Community']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Highland valleys, historic streets, and everyday moments in Ecuador.',
+              body: 'Reserved for personal photographs and visual stories from Ecuador.',
+              tags: ['Personal Photography', 'Andes & Coast', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Personal stories, roots, and reflections on home and abroad.',
+              body: 'Reserved for spoken reflections on identity, family, and seeing the world from two hemispheres.',
+              tags: ['Voice Memo Slot', 'Identity & Perspective']
+            }
+          ]
+        },
+        spain: {
+          n: 'Spain', r: 'Iberia · Southern Europe', reg: 'europe', iso: '724',
+          intro: 'Walkable plazas, late dinners, expressive conversation, and a culture designed around actually being outside with other people.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Sobremesa and the art of not rushing away from the table.',
+              body: 'How Spanish urban design and social customs turn everyday meals and evening walks into genuine community—and what that teaches us about time.',
+              tags: ['Sobremesa', 'Walkable Cities', 'Social Architecture']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Plazas, architecture, and golden-hour streets in Spain.',
+              body: 'Reserved for personal photographs from Spain—being organized for the visual archive.',
+              tags: ['Personal Photography', 'Iberia', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Notes on rhythm, directness, and living in the present.',
+              body: 'Reserved for audio field notes recorded from time spent in Spain.',
+              tags: ['Voice Memo Slot', 'Daily Rhythm']
+            }
+          ]
+        },
+        portugal: {
+          n: 'Portugal', r: 'Iberia · Atlantic Europe', reg: 'europe', iso: '620',
+          intro: 'Tiled facades, Atlantic light, steep hills, and a reflective, unhurried coastal sensibility.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Atlantic stillness and the emotional texture of old neighborhoods.',
+              body: 'Exploring why certain coastal places invite slower thinking, long walks, and quiet conversation.',
+              tags: ['Coastal Pace', 'Memory & Place', 'Iberia']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Azulejos, viewpoints, and Atlantic light across Portugal.',
+              body: 'Reserved for personal photographs from Portugal.',
+              tags: ['Personal Photography', 'Atlantic Coast', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken impressions on atmosphere and tempo.',
+              body: 'Reserved for voice reflections from Portugal.',
+              tags: ['Voice Memo Slot', 'Atmosphere']
+            }
+          ]
+        },
+        france: {
+          n: 'France', r: 'Western Europe', reg: 'europe', iso: '250',
+          intro: 'Where café debate, aesthetics, regional pride, and a fierce protection of everyday quality of life shape the public square.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Why treating conversation and aesthetics seriously changes daily life.',
+              body: 'Observations on how French culture approaches disagreement, ideas, food, and the boundary between work and life.',
+              tags: ['Intellectual Culture', 'Aesthetics', 'Public Space']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Boulevards, cafés, and coastal corners of France.',
+              body: 'Reserved for personal travel photography from France.',
+              tags: ['Personal Photography', 'Western Europe', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Notes on conversation as a cultural sport.',
+              body: 'Reserved for spoken field notes from France.',
+              tags: ['Voice Memo Slot', 'Dialogue']
+            }
+          ]
+        },
+        monaco: {
+          n: 'Monaco', r: 'Côte d’Azur · Riviera', reg: 'europe', iso: '492',
+          intro: 'A vertical Mediterranean microstate carved into the cliffs of the Riviera—a study in density, spectacle, and contrast.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'What a two-square-kilometer world on the Mediterranean reveals about status and space.',
+              body: 'Observing the surreal architecture, harbor geometry, and human theater of one of the smallest and most concentrated places on Earth.',
+              tags: ['Microstate', 'Mediterranean', 'Observation']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Cliffside roads, harbor views, and Riviera geometry.',
+              body: 'Reserved for personal photographs from Monaco.',
+              tags: ['Personal Photography', 'Riviera', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Firsthand impressions from the Côte d’Azur.',
+              body: 'Reserved for short audio notes on Monaco.',
+              tags: ['Voice Memo Slot', 'Field Impression']
+            }
+          ]
+        },
+        italy: {
+          n: 'Italy', r: 'Southern Europe', reg: 'europe', iso: '380',
+          intro: 'Layered history in every stone, expressive human warmth, and an instinctive devotion to beauty, gesture, and the shared table.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Living inside history without treating it like a museum.',
+              body: 'How Italian towns and cities blend ancient architecture with loud, vibrant, modern human connection—and how beauty shapes mood.',
+              tags: ['History & Beauty', 'Human Expression', 'Piazza Life']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Piazzas, architecture, and everyday moments in Italy.',
+              body: 'Reserved for personal photographs from Italy.',
+              tags: ['Personal Photography', 'Southern Europe', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Notes on gesture, voice, and la passeggiata.',
+              body: 'Reserved for audio reflections from Italy.',
+              tags: ['Voice Memo Slot', 'Culture & Ritual']
+            }
+          ]
+        },
+        germany: {
+          n: 'Germany', r: 'Central Europe', reg: 'europe', iso: '276',
+          intro: 'Precision, deep philosophical and historical consciousness, and cities that balance industrial strength with countercultural creativity.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Structure, directness, and the freedom that comes from clear rules.',
+              body: 'Exploring how German directness in communication and high-trust public systems create a distinct kind of social trust.',
+              tags: ['Communication Style', 'Social Trust', 'Central Europe']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Architecture, transit, and neighborhood character in Germany.',
+              body: 'Reserved for personal photographs from Germany.',
+              tags: ['Personal Photography', 'Urban Form', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Reflections on directness vs. small talk across cultures.',
+              body: 'Reserved for spoken observations from Germany.',
+              tags: ['Voice Memo Slot', 'Cross-Cultural']
+            }
+          ]
+        },
+        netherlands: {
+          n: 'Netherlands', r: 'Western Europe', reg: 'europe', iso: '528',
+          intro: 'Human-scale canals, bicycles outnumbering cars, pragmatic openness, and some of the most thoughtfully designed urban space in the world.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'How designing cities for bicycles and pedestrians changes how people interact.',
+              body: 'When streets aren’t dominated by heavy traffic, the entire soundscape and psychological feel of a city shifts.',
+              tags: ['Human-Scale Design', 'Pragmatism', 'Urban Psychology']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Canals, brick gables, and cycling streets in the Netherlands.',
+              body: 'Reserved for personal photographs from the Netherlands.',
+              tags: ['Personal Photography', 'Canals & Streets', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken notes on Dutch openness and international life.',
+              body: 'Reserved for voice memos from the Netherlands.',
+              tags: ['Voice Memo Slot', 'Urban Life']
+            }
+          ]
+        },
+        uk: {
+          n: 'United Kingdom', r: 'Northern & Western Europe', reg: 'europe', iso: '826',
+          intro: 'Global crossroads, dry wit, literary history, and neighborhoods where centuries of tradition meet every corner of the modern world.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Humor, understatement, and the layered codes of British conversation.',
+              body: 'Observing how irony, pub culture, and unspoken social rules operate in one of the world’s most international crossroads.',
+              tags: ['Language & Wit', 'Global Crossroads', 'Tradition & Modernity']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Streets, parks, and historic corners across the UK.',
+              body: 'Reserved for personal photographs from the United Kingdom.',
+              tags: ['Personal Photography', 'United Kingdom', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Reflections on English across accents, classes, and cultures.',
+              body: 'Reserved for audio notes from the UK.',
+              tags: ['Voice Memo Slot', 'Communication']
+            }
+          ]
+        },
+        greece: {
+          n: 'Greece', r: 'Aegean · Southern Europe', reg: 'europe', iso: '300',
+          intro: 'Ancient philosophical roots, sunlit coastlines, and a culture of hospitality where strangers are still welcomed into long conversations.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Walking where the oldest questions about human nature were first argued.',
+              body: 'Reflections on philoxenia (hospitality), Mediterranean rhythm, and the continuity between ancient inquiry and everyday Greek life.',
+              tags: ['Philosophy & Roots', 'Hospitality', 'Mediterranean']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Aegean light, ancient ruins, and lively evening streets in Greece.',
+              body: 'Reserved for personal photographs from Greece.',
+              tags: ['Personal Photography', 'Aegean', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken impressions from Athens and the coast.',
+              body: 'Reserved for voice reflections from Greece.',
+              tags: ['Voice Memo Slot', 'Perspective']
+            }
+          ]
+        },
+        japan: {
+          n: 'Japan', r: 'East Asia', reg: 'asia', iso: '392',
+          intro: 'An extraordinary coexistence of hyper-modern precision and quiet centuries-old ritual—where attention to detail and consideration for others are elevated to an art form.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'What happens when a society treats even the smallest daily task as a craft.',
+              body: 'Experiencing Japan challenges almost every Western assumption about how a massive metropolis can feel peaceful, safe, and deeply considerate.',
+              tags: ['Craft & Attention', 'Social Harmony', 'Contrast']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Neon alleys, quiet shrines, transit precision, and street scenes in Japan.',
+              body: 'Reserved for personal photographs from Japan.',
+              tags: ['Personal Photography', 'East Asia', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Audio notes on silence, respect, and sensory contrast.',
+              body: 'Reserved for voice memos recorded in Japan.',
+              tags: ['Voice Memo Slot', 'Cultural Contrast']
+            }
+          ]
+        },
+        thailand: {
+          n: 'Thailand', r: 'Southeast Asia', reg: 'asia', iso: '764',
+          intro: 'Kinetic night markets, ornate temples, tropical coastlines, and a social philosophy that meets life’s friction with warmth and grace.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Sanuk, sabai, and the wisdom of not taking every moment too pesado.',
+              body: 'How Thai culture balances bustling street energy with spiritual calm, warmth, and an ability to let minor stresses roll off.',
+              tags: ['Warmth & Calm', 'Street Culture', 'Southeast Asia']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Night markets, temples, and coastal horizons in Thailand.',
+              body: 'Reserved for personal photographs from Thailand.',
+              tags: ['Personal Photography', 'Southeast Asia', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Firsthand impressions on hospitality and sensory energy.',
+              body: 'Reserved for audio notes from Thailand.',
+              tags: ['Voice Memo Slot', 'Travel Journal']
+            }
+          ]
+        },
+        vietnam: {
+          n: 'Vietnam', r: 'Southeast Asia', reg: 'asia', iso: '704',
+          intro: 'A river of scooters, sidewalk coffee stools, relentless forward momentum, and some of the most vibrant street-level social life anywhere on the planet.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'How chaos on the surface reveals an intricate, self-organizing rhythm underneath.',
+              body: 'Crossing the street or sitting at a tiny plastic sidewalk table in Vietnam teaches you immediately about flow, adaptability, and collective momentum.',
+              tags: ['Emergent Order', 'Street Coffee Culture', 'Momentum']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Sidewalk cafés, lantern streets, and landscapes in Vietnam.',
+              body: 'Reserved for personal photographs from Vietnam.',
+              tags: ['Personal Photography', 'Vietnam', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken notes on energy, optimism, and human connection.',
+              body: 'Reserved for voice memos from Vietnam.',
+              tags: ['Voice Memo Slot', 'Street Soundscape']
+            }
+          ]
+        }
+      };
+
+      const COORDS = {
+        usa: [-98.5, 39.0],
+        canada: [-106.0, 56.0],
+        mexico: [-102.0, 23.5],
+        ecuador: [-78.4, -1.5],
+        spain: [-3.7, 40.2],
+        portugal: [-8.3, 39.6],
+        france: [2.4, 46.8],
+        monaco: [7.42, 43.74],
+        italy: [12.6, 42.6],
+        germany: [10.4, 51.1],
+        netherlands: [5.3, 52.2],
+        uk: [-2.0, 54.0],
+        greece: [22.0, 39.2],
+        japan: [138.2, 36.2],
+        thailand: [101.0, 15.2],
+        vietnam: [108.0, 16.0]
+      };
+
+      const OFF = {
+        usa: [0, 4],
+        canada: [0, 4],
+        mexico: [4, 4],
+        ecuador: [-18, 4],
+        spain: [4, 8],
+        portugal: [-28, 16],
+        france: [-6, -8],
+        monaco: [22, 10],
+        italy: [16, 4],
+        germany: [10, -4],
+        netherlands: [-20, -10],
+        uk: [-16, -6],
+        greece: [16, 6],
+        japan: [22, 4],
+        thailand: [-22, 6],
+        vietnam: [26, 4]
+      };
+
+      const ZOOM = {
+        usa: [[-126, 23], [-66, 51]],
+        canada: [[-138, 42], [-54, 66]],
+        mexico: [[-118, 13], [-85, 33]],
+        ecuador: [[-84, -7], [-72, 3]],
+        spain: [[-10, 35], [5, 44.5]],
+        portugal: [[-11, 36], [-4, 43]],
+        france: [[-6, 41.5], [10, 51.5]],
+        monaco: [[3.5, 41.5], [11.5, 46.5]],
+        italy: [[6, 36], [19.5, 47.5]],
+        germany: [[4.5, 46.5], [16.5, 55.5]],
+        netherlands: [[2, 50], [9, 54.5]],
+        uk: [[-9, 49.5], [3, 59.5]],
+        greece: [[18.5, 34.5], [29, 42]],
+        japan: [[128, 30], [147, 46]],
+        thailand: [[96, 5.5], [107, 21.5]],
+        vietnam: [[101, 8], [111, 24]]
+      };
+
+      const REGION_BOX = {
+        northamerica: [[-134, 22], [-58, 64]],
+        latam: [[-118, -8], [-70, 33]],
+        europe: [[-11, 34.5], [29, 58.5]],
+        asia: [[95, 5], [147, 46]]
+      };
+
+      const REGION_INFO = {
+        northamerica: {
+          eyebrow: 'North America · 2 Countries',
+          name: 'Scale, reinvention, and continental horizons.',
+          note: 'Across the United States and Canada, vast geography meets hyper-diverse cities—offering a lens into how mobility, ambition, and pluralism shape modern life.',
+          themes: 'Urban identity vs. open space · Work and ambition · Multicultural cities · Cross-border perspectives'
+        },
+        latam: {
+          eyebrow: 'Latin America · 2 Countries',
+          name: 'Warmth, presence, and life lived in community.',
+          note: 'From Mexico to the Andes and coast of Ecuador, daily life is anchored by family, plazas, shared meals, and an unmistakable human warmth.',
+          themes: 'Public plazas & community · Language & humor · Andean & coastal rhythms · Two-hemisphere identity'
+        },
+        europe: {
+          eyebrow: 'Europe · 9 Countries',
+          name: 'Layered history, walkable cities, and distinct ways of living.',
+          note: 'Crossing borders in Europe reveals how differently neighboring societies organize work, leisure, conversation, architecture, and the public square.',
+          themes: 'Walkable urban design · Sobremesa & café debate · Historical continuity · Communication codes'
+        },
+        asia: {
+          eyebrow: 'East & Southeast Asia · 3 Countries',
+          name: 'Precision, momentum, and philosophies that reframe the everyday.',
+          note: 'Exploring Japan, Thailand, and Vietnam challenges familiar Western assumptions—from quiet craft and consideration to kinetic street life and emergent order.',
+          themes: 'Craft & mindfulness · Street-level vibrancy · Collective harmony · Sensory contrast'
+        }
+      };
+
+      const NAME_MAP = {
+        'United States of America': 'usa',
+        'United States': 'usa',
+        'Canada': 'canada',
+        'Mexico': 'mexico',
+        'Ecuador': 'ecuador',
+        'Spain': 'spain',
+        'Portugal': 'portugal',
+        'France': 'france',
+        'Monaco': 'monaco',
+        'Italy': 'italy',
+        'Germany': 'germany',
+        'Netherlands': 'netherlands',
+        'United Kingdom': 'uk',
+        'Greece': 'greece',
+        'Japan': 'japan',
+        'Thailand': 'thailand',
+        'Vietnam': 'vietnam',
+        'Viet Nam': 'vietnam'
+      };
+
+      const ISO_MAP = {};
+      Object.keys(ATLAS_DATA).forEach(k => {
+        ISO_MAP[ATLAS_DATA[k].iso] = k;
+        ISO_MAP[String(Number(ATLAS_DATA[k].iso))] = k;
+      });
+
+      const NS = 'http://www.w3.org/2000/svg';
+      const el = (tag, attrs) => {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        return e;
+      };
+
+      const gZoom = document.getElementById('atlasZoom');
+      const gLabels = document.getElementById('atlasLabels');
+      const gGrat = document.getElementById('atlasGraticule');
+      const gLand = document.getElementById('atlasLand');
+      const gPins = document.getElementById('atlasPins');
+      const resetBtn = document.getElementById('atlasReset');
+      const mapBox = document.getElementById('atlasMapBox');
+      const panel = document.getElementById('atlasPanel');
+      const cameraStatus = document.getElementById('atlasCameraStatus');
+
+      const VW = 720, VH = 560;
+      const frameCoords = [
+        ...Object.values(COORDS),
+        [-130, 58], [-125, -12], [148, 45], [142, -8]
+      ];
+      const projection = d3.geoNaturalEarth1().fitExtent([[24, 38], [696, 528]], {
+        type: 'MultiPoint',
+        coordinates: frameCoords
+      });
+      const path = d3.geoPath(projection);
+
+      gGrat.appendChild(el('path', { class: 'atlas-grat', d: path(d3.geoGraticule10()) }));
+
+      const LABELS = [];
+      let cur = { k: 1, tx: 0, ty: 0 };
+      let curBase = { k: 1, tx: 0, ty: 0 };
+      let activeRegion = 'all';
+      let viewMode = 'all';
+      let selectedKey = null;
+      let selectedEntryIdx = 0;
+      let hoverKey = null;
+      let labelsHidden = false;
+
+      // Wire Region Chips in Overview
+      document.querySelectorAll('.ap-region-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (btn.dataset.region) selectRegion(btn.dataset.region);
+        });
+      });
+
+      function renderCountryEntry(key, entryIdx) {
+        const d = ATLAS_DATA[key];
+        if (!d) return;
+        const entries = d.entries || [];
+        selectedEntryIdx = (entryIdx + entries.length) % entries.length;
+        const entry = entries[selectedEntryIdx];
+
+        document.getElementById('acRegion').textContent = d.r;
+        document.getElementById('acName').textContent = d.n;
+        document.getElementById('acIntro').textContent = d.intro;
+        document.getElementById('acEntryCounter').textContent = `Entry 0${selectedEntryIdx + 1} / 0${entries.length}`;
+
+        document.querySelectorAll('.journal-type-tab').forEach((t, i) => {
+          t.classList.toggle('active', i === selectedEntryIdx);
+        });
+
+        const card = document.getElementById('acEntryCard');
+        const frame = document.getElementById('acVisualFrame');
+        if (card) card.style.opacity = '0.4';
+        setTimeout(() => {
+          if (frame) frame.setAttribute('data-entry-kind', entry.kind);
+          document.getElementById('acVisualFormat').textContent = entry.format;
+          document.getElementById('acVisualPrompt').textContent = `“${entry.prompt}”`;
+          document.getElementById('acEntryBody').textContent = entry.body;
+          document.getElementById('acTags').innerHTML = (entry.tags || [])
+            .map(tag => `<span class="px-2.5 py-1 rounded-full bg-[#F4F5EF] border border-[#D5DFD9] font-mono text-[10px] font-semibold text-[#163D30]">${tag}</span>`)
+            .join('');
+          if (card) card.style.opacity = '1';
+        }, 90);
+      }
+
+      document.querySelectorAll('.journal-type-tab').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (selectedKey) renderCountryEntry(selectedKey, Number(btn.dataset.entryIdx || 0));
+        });
+      });
+      const prevEntryBtn = document.getElementById('acEntryPrev');
+      const nextEntryBtn = document.getElementById('acEntryNext');
+      if (prevEntryBtn) prevEntryBtn.addEventListener('click', () => {
+        if (selectedKey) renderCountryEntry(selectedKey, selectedEntryIdx - 1);
+      });
+      if (nextEntryBtn) nextEntryBtn.addEventListener('click', () => {
+        if (selectedKey) renderCountryEntry(selectedKey, selectedEntryIdx + 1);
+      });
+
+      function setHighlight(key) {
+        gPins.querySelectorAll('.atlas-ctry').forEach(g => g.classList.toggle('on', g.dataset.c === key));
+        gLabels.querySelectorAll('.atlas-lbl').forEach(t => t.classList.toggle('on-lbl', t.dataset.c === key));
+        svgRoot.classList.toggle('focused', !!key);
+      }
+
+      function boxTransform(bbox, pad, kmin, kmax) {
+        const [[w, s], [e, n]] = bbox;
+        let x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9;
+        for (let i = 0; i <= 8; i++) {
+          for (let j = 0; j <= 8; j++) {
+            const p = projection([w + (e - w) * i / 8, s + (n - s) * j / 8]);
+            x0 = Math.min(x0, p[0]); x1 = Math.max(x1, p[0]);
+            y0 = Math.min(y0, p[1]); y1 = Math.max(y1, p[1]);
+          }
+        }
+        let k = Math.min(VW * pad / (x1 - x0), VH * pad / (y1 - y0));
+        k = Math.max(kmin, Math.min(k, kmax));
+        return { k, tx: VW / 2 - k * (x0 + x1) / 2, ty: VH / 2 - k * (y0 + y1) / 2 };
+      }
+
+      function applyTransform(t) {
+        cur = t;
+        gZoom.setAttribute('transform', `translate(${t.tx} ${t.ty}) scale(${t.k})`);
+      }
+
+      function labelShouldShow(L) {
+        if (hoverKey === L.key) return true;
+        if (labelsHidden) return false;
+        if (viewMode === 'country') return L.key === selectedKey;
+        if (viewMode === 'region') return ATLAS_DATA[L.key].reg === activeRegion && L._inView;
+        return false;
+      }
+
+      function updateLabels() {
+        LABELS.forEach(L => {
+          if (labelShouldShow(L)) {
+            L.el.style.display = '';
+            L.el.style.opacity = '1';
+          } else {
+            L.el.style.opacity = '0';
+            L.el.style.display = 'none';
+          }
+        });
+      }
+
+      function positionLabels(t) {
+        LABELS.forEach(L => {
+          const x = t.tx + t.k * L.cx + L.ox;
+          const y = t.ty + t.k * L.cy + L.oy;
+          L.el.setAttribute('x', x);
+          L.el.setAttribute('y', y);
+          L._inView = (x > 6 && x < VW - 6 && y > 12 && y < VH - 8);
+        });
+        updateLabels();
+      }
+
+      function transitionTo(t) {
+        curBase = t;
+        labelsHidden = true;
+        updateLabels();
+        applyTransform(t);
+        setTimeout(() => {
+          positionLabels(t);
+          labelsHidden = false;
+          updateLabels();
+        }, 720);
+      }
+
+      const regTabs = [...document.querySelectorAll('#atlasRegionTabs .atlas-rt')];
+      function markRegionTab(reg) {
+        regTabs.forEach(b => {
+          const isMatch = b.dataset.region === reg;
+          b.classList.toggle('on', isMatch);
+          b.setAttribute('aria-selected', String(isMatch));
+        });
+      }
+
+      function updateResetLabel() {
+        if (viewMode === 'country' && selectedKey) {
+          const regKey = ATLAS_DATA[selectedKey].reg;
+          const regTitle = REGION_INFO[regKey].eyebrow.split('·')[0].trim();
+          resetBtn.innerHTML = `&larr; ${regTitle}`;
+        } else {
+          resetBtn.innerHTML = `&larr; All places`;
+        }
+      }
+
+      function showOverview() {
+        setHighlight(null);
+        markRegionTab('all');
+        activeRegion = 'all';
+        selectedKey = null;
+        viewMode = 'all';
+        panel.dataset.view = 'overview';
+        transitionTo({ k: 1, tx: 0, ty: 0 });
+        mapBox.classList.remove('zoomed');
+        if (cameraStatus) cameraStatus.textContent = 'GLOBAL VIEW // 4 REGIONS';
+      }
+
+      function selectRegion(region) {
+        if (region === 'all' || !REGION_INFO[region]) {
+          showOverview();
+          return;
+        }
+        setHighlight(null);
+        markRegionTab(region);
+        activeRegion = region;
+        selectedKey = null;
+        viewMode = 'region';
+
+        const R = REGION_INFO[region];
+        document.getElementById('arEyebrow').textContent = R.eyebrow;
+        document.getElementById('arName').textContent = R.name;
+        document.getElementById('arNote').textContent = R.note;
+        document.getElementById('arThemes').textContent = R.themes;
+
+        const regCountries = Object.keys(ATLAS_DATA).filter(k => ATLAS_DATA[k].reg === region);
+        const arCountriesEl = document.getElementById('arCountries');
+        if (arCountriesEl) {
+          arCountriesEl.innerHTML = regCountries
+            .map(k => `<button type="button" class="ap-country-pill" data-atlas-jump="${k}">${ATLAS_DATA[k].n}</button>`)
+            .join('');
+          arCountriesEl.onclick = e => {
+            const btn = e.target.closest('[data-atlas-jump]');
+            if (btn) selectCountry(btn.dataset.atlasJump);
+          };
+        }
+
+        panel.dataset.view = 'region';
+        transitionTo(boxTransform(REGION_BOX[region], 0.82, 1.2, 5.5));
+        mapBox.classList.add('zoomed');
+        updateResetLabel();
+        if (cameraStatus) cameraStatus.textContent = `${R.eyebrow.split('·')[0].trim().toUpperCase()} // REGION FOCUS`;
+      }
+
+      function selectCountry(key) {
+        const d = ATLAS_DATA[key];
+        if (!d) return;
+        renderCountryEntry(key, 0);
+        setHighlight(key);
+        markRegionTab(d.reg);
+        activeRegion = d.reg;
+        selectedKey = key;
+        viewMode = 'country';
+        panel.dataset.view = 'country';
+        transitionTo(boxTransform(ZOOM[key], 0.84, 1.5, 9.0));
+        mapBox.classList.add('zoomed');
+        updateResetLabel();
+        if (cameraStatus) cameraStatus.textContent = `${d.n.toUpperCase()} // JOURNAL ACTIVE`;
+      }
+
+      function back() {
+        if (viewMode === 'country' && selectedKey) {
+          selectRegion(ATLAS_DATA[selectedKey].reg);
+        } else {
+          showOverview();
+        }
+      }
+
+      regTabs.forEach(t => t.addEventListener('click', () => selectRegion(t.dataset.region)));
+      resetBtn.addEventListener('click', back);
+      document.getElementById('apClose').addEventListener('click', back);
+      const arBackAllBtn = document.getElementById('arBackAllBtn');
+      if (arBackAllBtn) arBackAllBtn.addEventListener('click', showOverview);
+      const acBackRegionBtn = document.getElementById('acBackRegionBtn');
+      if (acBackRegionBtn) acBackRegionBtn.addEventListener('click', back);
+
+      const atlasRandomBtn = document.getElementById('atlasRandomBtn');
+      if (atlasRandomBtn) {
+        atlasRandomBtn.addEventListener('click', () => {
+          const keys = Object.keys(ATLAS_DATA);
+          const pick = keys[Math.floor(Math.random() * keys.length)];
+          selectCountry(pick);
+        });
+      }
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mapBox.classList.contains('zoomed')) back();
+      });
+
+      // Controlled mouse drag pan when zoomed in
+      let dragging = false, justDragged = false, sx = 0, sy = 0, stx = 0, sty = 0, pxToVb = 1;
+      svgRoot.addEventListener('pointerdown', e => {
+        justDragged = false;
+        if (!mapBox.classList.contains('zoomed') || e.pointerType !== 'mouse') return;
+        dragging = true;
+        sx = e.clientX; sy = e.clientY;
+        stx = cur.tx; sty = cur.ty;
+        pxToVb = VW / svgRoot.getBoundingClientRect().width;
+      });
+      window.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const k = cur.k;
+        if (Math.abs(e.clientX - sx) > 3 || Math.abs(e.clientY - sy) > 3) {
+          if (!justDragged) {
+            justDragged = true;
+            mapBox.classList.add('grabbing');
+            gZoom.style.transition = 'none';
+          }
+        }
+        const loX = Math.min(VW - VW * k, curBase.tx), hiX = Math.max(0, curBase.tx);
+        const loY = Math.min(VH - VH * k, curBase.ty), hiY = Math.max(0, curBase.ty);
+        let ntx = stx + (e.clientX - sx) * pxToVb;
+        let nty = sty + (e.clientY - sy) * pxToVb;
+        ntx = Math.max(loX, Math.min(hiX, ntx));
+        nty = Math.max(loY, Math.min(hiY, nty));
+        applyTransform({ k, tx: ntx, ty: nty });
+        positionLabels(cur);
+      });
+      function endDrag() {
+        if (!dragging) return;
+        dragging = false;
+        mapBox.classList.remove('grabbing');
+        gZoom.style.transition = '';
+        setTimeout(() => { justDragged = false; }, 0);
+      }
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', endDrag);
+      svgRoot.addEventListener('click', e => {
+        if (justDragged) return;
+        if (mapBox.classList.contains('zoomed') && !e.target.closest('.atlas-ctry')) back();
+      });
+
+      function filterTerritoryGeometry(key, f) {
+        if (f.geometry.type !== 'MultiPolygon') return f;
+        if (key === 'france') {
+          const polys = f.geometry.coordinates.filter(poly => {
+            const [lon, lat] = poly[0][0];
+            return lon > -10 && lon < 15 && lat > 40;
+          });
+          return { ...f, geometry: { type: 'MultiPolygon', coordinates: polys } };
+        }
+        if (key === 'netherlands') {
+          const polys = f.geometry.coordinates.filter(poly => {
+            const [lon, lat] = poly[0][0];
+            return lon > 2 && lon < 9 && lat > 50;
+          });
+          return { ...f, geometry: { type: 'MultiPolygon', coordinates: polys } };
+        }
+        if (key === 'usa') {
+          const polys = f.geometry.coordinates.filter(poly => {
+            const [lon, lat] = poly[0][0];
+            return lon < -60 && lat > 18;
+          });
+          return { ...f, geometry: { type: 'MultiPolygon', coordinates: polys } };
+        }
+        return f;
+      }
+
+      function attachCountryInteractions(g, key) {
+        const d = ATLAS_DATA[key];
+        const [cx, cy] = projection(COORDS[key]);
+        const o = OFF[key] || [0, 0];
+        const t = el('text', {
+          class: 'atlas-lbl',
+          x: cx + o[0],
+          y: cy + o[1],
+          'text-anchor': 'middle',
+          'data-c': key
+        });
+        t.textContent = d.n.toUpperCase();
+        gLabels.appendChild(t);
+        LABELS.push({ key, cx, cy, ox: o[0], oy: o[1], el: t });
+
+        g.addEventListener('click', e => {
+          e.stopPropagation();
+          if (justDragged) return;
+          selectCountry(key);
+        });
+        g.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectCountry(key);
+          }
+        });
+        g.addEventListener('mouseenter', () => { hoverKey = key; updateLabels(); });
+        g.addEventListener('mouseleave', () => { if (hoverKey === key) { hoverKey = null; updateLabels(); } });
+        g.addEventListener('focus', () => { hoverKey = key; updateLabels(); });
+        g.addEventListener('blur', () => { if (hoverKey === key) { hoverKey = null; updateLabels(); } });
+      }
+
+      fetch('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-50m.json')
+        .then(r => r.json())
+        .then(topo => {
+          const feats = topojson.feature(topo, topo.objects.countries).features;
+          const renderedKeys = new Set();
+
+          feats.forEach(f => {
+            // Skip Antarctica so the world frame stays clean and balanced
+            if (f.properties.name === 'Antarctica' || String(f.id) === '010' || String(f.id) === '10') return;
+            gLand.appendChild(el('path', { class: 'atlas-land', d: path(f) }));
+          });
+
+          feats.forEach(f => {
+            const key = NAME_MAP[f.properties.name] || ISO_MAP[String(f.id)];
+            if (!key || renderedKeys.has(key)) return;
+            renderedKeys.add(key);
+
+            const feat = filterTerritoryGeometry(key, f);
+            const d = ATLAS_DATA[key];
+            const g = el('g', {
+              class: 'atlas-ctry',
+              tabindex: '0',
+              role: 'button',
+              'aria-label': d.n,
+              'data-c': key
+            });
+            g.appendChild(el('path', { class: 'atlas-cov', d: path(feat) }));
+            gPins.appendChild(g);
+            attachCountryInteractions(g, key);
+          });
+
+          // Ensure Monaco (microstate on the Côte d'Azur) is always rendered with a crisp territorial medallion & hit target
+          if (!renderedKeys.has('monaco')) {
+            const [mcx, mcy] = projection(COORDS.monaco);
+            const gMonaco = el('g', {
+              class: 'atlas-ctry',
+              tabindex: '0',
+              role: 'button',
+              'aria-label': 'Monaco',
+              'data-c': 'monaco'
+            });
+            gMonaco.appendChild(el('circle', {
+              class: 'atlas-cov',
+              cx: mcx,
+              cy: mcy,
+              r: '2.6'
+            }));
+            gMonaco.appendChild(el('circle', {
+              cx: mcx,
+              cy: mcy,
+              r: '8',
+              fill: 'transparent'
+            }));
+            gPins.appendChild(gMonaco);
+            attachCountryInteractions(gMonaco, 'monaco');
+          }
+
+          positionLabels(cur);
+        })
+        .catch(() => {});
+    }
+
+    initTravelAtlas();
   </script>
 </body>
 </html>

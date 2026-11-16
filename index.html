@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=20261115g">
+  <link rel="stylesheet" href="./style.css?v=20261116a">
   <script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous" defer></script>
   <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous" defer></script>
   <script>
@@ -454,10 +454,10 @@
                 <span class="w-2 h-2 rounded-full bg-[#167451]"></span>
                 <span>FIELD ATLAS // GEOGRAPHIC INDEX</span>
               </span>
-              <span>16 COUNTRIES EXPLORED &middot; 4 REGIONS</span>
+              <span>17 COUNTRIES EXPLORED &middot; 4 REGIONS</span>
             </div>
             <button type="button" class="atlas-reset" id="atlasReset" aria-label="Zoom back out">&larr; All places</button>
-            <svg id="atlasMap" viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive world map highlighting 16 countries explored across North America, Latin America, Europe, and Asia">
+            <svg id="atlasMap" viewBox="0 0 720 440" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Interactive world map highlighting 17 countries explored across North America, Latin America, Europe, and Asia">
               <g id="atlasZoom">
                 <g id="atlasGraticule"></g>
                 <g id="atlasLand"></g>
@@ -478,7 +478,7 @@
               <div class="flex flex-wrap items-center gap-4">
                 <span class="inline-flex items-center gap-1.5">
                   <span class="w-2.5 h-2.5 rounded-full bg-[#167451] inline-block"></span>
-                  <span>Explored (16 countries)</span>
+                  <span>Explored (17 countries)</span>
                 </span>
                 <span class="inline-flex items-center gap-1.5">
                   <span class="w-2.5 h-2.5 rounded-full bg-[#163D30]/15 border border-[#163D30]/30 inline-block"></span>
@@ -495,7 +495,7 @@
 
             <!-- VIEW 1: GLOBAL OVERVIEW -->
             <div class="ap-view ap-overview">
-              <div class="ap-eyebrow">Interactive Travel Journal &middot; 16 Countries</div>
+              <div class="ap-eyebrow">Interactive Travel Journal &middot; 17 Countries</div>
               <div class="ap-title">Places that shaped a worldview.</div>
               <p class="ap-note">
                 Every environment has its own rhythm—how people greet strangers, how cities balance public and private life, and what a culture treats as normal. Click any highlighted country on the map or choose a region below to browse personal observations.
@@ -511,14 +511,14 @@
                     <span class="ap-rc-dot bg-[#167451]"></span>
                     <span>North America</span>
                   </span>
-                  <span class="ap-rc-count">3</span>
+                  <span class="ap-rc-count">2</span>
                 </button>
                 <button type="button" class="ap-region-chip" data-region="latam">
                   <span class="inline-flex items-center gap-2">
                     <span class="ap-rc-dot bg-[#E8B45B]"></span>
                     <span>Latin America</span>
                   </span>
-                  <span class="ap-rc-count">1</span>
+                  <span class="ap-rc-count">2</span>
                 </button>
                 <button type="button" class="ap-region-chip" data-region="europe">
                   <span class="inline-flex items-center gap-2">
@@ -532,7 +532,7 @@
                     <span class="ap-rc-dot bg-[#773B42]"></span>
                     <span>Asia</span>
                   </span>
-                  <span class="ap-rc-count">3</span>
+                  <span class="ap-rc-count">4</span>
                 </button>
               </div>
 
@@ -545,7 +545,7 @@
                 <button type="button" id="atlasRandomBtn" class="px-4 py-2.5 rounded-full bg-[#163D30] hover:bg-[#167451] text-[#F4F5EF] font-mono text-xs font-semibold transition shadow-xs cursor-pointer">
                   Explore a random country &#8635;
                 </button>
-                <span class="font-mono text-[11px] text-[#697B70]">16 places &middot; 4 regions</span>
+                <span class="font-mono text-[11px] text-[#697B70]">17 places &middot; 4 regions</span>
               </div>
             </div>
 
@@ -2521,7 +2521,7 @@
     })();
 
     // =========================================================================
-    // HUMAN SIDE EVOLUTION: 3. THE TRAVEL ATLAS (16 COUNTRIES / 4 REGIONS)
+    // HUMAN SIDE EVOLUTION: 3. THE TRAVEL ATLAS (17 COUNTRIES / 4 REGIONS)
     // =========================================================================
     function initTravelAtlas() {
       const svgRoot = document.getElementById('atlasMap');
@@ -2914,6 +2914,30 @@
               tags: ['Voice Memo Slot', 'Street Soundscape']
             }
           ]
+        },
+        philippines: {
+          n: 'Philippines', r: 'Southeast Asia', reg: 'asia', iso: '608',
+          intro: 'An archipelago of thousands of islands, deep warmth, boundless hospitality, and an innate musicality and resilience woven into daily conversation.',
+          entries: [
+            {
+              kind: 'reflection', format: 'FIELD NOTE // WRITTEN REFLECTION',
+              prompt: 'Bayanihan, warmth, and what genuine hospitality feels like.',
+              body: 'Observing how connection, communal spirit (bayanihan), and warmth define daily interactions across the islands—where strangers are treated like family from the first greeting.',
+              tags: ['Hospitality & Family', 'Island Life', 'Southeast Asia']
+            },
+            {
+              kind: 'photo', format: 'VISUAL JOURNAL // PHOTOGRAPHIC ARCHIVE',
+              prompt: 'Coastal horizons, island transit, and everyday warmth across the Philippines.',
+              body: 'Reserved for personal photographs and visual stories from the Philippines.',
+              tags: ['Personal Photography', 'Archipelago', 'Archive Slot']
+            },
+            {
+              kind: 'audio', format: 'VOICE NOTE // SPOKEN OBSERVATION',
+              prompt: 'Spoken impressions on language, humor, and social warmth.',
+              body: 'Reserved for audio notes and reflections from time in the Philippines.',
+              tags: ['Voice Memo Slot', 'Humor & Warmth']
+            }
+          ]
         }
       };
 
@@ -2933,7 +2957,8 @@
         greece: [22.0, 39.2],
         japan: [138.2, 36.2],
         thailand: [101.0, 15.2],
-        vietnam: [108.0, 16.0]
+        vietnam: [108.0, 16.0],
+        philippines: [122.0, 13.0]
       };
 
       const OFF = {
@@ -2952,7 +2977,8 @@
         greece: [16, 6],
         japan: [22, 4],
         thailand: [-22, 6],
-        vietnam: [26, 4]
+        vietnam: [26, 4],
+        philippines: [24, 4]
       };
 
       const ZOOM = {
@@ -2971,14 +2997,15 @@
         greece: [[18.5, 34.5], [29, 42]],
         japan: [[128, 30], [147, 46]],
         thailand: [[96, 5.5], [107, 21.5]],
-        vietnam: [[101, 8], [111, 24]]
+        vietnam: [[101, 8], [111, 24]],
+        philippines: [[116, 4.5], [127, 21.5]]
       };
 
       const REGION_BOX = {
         northamerica: [[-134, 22], [-58, 64]],
         latam: [[-118, -8], [-70, 33]],
         europe: [[-11, 34.5], [29, 58.5]],
-        asia: [[95, 5], [147, 46]]
+        asia: [[95, 4], [147, 46]]
       };
 
       const REGION_INFO = {
@@ -3001,10 +3028,10 @@
           themes: 'Walkable urban design · Sobremesa & café debate · Historical continuity · Communication codes'
         },
         asia: {
-          eyebrow: 'East & Southeast Asia · 3 Countries',
+          eyebrow: 'East & Southeast Asia · 4 Countries',
           name: 'Precision, momentum, and philosophies that reframe the everyday.',
-          note: 'Exploring Japan, Thailand, and Vietnam challenges familiar Western assumptions—from quiet craft and consideration to kinetic street life and emergent order.',
-          themes: 'Craft & mindfulness · Street-level vibrancy · Collective harmony · Sensory contrast'
+          note: 'Exploring Japan, Thailand, Vietnam, and the Philippines challenges familiar Western assumptions—from quiet craft and consideration to kinetic street life, island warmth, and emergent order.',
+          themes: 'Craft & mindfulness · Street-level vibrancy · Island hospitality & warmth · Sensory contrast'
         }
       };
 
@@ -3026,7 +3053,8 @@
         'Japan': 'japan',
         'Thailand': 'thailand',
         'Vietnam': 'vietnam',
-        'Viet Nam': 'vietnam'
+        'Viet Nam': 'vietnam',
+        'Philippines': 'philippines'
       };
 
       const ISO_MAP = {};

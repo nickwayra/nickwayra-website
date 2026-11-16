@@ -1394,14 +1394,13 @@ html[data-mode="lab"] .dispatch-btn:hover {
   transform: scaleX(0.75) rotate(34deg);
 }
 .lens-corner-asterisk {
-  font: 500 84px/1 'Fraunces', Georgia, serif;
-  color: rgba(119, 59, 66, 0.22);
   position: absolute;
-  top: -12px;
+  top: 14px;
   right: 22px;
   pointer-events: none;
   user-select: none;
-  z-index: -1;
+  z-index: 0;
+  color: rgba(119, 59, 66, 0.22);
 }
 
 /* Deep Emerald Editorial Philosophy Pull-Quote Divider */
@@ -1421,12 +1420,14 @@ html[data-mode="lab"] .dispatch-btn:hover {
   isolation: isolate;
 }
 .editorial-quote-strip:before {
-  content: '✳';
-  font: 500 250px/1 'Fraunces', Georgia, serif;
-  color: rgba(102, 227, 174, 0.075);
+  content: '';
   position: absolute;
-  left: -35px;
-  top: -85px;
+  left: -20px;
+  top: -45px;
+  width: 220px;
+  height: 220px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2366E3AE' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M5.3 18.7L18.7 5.3'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.085;
   pointer-events: none;
   z-index: -1;
 }
@@ -1838,15 +1839,17 @@ html[data-mode="lab"] .dispatch-btn:hover {
   isolation: isolate;
 }
 .atlas-panel:before {
-  content: '✳';
+  content: '';
   position: absolute;
-  top: -18px;
-  right: 22px;
-  font: 500 110px/1 'Fraunces', Georgia, serif;
-  color: rgba(22, 116, 81, 0.06);
+  top: 10px;
+  right: 18px;
+  width: 100px;
+  height: 100px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23167451' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M5.3 18.7L18.7 5.3'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.045;
   pointer-events: none;
   user-select: none;
-  z-index: -1;
+  z-index: 0;
 }
 .ap-view {
   display: none;
@@ -2030,14 +2033,16 @@ html[data-mode="lab"] .dispatch-btn:hover {
   isolation: isolate;
 }
 .ap-region-themes-box:before {
-  content: '✳';
+  content: '';
   position: absolute;
   right: 12px;
-  bottom: -24px;
-  font: 500 90px/1 'Fraunces', Georgia, serif;
-  color: rgba(102, 227, 174, 0.1);
+  bottom: -15px;
+  width: 80px;
+  height: 80px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2366E3AE' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M12 2.5v19M2.5 12h19M5.3 5.3l13.4 13.4M5.3 18.7L18.7 5.3'/%3E%3C/svg%3E") no-repeat center / contain;
+  opacity: 0.12;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
 /* Country Multi-Entry Journal Carousel */
@@ -2300,9 +2305,11 @@ html[data-mode="lab"] .dispatch-btn:hover {
   transform: rotate(28deg);
 }
 .editorial-compass-decor .center-mark {
-  font: italic 54px/1 'Fraunces', Georgia, serif;
   color: #167451;
   user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 8. X Lab Telemetry Band & Lab Notes Cards */
